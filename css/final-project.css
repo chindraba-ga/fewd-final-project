@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'SymbolaRegular';
+  src: url('/assets/fonts/SymbolaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Futhark';
+  src: url('/assets/fonts/Futhark-Adapted.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CelticaBook';
+  src: url('/assets/fonts/Celtica-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: ;
+}
+
