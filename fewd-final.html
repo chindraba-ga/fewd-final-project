@@ -12,6 +12,194 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 </head>
 <body>
+  <!-- hidden menu controls, show menu when checked -->
+  <input class="hidden-control" type="checkbox" id="site-nav-control"> <!-- Other pages within the sight -->
+  <input class="hidden-control" type="checkbox" id="page-nav-control"> <!-- Table of contents for the page -->
+  <input class="hidden-control" type="checkbox" id="settings-control"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
+  <input class="hidden-control" type="checkbox" id="scheme-control"> <!-- The menu for changing the color scheme -->
+  <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
+  <input class="hidden-control" type="radio" name="dark-mode-selector" id="main-mode" checked="true">
+  <input class="hidden-control" type="radio" name="dark-mode-selector" id="alt-mode">
+  <!-- Keeping track of the chosen color scheme -->
+  <input class="hidden-control" type="radio" name="scheme-selector" id="default-scheme" checked="true">
+  <input class="hidden-control" type="radio" name="scheme-selector" id="solarized-scheme">
+  <input class="hidden-control" type="radio" name="scheme-selector" id="earthtone-theme">
+  <input class="hidden-control" type="radio" name="scheme-selector" id="purpleish-theme">
+  <input class="hidden-control" type="radio" name="scheme-selector" id="redwasrad-theme">
+  <input class="hidden-control" type="radio" name="scheme-selector" id="blueskies-theme">
+  <!-- Keeping track of the current font size, relative to the base -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-1"> <!-- .562em,  8.99px -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-2"> <!-- .680em, 10.89px -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-3"> <!-- .825em, 13.20px -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-4" checked="true"> <!-- Default -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-5"> <!-- 1.31em, 21px -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-6"> <!-- 1.75em, 28px -->
+  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-7"> <!-- 2.25em, 36px -->
+  <div id="scheme-container">
+    <!-- Keeping track of the active modal, if any, modal-x is none -->
+    <input class="hidden-control" checked="true" type="radio" name="modal_state" id="modal-x">
+    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-1">
+    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-2">
+    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-3">
+    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-4">
+    <header id="site-header">
+      <div id="site-logo"><img src="assets/logo.png" alt=""></div>
+      <div>
+        <div>Web Site Title</div>
+        <div>Descriptive Web Site Tagline</div>
+      </div>
+      <label for="site-nav-control" id="site-nav-switch"><span class="icon">&#x205e;</span></label>
+      <nav id="head-nav">
+        <ul id="head-nav-left">
+          <li>About</li>
+          <li>Portfolio</li>
+          <li>Blog</li>
+        </ul>
+        <ul id-"head-nav-right">
+          <li>References</li>
+          <li>Reviews</li>
+          <li>Legal</li>
+        </ul>
+      </nav>
+    </header>
+    <section id="hero-box">
+      <img src="hero.jpg" alt="">
+    </section>
+    <main id="page-content">
+      PAGE CONTENT
+    </main>
+    <footer id="site-footer">
+      <div id="copyright">
+        Copyright © 2020 Chindraba
+      </div>
+      <label class="icon" for="settings-control" id="settings-switch">&#x2699;</label>
+    </footer>
+    <!-- All the positionable menus -->
+    <aside>
+      <label for="page-nav-control" id="page-nav-switch">
+        <span class="icon" id="page-nav-closed">&#x25b6;</span>
+        <span class="icon" id="page-nav-open">&#x25bc;</span>
+      </label>
+      <label for="archive-nav-control" id="archive-nav-switch">
+        <span class="icon" id="archive-nav-switch-closed">&#x25c0;</span>
+        <span class="icon" id="archive-nav-switch-open">&#x25bc;</span>
+        <span>&#x1f4dc;</span>
+      </label>
+      <nav id="page-nav">
+        <ul id="page-nav-menu">
+          <li>Section 1</li>
+          <li><ul>Section 2
+              <li> Subsection 2.1 </li>
+              <li> Subsection 2.2 </li>
+          </ul><li>
+          <ul>Section 3
+            <li> Subsection 3.1 </li>
+          </ul><li>
+            Section 4
+          </li>
+        </ul>
+      </nav>
+      <nav id="archive-nav">
+        <ul id="archive-nav-menu">
+          <li><ul>Article year 1
+              <li>Article 1</li>
+              <li>Article 2</li>
+              <li>Article 3</li>
+              <li>Article 4</li>
+          </ul></li>
+          <li><ul>Article year 2
+              <li>Article 5</li>
+              <li>Article 6</li>
+              <li>Article 7</li>
+              <li>Article 8</li>
+              <li>Article 9</li>
+              <li>Article 10</li>
+          </ul></li>
+          <li><ul>Article year 3
+              <li>Article 11</li>
+              <li>Article 12</li>
+              <li>Article 13</li>
+              <li>Article 14</li>
+              <li>Article 15</li>
+          </ul></li>
+          <li><ul>Article year 4
+              <li>Article 16</li>
+              <li>Article 17</li>
+              <li>Article 18</li>
+              <li>Article 19</li>
+              <li>Article 20</li>
+              <li>Article 21</li>
+              <li>Article 22</li>
+          </ul></li>
+        </ul>
+      </nav>
+      <section id="view-settings">
+        <div>
+          <label class="icon" for="font-size-2" id="font-up-2">&#x1f5da;</label>
+          <label class="icon" for="font-size-3" id="font-up-3">&#x1f5da;</label>
+          <label class="icon" for="font-size-4" id="font-up-4">&#x1f5da;</label>
+          <label class="icon" for="font-size-5" id="font-up-5">&#x1f5da;</label>
+          <label class="icon" for="font-size-6" id="font-up-6">&#x1f5da;</label>
+          <label class="icon" for="font-size-7" id="font-up-7">&#x1f5da;</label>
+        </div>
+        <div>
+          <label class="icon" for="font-size-1" id="font-dn-1">&#x1f5db;</label>
+          <label class="icon" for="font-size-2" id="font-dn-2">&#x1f5db;</label>
+          <label class="icon" for="font-size-3" id="font-dn-3">&#x1f5db;</label>
+          <label class="icon" for="font-size-4" id="font-dn-4">&#x1f5db;</label>
+          <label class="icon" for="font-size-5" id="font-dn-5">&#x1f5db;</label>
+          <label class="icon" for="font-size-6" id="font-dn-6">&#x1f5db;</label>
+        </div>
+        <div>
+          <label for="scheme-control" id="scheme-switch"><span class="icon">&#xa66e;</span></label>
+          <div id="scheme-options">
+            <label for="default-scheme" id="default-scheme-switch">Default</label>
+            <label for="solarized-scheme" id="solarized-scheme-switch">Solarized</label>
+            <label for="earthtone-scheme" id="earthtone-scheme-switch">Earth Tone</label>
+            <label for="purpleish-scheme" id="purpleish-scheme-switch">Purple-ish</label>
+            <label for="redwasrad-scheme" id="redwasrad-scheme-switch">Red was Rad</label>
+            <label for="blueskies-scheme" id="blueskies-scheme-switch">Blue Skies</label>
+          </div>
+        </div>
+        <div>
+          <label for="main-mode" id="main-mode-switch">
+            <span class="icon" id="main-is-dark">&#x263e;</span>
+            <span class="icon" id="main-is-lite">&#x2600;</span>
+          </label>
+          <label for="alt-mode" id="alt-mode-switch">
+            <span class="icon" id="alt-is-dark">&#x263d;</span>
+            <span class="icon" id="alt-is-lite">&#x2600;</span>
+          </label>
+        </div>
+      </section>
+    </aside>
+    <aside id="modal-layouts">
+      <label for="modal-x" id="modal-cover">
+        <label class="modal-box" for="" id="modal-dialog-1"><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label class="modal-box" for="" id="modal-dialog-2"><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label class="modal-box" for="" id="modal-dialog-3"><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label class="modal-box" for="" id="modal-dialog-4"><p></p><label class="modal-button" for="modal-x"></label></label>
+      </label>
+    </aside>
+  </div>
+  <!--
+    25b2 Symbola Up Dark
+    25b3 Symbola Up Lite
+    25b6 Symbola Left Dark
+    25b7 Symbola Left Lite
+    25bc Symbola Down Dark
+    25bd Symbola Down Lite
+    25c0 Symbola Right Dark
+    25c1 Symbola Right Lite
+    2b88 Circled Left
+    2b89 Circled Up
+    2b8a Circled Right
+    2b8b Circled Down
+    2b98 3D-Left
+    2b99 3D-Up
+    2b9a 3D-Right
+    2b9b 3D-Down
+  -->
   <script src="js/final-project.js"></script>
 </body>
 </html>

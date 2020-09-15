@@ -1,22 +1,64 @@
 @font-face {
   font-family: 'SymbolaRegular';
-  src: url('/assets/fonts/SymbolaRegular.ttf') format('truetype');
+  src: url('../assets/fonts/SymbolaRegular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Futhark';
-  src: url('/assets/fonts/Futhark-Adapted.ttf') format('truetype');
+  src: url('../assets/fonts/Futhark-Adapted.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'CelticaBook';
-  src: url('/assets/fonts/Celtica-Book.ttf') format('truetype');
+  src: url('../assets/fonts/Celtica-Book.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 body {
-  font-family: ;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  color: linen;
+  line-height: 1.15;
+}
+body > input {
+  display: none;
+}
+.icon {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  padding: 6px;
+  border: 1px solid goldenrod;
+  box-shadow: 1px 1px 10px rgb(218, 165, 32,.25);
+  font-family: 'SymbolaRegular';
+  font-size: 30px;
+}
+#site-logo {
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  padding: 2px;
+  background-color: rgba(102,51,153,.25);
+}
+#site-logo img {
+  width: 76px;
+  height: 76px;
+  border-radius: 39px;
+  background-color: #212121;
+}
+#site-nav-switch .icon {
+  transform: rotate(180deg);
+}
+nav ul {
+  list-type: none;
+  padding: 0;
+}
+nav li {
+  padding: 0;
 }
 
