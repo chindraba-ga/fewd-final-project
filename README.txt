@@ -1,6 +1,6 @@
 final
 * Status: In Progress
-* CodePen: <https://codesandbox.io/s/final-project-fewdr-804-h8qde>
+* CodeSandbox: <https://codesandbox.io/s/final-project-fewdr-804-h8qde>
 * Live page: <https://www.chindraba.work/fewd/final.html>
 
 Contents
