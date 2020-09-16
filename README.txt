@@ -1,5 +1,5 @@
 final
-* Status: Assigned
+* Status: In Progress
 * CodePen: <https://codesandbox.io/s/final-project-fewdr-804-h8qde>
 * Live page: <https://www.chindraba.work/fewd/final.html>
 
@@ -38,7 +38,7 @@ Final Project: Design and build a website
 
    TIMELINE
 
- Milestone 1             Week 06           Project Proposal/Wireframes
+ Milestone 1   [done]    Week 06           Project Proposal/Wireframes
  Milestone 2             Week 07             Draft of HTML/CSS (no JS)
  Milestone 3             Week 08                     First draft of JS
  Milestone 4             Week 09                   Updated Rough Draft
