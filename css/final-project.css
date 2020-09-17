@@ -17,6 +17,15 @@
   font-style: normal;
 }
 
+/*  Variables for consistency and simple modifications later  */
+:root {
+  --logo-frameColor: rgba(102,51,153,.25);
+  --logo-bgColor: rgba(0,0,0,1);
+  --menu-bgColor: rgba(40,40,40,1);
+  --menu-timing: .5s;
+}
+
+/*  Global styles and overrides */
 body {
   margin: 0;
   padding: 0;
@@ -27,38 +36,69 @@ body {
 body * {
   box-sizing: border-box;
 }
-.hidden-control {
-  display: none;
-}
 #scheme-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 0;
 }
-.icon {
+
+
+/* Generalized styling for multiple elements */
+label {
+  cursor: pointer;
+}
+.hidden-control {
+  display: none;
+}
+.nav-box {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.nav-box-switch {
   display: inline-block;
+  background-color: white;
+  color: blue;
   text-align: center;
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  padding: 6px;
-  font-family: 'SymbolaRegular';
-  font-size: 2rem;
+  padding: 1px 3px 3px;
 }
-nav ul {
-  list-type: none;
+.nav-box-switch span {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform var(--menu-timing) linear;
+}
+.side-menu {
+  padding: 0px;
+  width: 1px;
+  background-color: var(--menu-bgColor);
+  font-size: .75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform-origin: 0% 5%;
+  transition: width var(--menu-timing) linear,
+              transform var(--menu-timing) linear,
+              background-color calc(2 * var(--menu-timing) / 3) linear calc(var(--menu-timing) / 3);
+}
+.side-menu ul {
   padding: 0;
+  margin: 0 0 0 7px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-nav li {
-  padding: 0;
-}
-:root {
-  --logo-frame-color: rgba(102,51,153,.25);
-  --logo-background-color: rgba(0,0,0,1);
-  --menu-timing: .5s;
+.side-menu li {
+  display: inline-block;
+  padding: 7px;
 }
 
 /*   Building the page layout   */
+
+/*  The page header: logo, title, site menu */
 #site-header {
   display: grid;
   grid-template-columns: 80px 1fr 80px;
@@ -71,13 +111,13 @@ nav li {
   width: 80px;
   height: 80px;
   padding: 2px;
-  background-color: var(--logo-frame-color);
+  background-color: var(--logo-frameColor);
 }
 #site-header > div:nth-child(1) img {
   width: 76px;
   height: 76px;
   border-radius: 39px;
-  background-color: var(--logo-background-color);
+  background-color: var(--logo-bgColor);
 }
 #site-header > div:nth-child(2) {
   display: flex;
@@ -99,7 +139,8 @@ nav li {
 #site-nav-switch span {
   border-radius: 3px;
   background-color: green;
-  transition: transform var(--menu-timing) linear, opacity calc( var(--menu-timing) / 2) linear calc( var(--menu-timing) / 2);
+  transition: transform var(--menu-timing) linear,
+              opacity calc( var(--menu-timing) / 2) linear calc( var(--menu-timing) / 2);
 }
 #site-nav-control:checked ~ #scheme-container
   #site-nav-switch span:first-child {
@@ -131,35 +172,22 @@ nav li {
   right: 0;
   transform: perspective(250px) rotateX(270deg);
   transform-origin: 100% 5px;
-  transition: transform var(--menu-timing) linear, background-color calc(2 * var(--menu-timing) / 3) linear calc(var(--menu-timing) / 3);
-}
-.side-menu {
-  padding: 7px;
-  font-size: .75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.side-menu ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.side-menu li {
-  display: inline-block;
-  padding: 7px;
 }
 #site-nav-control:checked ~ #scheme-container #head-nav {
     transform: rotateX(360deg);
     background-color: rgba(40,40,40,1);
-    transition: transform var(--menu-timing) linear, background-color calc(2 * var(--menu-timing) / 3) linear;
+    transition: transform var(--menu-timing) linear,
+                background-color calc(2 * var(--menu-timing) / 3) linear;
   }
+
+/* The hero box, only included on the home page */
+
+/* The main body of the page */
 main {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 600px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fill, auto);
@@ -168,14 +196,57 @@ main {
   text-align: center;
   background-color: rgba(240,240,240,0.15);
 }
+#page-nav-box {
+  left: 0;
+  flex-direction: row-reverse;
+}
+#page-nav-switch {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#page-nav-switch span {
+  transform-origin: 46% 60%;
+}
+#page-nav {
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 10% 50%;
+}
+#page-nav-control:checked ~ #scheme-container #page-nav-switch span {
+  transform: rotate(180deg);
+}
+#page-nav-control:checked ~ #scheme-container #page-nav {
+  width: 200px;
+  transform: rotateX(0deg);
+}
+#archive-nav-box {
+  right: 0;
+  flex-direction: row;
+}
+#archive-nav-switch {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+#archive-nav-switch span {
+  transform-origin: 54% 60%;
+}
+#archive-nav {
+  transform: perspective(350px) rotateY(90deg);
+  transform-origin: 90% 50%;
+}
+#archive-nav-control:checked ~ #scheme-container #archive-nav-switch span {
+  transform: rotate(-180deg);
+}
+#archive-nav-control:checked ~ #scheme-container #archive-nav {
+  width: 150px;
+  transform: rotateY(0deg);
+}
+
 footer {
   display: grid;
   grid-template-columns: auto 80px;
   align-items: space-between;
   background-color: rgba(0,102,0,.25);
-  scale: none;
 }
-
 #copyright {
   font-size: .625rem;
 }
@@ -184,24 +255,14 @@ footer .icon {
   font-size: 2rem;
   transition: all var(--menu-timing) linear;
   transform-origin: 50% 50%);
+  scale: 0.5;
 }
 #settings-control:checked ~ #scheme-container
   footer .icon {
-    scale: 0.5;
+    scale: none;
     transform: rotate(1080deg);
   }
-#page-nav {
-  background-color: rgba(0,51,0,.4);
-  position: absolute;
-  top: 80px;
-  left: 0;
-}
-#page-nav, #page-nav ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+
 
 /*  wide screen  */
 
