@@ -25,6 +25,7 @@
   -->
 </head>
 <body>
+  <input class="hidden-control" type="checkbox" id="widescreen" ><!-- checked="true" -->
   <!-- hidden menu controls, show menu when checked -->
   <input class="hidden-control" type="checkbox" id="site-nav-control"> <!-- Other pages within the sight -->
   <input class="hidden-control" type="checkbox" id="page-nav-control"> <!-- Table of contents for the page -->
@@ -56,29 +57,41 @@
     <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-3">
     <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-4">
     <header id="site-header">
-      <div id="site-logo"><img src="assets/logo.png" alt=""></div>
       <div>
-        <div>Web Site Title</div>
-        <div>Descriptive Web Site Tagline</div>
+        <label for="widescreen">
+        <img src="assets/logo.png" alt="">
+        </label>
       </div>
-      <label for="site-nav-control" id="site-nav-switch"><span class="icon">&#x205e;</span></label>
-      <nav id="head-nav">
-        <ul id="head-nav-left">
-          <li>About</li>
-          <li>Portfolio</li>
-          <li>Blog</li>
-        </ul>
-        <ul id-"head-nav-right">
-          <li>References</li>
-          <li>Reviews</li>
-          <li>Legal</li>
-        </ul>
-      </nav>
+      <div>
+        <div id="site-header-title">
+          <div>Web Site Title</div>
+          <div>Descriptive Web Site Tagline</div>
+        </div>
+        <nav id="head-nav" class="side-menu">
+          <ul id="head-nav-left">
+            <li>About</li>
+            <li>Portfolio</li>
+            <li>Blog</li>
+          </ul>
+          <ul id="head-nav-right">
+            <li>References</li>
+            <li>Reviews</li>
+            <li>Legal</li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <label for="site-nav-control" id="site-nav-switch">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
     </header>
-    <section id="hero-box">
-      <img src="hero.jpg" alt="">
-    </section>
     <main id="page-content">
+      <section id="hero-box">
+        <img src="hero.jpg" alt="">
+      </section>
       PAGE CONTENT
     </main>
     <footer id="site-footer">
@@ -98,7 +111,7 @@
         <span class="icon" id="archive-nav-switch-open">&#x25bc;</span>
         <span>&#x1f4dc;</span>
       </label>
-      <nav id="page-nav">
+      <nav id="page-nav" class="side-menu">
         <ul id="page-nav-menu">
           <li>Section 1</li>
           <li><ul>Section 2
@@ -112,7 +125,7 @@
           </li>
         </ul>
       </nav>
-      <nav id="archive-nav">
+      <nav id="archive-nav" class="side-menu">
         <ul id="archive-nav-menu">
           <li><ul>Article year 1
               <li>Article 1</li>
