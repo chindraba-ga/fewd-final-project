@@ -8,8 +8,10 @@
   <meta name="author" content="Chindraba (Ronald Lamoreaux)">
   <title>Ronald Lamoreaux Final Project (FEWDR)</title>
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/final-project.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+  <link href="./css/scheme-default.css" rel="stylesheet" type="text/css">
+  <link href="./css/scheme-solarized.css" rel="stylesheet" type="text/css">
+  <link href="./css/final-project.css" rel="stylesheet" type="text/css">
   <!--
       Copies of this project can be found on:
         GitHub: https://github.com/chindraba-ga/fewd-final-project
@@ -25,167 +27,167 @@
   -->
 </head>
 <body>
-  <input class="hidden-control" type="checkbox" id="widescreen" ><!-- checked="true" -->
+  <input id="widescreen" class="hidden-control" type="checkbox" aria-ignore="true"><!-- checked="true" -->
   <!-- hidden menu controls, show menu when checked -->
-  <input class="hidden-control" type="checkbox" id="site-nav-control"> <!-- Other pages within the sight -->
-  <input class="hidden-control" type="checkbox" id="page-nav-control"> <!-- Table of contents for the page -->
-  <input class="hidden-control" type="checkbox" id="archive-nav-control"> <!-- Archive menu for the site -->
-  <input class="hidden-control" type="checkbox" id="settings-control"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
-  <input class="hidden-control" type="checkbox" id="scheme-control"> <!-- The menu for changing the color scheme -->
+  <input id="site-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Other pages within the sight -->
+  <input id="page-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Table of contents for the page -->
+  <input id="archive-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Archive menu for the site -->
+  <input id="settings-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
+  <input id="scheme-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu for changing the color scheme -->
   <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
-  <input class="hidden-control" type="radio" name="dark-mode-selector" id="main-mode" checked="true">
-  <input class="hidden-control" type="radio" name="dark-mode-selector" id="alt-mode">
+  <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
+  <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
   <!-- Keeping track of the chosen color scheme -->
-  <input class="hidden-control" type="radio" name="scheme-selector" id="default-scheme" checked="true">
-  <input class="hidden-control" type="radio" name="scheme-selector" id="solarized-scheme">
-  <input class="hidden-control" type="radio" name="scheme-selector" id="earthtone-theme">
-  <input class="hidden-control" type="radio" name="scheme-selector" id="purpleish-theme">
-  <input class="hidden-control" type="radio" name="scheme-selector" id="redwasrad-theme">
-  <input class="hidden-control" type="radio" name="scheme-selector" id="blueskies-theme">
+  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
+  <input id="solarized-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
+  <input id="earthtone-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
+  <input id="purpleish-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
+  <input id="redwasrad-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
+  <input id="blueskies-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
   <!-- Keeping track of the current font size, relative to the base -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-1"> <!-- .562em,  8.99px -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-2"> <!-- .680em, 10.89px -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-3"> <!-- .825em, 13.20px -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-4" checked="true"> <!-- Default -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-5"> <!-- 1.31em, 21px -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-6"> <!-- 1.75em, 28px -->
-  <input class="hidden-control" type="radio" name="font-sizes" id="font-size-7"> <!-- 2.25em, 36px -->
-  <div id="scheme-container">
+  <input id="font-size-1" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .562em,  8.99px -->
+  <input id="font-size-2" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .680em, 10.89px -->
+  <input id="font-size-3" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .825em, 13.20px -->
+  <input id="font-size-4" name="font-sizes" class="hidden-control" type="radio" checked="true" aria-ignore="true"> <!-- Default -->
+  <input id="font-size-5" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.31em, 21px -->
+  <input id="font-size-6" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.75em, 28px -->
+  <input id="font-size-7" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 2.25em, 36px -->
+  <div id="scheme-container" class="surface-page" aria-ignore="true">
     <!-- Keeping track of the active modal, if any, modal-x is none -->
-    <input class="hidden-control" checked="true" type="radio" name="modal_state" id="modal-x">
-    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-1">
-    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-2">
-    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-3">
-    <input class="hidden-control modal-activate" type="radio" name="modal_state" id="modal-4">
-    <header id="site-header">
-      <div>
-<label for="widescreen">
-        <img src="assets/logo.png" alt="">
-</label>
+    <input id="modal-x" name="modal_state" class="hidden-control" checked="true" type="radio" aria-ignore="true">
+    <input id="modal-1" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
+    <input id="modal-2" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
+    <input id="modal-3" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
+    <input id="modal-4" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
+    <header id="site-header" class="surface-head">
+      <div id="site-logo">
+        <img id="logo-img" src="assets/logo.png" alt="">
       </div>
-      <div>
+      <div id="title-bar">
         <div id="site-header-title">
-          <div>Web Site Title</div>
-          <div>Descriptive Web Site Tagline</div>
+          <div id="page-title">Rabbit Hole Reports</div>
+          <div id="page-tagline">Chindraba&apos;s Adventures in Computing</div>
         </div>
-        <nav id="head-nav" class="side-menu">
-          <ul id="head-nav-left">
-            <li>About</li>
-            <li>Portfolio</li>
-            <li>Blog</li>
-          </ul>
-          <ul id="head-nav-right">
-            <li>References</li>
-            <li>Reviews</li>
-            <li>Legal</li>
-          </ul>
+        <nav id="site-nav" class="side-menu surface-menu box-right">
+          <div id="site-nav-left">
+            <span>About</span>
+            <span>Portfolio</span>
+            <span>Blog</span>
+          </div>
+          <div id="site-nav-right">
+            <span>References</span>
+            <span>Reviews</span>
+            <span>Legal</span>
+          </div>
         </nav>
       </div>
-      <div>
-        <label for="site-nav-control" id="site-nav-switch">
-          <span></span>
-          <span></span>
-          <span></span>
+      <div id="site-nav-icon" aria-ignore="true">
+        <label id="site-nav-switch" for="site-nav-control">
+          <span id="burger-top"></span>
+          <span id="burger-mid"></span>
+          <span id="burger-base"></span>
         </label>
       </div>
     </header>
-    <section id="hero-box">
-    </section>
-    <main id="page-content">
-      <aside class="nav-box" id="page-nav-box">
+    <section id="hero-box" aria-ignore="true"></section>
+    <main id="page-container" class="surface-page">
+      <nav id="page-nav-box" class="nav-box">
         <div>
-          <label class="nav-box-switch" for="page-nav-control" id="page-nav-switch"><span>&#x25b6;</span></label>
+          <label id="page-nav-switch" class="nav-box-switch surface-ctrl box-left" for="page-nav-control" aria-ignore="true"><span id="page-nav-icon" class="nav-icon">&#x25b6;</span></label>
         </div>
-        <nav id="page-nav" class="side-menu">
-          <ul id="page-nav-menu">
-            <li>Section 1</li>
-            <li><ul>Section 2
-                <li> Subsection 2.1 </li>
-                <li> Subsection 2.2 </li>
-            </ul><li>
-            <ul>Section 3
-              <li> Subsection 3.1 </li>
-            </ul><li>
-              Section 4
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <aside class="nav-box" id="archive-nav-box">
+        <div id="page-nav" class="side-menu surface-menu box-left">
+          <div id="page-nav-menu">
+            <span class="level-1">Section 1</span>
+            <span class="level-1">Section 2</span>
+            <span class="level-2">Subsection 2.1</span>
+            <span class="level-2">Subsection 2.2</span>
+            <span class="level-1">Section 3</span>
+            <span class="level-2">Subsection 3.1</span>
+            <span class="level-1">Section 4</span>
+          </div>
+        </div>
+      </nav>
+      <nav id="archive-nav-box" class="nav-box">
         <div>
-          <label class="nav-box-switch" for="archive-nav-control" id="archive-nav-switch"><span>&#x25c0;</span></label>
+          <label id="archive-nav-switch" class="nav-box-switch surface-ctrl box-right" for="archive-nav-control"><span id="archive-nav-icon" class="nav-icon">&#x25c0;</span></label>
         </div>
-        <nav id="archive-nav" class="side-menu">
-          <ul id="archive-nav-menu">
-            <li><ul>Article year 1
-                <li>Article 1</li>
-                <li>Article 2</li>
-            </ul></li>
-            <li><ul>Article year 2
-                <li>Article 3</li>
-                <li>Article 4</li>
-                <li>Article 5</li>
-            </ul></li>
-            <li><ul>Article year 3
-                <li>Article 6</li>
-                <li>Article 7</li>
-            </ul></li>
-            <li><ul>Article year 4
-                <li>Article 8</li>
-                <li>Article 9</li>
-                <li>Article 10</li>
-            </ul></li>
-          </ul>
-        </nav>
-      </aside>
+        <div id="archive-nav" class="side-menu surface-menu box-right">
+          <div id="archive-nav-menu">
+            <span class="level-1">Article year 1</span>
+            <span class="level-2">Article 1</span>
+            <span class="level-2">Article 2</span>
+            <span class="level-1">Article year 2</span>
+            <span class="level-2">Article 3</span>
+            <span class="level-2">Article 4</span>
+            <span class="level-2">Article 5</span>
+            <span class="level-1">Article year 3</span>
+            <span class="level-2">Article 6</span>
+            <span class="level-2">Article 7</span>
+            <span class="level-1">Article year 4</span>
+            <span class="level-2">Article 8</span>
+            <span class="level-2">Article 9</span>
+            <span class="level-2">Article 10</span>
+          </div>
+        </div>
+      </nav>
       PAGE CONTENT
     </main>
-    <footer id="site-footer">
+    <footer id="site-footer" class="surface-foot">
       <div id="copyright">
         Copyright © 2020 Chindraba
       </div>
-      <aside id="settings-menu">
-        <div>
-          <label class="icon" for="settings-control" id="settings-switch">&#x2699;</label>
+      <aside>
+        <div class="box-icon">
+          <label id="settings-switch" class="onCtrl" for="settings-control">&#x2699;</label>
         </div> 
-        <section id="view-settings">
-          <div>
-            <label class="icon font-switch" for="font-size-2" id="font-up-2">&#x1f5da;</label>
-            <label class="icon font-switch" for="font-size-3" id="font-up-3">&#x1f5da;</label>
-            <label class="icon font-switch" for="font-size-4" id="font-up-4">&#x1f5da;</label>
-            <label class="icon font-switch" for="font-size-5" id="font-up-5">&#x1f5da;</label>
-            <label class="icon font-switch" for="font-size-6" id="font-up-6">&#x1f5da;</label>
-            <label class="icon font-switch" for="font-size-7" id="font-up-7">&#x1f5da;</label>
+        <section id="view-settings" class="surface-menu box-right">
+          <div class="box box-icon surface-ctrl">
+            <div>
+              <label id="font-up-2" class="font-switch" for="font-size-2">&#x1f5da;</label>
+              <label id="font-up-3" class="font-switch" for="font-size-3">&#x1f5da;</label>
+              <label id="font-up-4" class="font-switch" for="font-size-4">&#x1f5da;</label>
+              <label id="font-up-5" class="font-switch" for="font-size-5">&#x1f5da;</label>
+              <label id="font-up-6" class="font-switch" for="font-size-6">&#x1f5da;</label>
+              <label id="font-up-7" class="font-switch" for="font-size-7">&#x1f5da;</label>
+            </div>
           </div>
-          <div>
-            <label class="icon font-switch" for="font-size-1" id="font-dn-1">&#x1f5db;</label>
-            <label class="icon font-switch" for="font-size-2" id="font-dn-2">&#x1f5db;</label>
-            <label class="icon font-switch" for="font-size-3" id="font-dn-3">&#x1f5db;</label>
-            <label class="icon font-switch" for="font-size-4" id="font-dn-4">&#x1f5db;</label>
-            <label class="icon font-switch" for="font-size-5" id="font-dn-5">&#x1f5db;</label>
-            <label class="icon font-switch" for="font-size-6" id="font-dn-6">&#x1f5db;</label>
-          </div>
-          <div>
-            <label for="scheme-control" id="scheme-switch"><span class="icon">&#xa66e;</span></label>
-            <div id="scheme-options">
-              <label for="default-scheme" id="default-scheme-switch">Default</label>
-              <label for="solarized-scheme" id="solarized-scheme-switch">Solarized</label>
-              <label for="earthtone-scheme" id="earthtone-scheme-switch">Earth Tone</label>
-              <label for="purpleish-scheme" id="purpleish-scheme-switch">Purple-ish</label>
-              <label for="redwasrad-scheme" id="redwasrad-scheme-switch">Red was Rad</label>
-              <label for="blueskies-scheme" id="blueskies-scheme-switch">Blue Skies</label>
-              <label for="scheme-control" id="scheme-accept">Accept</label>
+          <div class="box box-icon surface-ctrl">
+            <div>
+              <label id="font-dn-1" class="font-switch" for="font-size-1">&#x1f5db;</label>
+              <label id="font-dn-2" class="font-switch" for="font-size-2">&#x1f5db;</label>
+              <label id="font-dn-3" class="font-switch" for="font-size-3">&#x1f5db;</label>
+              <label id="font-dn-4" class="font-switch" for="font-size-4">&#x1f5db;</label>
+              <label id="font-dn-5" class="font-switch" for="font-size-5">&#x1f5db;</label>
+              <label id="font-dn-6" class="font-switch" for="font-size-6">&#x1f5db;</label>
             </div>
           </div>
           <div>
-            <label for="main-mode" id="main-mode-switch">
-              <span class="icon" id="main-is-dark">&#x263e;</span>
-              <span class="icon" id="main-is-lite">&#x2600;</span>
-            </label>
-            <label for="alt-mode" id="alt-mode-switch">
-              <span class="icon" id="alt-is-dark">&#x263d;</span>
-              <span class="icon" id="alt-is-lite">&#x2600;</span>
-            </label>
+            <div class="box box-icon surface-ctrl">
+              <label id="scheme-switch" for="scheme-control"><span id="scheme-icon">&#xa66e;</span></label>
+            </div>
+            <div class="side-menu">
+              <div id="scheme-menu" class="box box-full surface-menu">
+                <span id="default-scheme-switch" class="scheme-switch"><label for="default-scheme">Default</label></span>
+                <span id="solarized-scheme-switch" class="scheme-switch"><label for="solarized-scheme">Solarized</label></span>
+                <span id="earthtone-scheme-switch" class="scheme-switch"><label for="earthtone-scheme">Earth Tone</label></span>
+                <span id="purpleish-scheme-switch" class="scheme-switch"><label for="purpleish-scheme">Purple-ish</label></span>
+                <span id="redwasrad-scheme-switch" class="scheme-switch"><label for="redwasrad-scheme">Red was Rad</label></span>
+                <span id="blueskies-scheme-switch" class="scheme-switch"><label for="blueskies-scheme">Blue Skies</label></span>
+                <span class="surface-primary"><label id="scheme-accept" for="scheme-control">Accept</label></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="box box-icon surface-ctrl">
+              <label id="main-mode-switch" for="main-mode">
+                <span id="main-is-dark">&#x263e;</span>
+                <span id="main-is-lite">&#x2600;</span>
+              </label>
+              <label id="alt-mode-switch" for="alt-mode">
+                <span id="alt-is-dark">&#x263d;</span>
+                <span id="alt-is-lite">&#x2600;</span>
+              </label>
+            </div>
           </div>
         </section>
       </aside>
@@ -193,10 +195,10 @@
     <!-- All the positionable menus -->
     <aside id="modal-layouts">
       <label for="modal-x" id="modal-cover">
-        <label class="modal-box" for="" id="modal-dialog-1"><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label class="modal-box" for="" id="modal-dialog-2"><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label class="modal-box" for="" id="modal-dialog-3"><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label class="modal-box" for="" id="modal-dialog-4"><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label id="modal-dialog-1" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label id="modal-dialog-2" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label id="modal-dialog-3" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
+        <label id="modal-dialog-4" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
       </label>
     </aside>
   </div>

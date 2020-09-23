@@ -1,54 +1,44 @@
-@font-face {
-  font-family: 'SymbolaRegular';
-  src: url('../assets/fonts/SymbolaRegular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Futhark';
-  src: url('../assets/fonts/Futhark-Adapted.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+/* Load the extra fonts likely needed for content and controls  */
+/*   The most likely candidate for content specials  */
 @font-face {
   font-family: 'CelticaBook';
   src: url('../assets/fonts/Celtica-Book.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-
+/*   A possibility for some off-beat articles, at some point   */
+@font-face {
+  font-family: 'Futhark';
+  src: url('../assets/fonts/Futhark-Adapted.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*   The source of the icons I'm using for menus and settings   */
+@font-face {
+  font-family: 'SymbolaRegular';
+  src: url('../assets/fonts/SymbolaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 /*  Variables for consistency and simple modifications later  */
 :root {
-  --control-fgColor: gold;
-  --control-bgColor: rgba(240,240,240,.46);
   --icon-fontFace: 'SymbolaRegular', sans-serif;
-  --logo-frameColor: rgba(102,51,153,.25);
-  --logo-frameColor: white;
-  --logo-bgColor: rgba(0,0,0,1);
   --logo-size: 80px;
-  --menu-bgColor: rgb(40,40,40);
   --menu-timing: .5s;
+  --radius-effect: 5px;
 }
 
 /*  Global styles and overrides */
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #212121;
-  color: linen;
   line-height: 1.15;
+  font-family: sans-serif;
 }
 body * {
   box-sizing: border-box;
 }
-#scheme-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0;
-}
-
-
-/* Generalized styling for multiple elements */
 label {
   cursor: pointer;
 }
@@ -56,7 +46,116 @@ label {
   display: none;
 }
 
-/*  Side menu and controller defaults  */
+/*      background and text colors standardized   */
+.surface-page {
+  background-color: var(--colors-page);
+  color: var(--colors-onPage);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+.surface-foot {
+  background-color: var(--colors-foot);
+  color: var(--colors-onFoot);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+.surface-head {
+  background-color: var(--colors-head);
+  color: var(--colors-onHead);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+}
+.surface-menu {
+  background-color: var(--colors-menu);
+  color: var(--colors-onMenu);
+  box-shadow: 3px 3px 24px rgba(0,0,0,0.4);
+}
+.surface-ctrl {
+  background-color: var(--colors-ctrl);
+  color: var(--colors-onCtrl);
+  box-shadow: 5px 5px 24px rgba(0,0,0,0.4);
+}
+.surface-primary {
+  background-color: var(--colors-primary);
+  color: var(--colors-onPrimary);
+}
+.onCtrl {
+  color: var(--colors-onCtrl);
+}
+
+/*************  box formatting options   *******************/
+.box-icon, .nav-icon, #settings-switch {
+  display: inline-block;
+  font-size: 28px;
+  font-family: var(--icon-fontFace);
+  text-align: center;
+}
+.box, .box-left, .box-right {
+  border-style: solid;
+  border-color: var(--colors-border);
+}
+.box {
+  border-width: 1px;
+  border-radius: var(--radius-effect);
+}
+.box-icon {
+  width: calc(var(--logo-size) / 2);
+  height: calc(var(--logo-size) / 2);
+  padding: 2px;
+  margin: 2px;
+}
+.box-left {
+  border-width: 1px 1px 1px 0;
+  border-top-right-radius: var(--radius-effect);
+  border-bottom-right-radius: var(--radius-effect);
+}
+.box-none {
+  border: none;
+}
+.box-right {
+  border-width: 1px 0 1px 1px;
+  border-top-left-radius: var(--radius-effect);
+  border-bottom-left-radius: var(--radius-effect);
+}
+.center-full {
+  align-self: center;
+  text-align: center;
+}
+
+/*  Navigation menus and controls  */
+/*    Base style for all menues  */
+.side-menu {
+  padding: 0;
+  width: 0;
+  font-size: .75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: auto;
+  z-index: 7;
+  transform-origin: 0% 5%;
+  transition: width var(--menu-timing) linear,
+              transform var(--menu-timing) linear;
+}
+.side-menu div {
+  padding: 0;
+  margin: 0 0 0 .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.side-menu span {
+  display: inline-block;
+  border-radius: var(--radius-effect);
+  padding: .5rem;
+  white-space: no-warp;
+}
+.side-menu span.level-2 {
+  padding: 1rem;
+}
+.surface-menu span:hover {
+  background-color: rgba(255,255,255,.1);
+}
 .nav-box {
   position: absolute;
   top: 0;
@@ -65,87 +164,19 @@ label {
 }
 .nav-box-switch {
   display: inline-block;
-  background-color: var(--control-bgColor);
-  color: var(--control-fgColor);
-  text-align: center;
   padding: 0;
-  font-family: var(--icon-fontFace);
+/*  border: 1px solid var(--colors-border); */
   transform-origin: 50% 55%;
 }
-.nav-box-switch span {
-  display: inline-block;
+.nav-icon {
+  font-family: var(--icon-fontFace);
   transform: rotate(0deg);
   transition: transform var(--menu-timing) linear;
 }
-.side-menu {
-  padding: 0px;
-  width: 0;
-  background-color: var(--menu-bgColor);
-  font-size: .75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  overflow-x: auto;
-  overflow-y: auto;
-  transform-origin: 0% 5%;
-  transition: width var(--menu-timing) linear,
-              transform var(--menu-timing) linear,
-              background-color calc(2 * var(--menu-timing) / 3) linear calc(var(--menu-timing) / 3);
-}
-.side-menu ul {
-  padding: 0;
-  margin: 0 0 0 .5rem;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.side-menu li {
-  display: inline-block;
-  padding: .5rem;
-}
 
-/*  Building the page layout   */
 
-/*  The page header: logo, title, site menu control  */
-#site-header {
-  display: grid;
-  grid-template-columns: var(--logo-size) 1fr var(--logo-size);
-  justify-content: space-between;
-  align-items: center;
-}
-#site-header > div:nth-child(1) {
-  box-sizing: border-box;
-  width: var(--logo-size);
-  height: var(--logo-size);
-  padding: 2px;
-  background-color: var(--logo-frameColor);
-}
-#site-header > div:nth-child(1) img {
-  width: calc(var(--logo-size) - 4px);
-  height: calc(var(--logo-size) - 4px);
-  border-radius: calc((var(--logo-size) - 4px) / 2);
-  background-color: var(--logo-bgColor);
-}
-#site-header > div:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-}
-#site-header-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-#site-header-title > div:first-child {
-  font-size: 2rem;
-}
-#site-header-title > div:last-child {
-  font-size: 1.5rem;
-}
-#head-nav {
+/*    The site nav menu  */
+#site-nav {
   position: absolute;
   top: var(--logo-size);
   right: 0;
@@ -155,137 +186,274 @@ label {
   transition: transform var(--menu-timing) linear,
               background-color calc(2 * var(--menu-timing) / 3) linear calc(var(--menu-timing) / 3);
 }
-#site-nav-control:checked ~ #scheme-container #head-nav {
-    transform: rotateX(360deg);
-    background-color: rgba(40,40,40,1);
-    transition: transform var(--menu-timing) linear,
-                background-color calc(2 * var(--menu-timing) / 3) linear;
-  }
-#site-header > div:nth-child(3) {
-  text-align: center;
-}
 
 /*  The site navigation menu switch  */
+#site-nav-icon {
+  text-align: center;
+  align-self: start;
+}
 #site-nav-switch {
   position: relative;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 6;
   display: grid;
   grid-gap: 8px;
   grid-template-rows: repeat(3,5px);
   padding: 20px;
 }
-#site-nav-switch span {
-  border-radius: 3px;
-  background-color: green;
+#site-nav-switch > span {
+  background-color: var(--colors-onCtrl);
   transition: transform var(--menu-timing) linear,
               opacity calc( var(--menu-timing) / 2) linear calc( var(--menu-timing) / 2);
 }
-#site-nav-control:checked ~ #scheme-container
-  #site-nav-switch span:first-child {
-    transform: translateX(2.5px) translateY(13px) rotate(-315deg);
+/*   Make the hamburger into an X on menu open  */
+#site-nav-control:checked ~ #scheme-container #burger-top {
+  transform: translateX(2.5px) translateY(13px) rotate(-315deg);
+}
+#site-nav-control:checked ~ #scheme-container #burger-mid {
+  opacity: 0;
+}
+#site-nav-control:checked ~ #scheme-container #burger-base {
+  transform: translateX(2.5px) translateY(-13px) rotate(315deg);
+}
+/*   Open the menu by flipping it down   */
+#site-nav-control:checked ~ #scheme-container #site-nav {
+  transform: rotateX(360deg);
+  transition: transform var(--menu-timing) linear;
+}
+/*  Switch from a drop down menu to a menu bar for less narrow screens */
+@media screen and (min-width: 40.5rem) {
+  #site-nav {
+    background-color: inherit;
+    box-shadow: 0 0 0 rgb(0,0,0,0);
+    border: none;
+    position: static;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: none;
+    transition: none;
   }
-#site-nav-control:checked ~ #scheme-container
-  #site-nav-switch span:nth-child(2) {
-    opacity: 0;
+  #site-nav div {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
   }
-#site-nav-control:checked ~ #scheme-container
-  #site-nav-switch span:last-child {
-    transform: translateX(2.5px) translateY(-13px) rotate(315deg);
+  #site-nav-left {
+    justify-content: flex-start;
   }
+  #site-nav-right {
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+  #site-nav span {
+    display: inline-block;
+    margin: 0 .25rem;
+  }
+/*  Don't need to show the hamburger menu at all now */
+  #site-nav-switch {
+    display: none;
+  }
+}
 
-/*  The other navigation menus  */
+/*    The on-page navigation   */
+#page-nav {
+  height: 16rem;
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 10% 50%;
+}
+#page-nav-switch {
+  margin-top: 5px;
+}
+/*    reverse the display sequence so that the "handle" is on the right   */
 #page-nav-box {
   left: 0;
   flex-direction: row-reverse;
 }
-#page-nav-switch {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+/*    Open the menu by unfolding it from the left side   */
+#page-nav-control:checked ~ #scheme-container #page-nav {
+  width: 9.375rem;
+  transform: rotateX(0deg);
 }
-#page-nav {
-  height: 250px;
-  transform: perspective(350px) rotateY(-90deg);
-  transform-origin: 10% 50%;
-}
-#page-nav-control:checked ~ #scheme-container #page-nav-switch span {
+/*   Rotate the handle on menu open   */
+#page-nav-control:checked ~ #scheme-container #page-nav-icon {
   transform: rotate(180deg);
 }
-#page-nav-control:checked ~ #scheme-container #page-nav {
-  width: 150px;
-  transform: rotateX(0deg);
+
+/*   The right side menu, archives, or categories, whatever   */
+#archive-nav {
+  height: 16rem;
+  transform: perspective(350px) rotateY(90deg);
+  transform-origin: 90% 50%;
+}
+#archive-nav-switch {
+  margin-top: 5px;
+  transition: margin-top var(--menu-timing) linear;
 }
 #archive-nav-box {
   right: 0;
   flex-direction: row;
 }
-#archive-nav-switch {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-#archive-nav {
-  height: 250px;
-  transform: perspective(350px) rotateY(90deg);
-  transform-origin: 90% 50%;
-}
-#archive-nav-control:checked ~ #scheme-container #archive-nav-switch span {
-  transform: rotate(-180deg);
-}
+/*    Open the menu by unfolding it from the right side   */
 #archive-nav-control:checked ~ #scheme-container #archive-nav {
-  width: 150px;
+  width: 9.375rem;
   transform: rotateY(0deg);
 }
-
-/* The hero box, only included on the home page */
-
-/* The main body of the page */
-main {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 600px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, auto);
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: rgba(240,240,240,0.15);
+/*   Rotate the handle on menu open   */
+#archive-nav-control:checked ~ #scheme-container #archive-nav-icon {
+  transform: rotate(-180deg);
 }
 
+/*   On very narrow pages the two handles overlap. Slide the right menu
+ *   handle down to avoid a collision when both are opened.
+ **/
+#page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+  margin-top: 39px;
+}
+/*   Cancel anti-collision slide once the page is wide enough  */
+@media screen and (min-width: 22rem) {
+  #page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+    margin-top: 5px;
+  }
+}
 
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: calc(var(--logo-size) / 2);
-  display: grid;
-  grid-template-columns: auto calc(var(--logo-size) / 2);
-  align-content: space-between;
-  align-items: center;
-  background-color: rgba(0,102,0,.25);
-}
-#copyright {
-  font-size: .625rem;
-}
-#settings-menu {
-  align-self: center;
+/*   A collection of buttons and menus for controlling settings for the UI   */
+
+/*   The ability to switch between light and dark modes   */
+/*  Containers for the icons  */
+#alt-mode-switch,
+#main-mode-switch {
+  display: none;
   text-align: center;
 }
-#settings-switch {
+/*   When dark mode is the main mode, lite mode is the alternate, reversed if light
+ *    mode is the main mode. 
+ * #main-is-dark is in the main-mode control with a moon,
+ *      used to turn on dark mode when that is the default
+ * #alt-is-lite is in the alt-mode control with a sun,
+ *      used to turn on lite mode when dark is the default
+ * 
+ * #main-is-lite is in the main-mode control with a sun,
+ *      used to turn on lite mode when that is the default
+ * #alt-is-dark is in the alt-mode control with a moon.
+ *      used to turn on dark mode when lite is the default
+ **/
+
+/*   Unless requested explicitly by the browser, set dark mode as the main mode  */
+@media not all and (prefers-color-scheme: light) {
+  #main-is-lite,
+  #alt-is-dark {
+    display: none;
+  }
+}
+/*   Only if the browser requests light mode will that be the default  */
+@media (prefers-color-scheme: light) {
+  #main-is-dark,
+  #alt-is-lite {
+    display: none;
+  }
+}
+/*  When the main mode is on, display the icon to switch to the alternate */
+#main-mode:checked ~ #scheme-container #alt-mode-switch {
+  display: block;
+}
+/*  When the alternate mode is on, display the icon to switch to the main mode */
+#alt-mode:checked ~ #scheme-container #main-mode-switch {
+  display: block;
+}
+
+/*   Color scheme selection   */
+/*  Scale down the icon when the scheme menu is closed */
+#scheme-icon {
   display: inline-block;
-  font-size: 2rem;
-  font-family: var(--icon-fontFace);
   scale: 0.5;
-  transform: rotate(0deg);
-  transform-origin: 50% 50%;
+  transform: rotate(-360deg);
+  transform-origin: 53% 53%;
   transition: all var(--menu-timing) linear;
 }
+/*  Spin the icon and scale it up while the menu is opening  */
+#scheme-control:checked ~ #scheme-container #scheme-icon {
+  scale: none;
+  transform: rotate(0deg);
+}
+/*  The menu list of available color schemes  */
+#scheme-menu {
+  position: absolute;
+  right: calc(var(--logo-size) / 2 + 4px);
+  bottom: calc(var(--logo-size) / 2 + 6px);
+  display: flex;
+  padding: .6rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 95% 50%;
+  transition: all var(--menu-timing) linear;
+}
+/*    Open the menu by flipping it out from behind the settings icons  */
+#scheme-control:checked ~ #scheme-container #scheme-menu {
+  transform: rotateY(0deg);
+}
+#scheme-menu span {
+  padding: .25rem;
+  margin: .25rem;
+  text-align: center;
+}
+/*  Give the accept button more room to breathe  */
+/*  Accept closes the menu, the same as the clicking the icon would  */
+/*  Accept might be a bad choice of wording as the changes are instant from the menu */
+#scheme-accept {
+  padding: .75rem;
+}
+/*  Turn off all the color schemes, if possible.
+ *  The .side-menu span declaration above is a better match than a plain class selector.
+ *  Double class selector will have a higher match, overriding that.
+ *  The color scheme specific CSS file has a selector based on id, which will be higher
+ *  than even this. Placing it in the scheme file will cause any scheme in the list to
+ *  not be displayed unless its matching scheme is loaded and available.
+ **/
+.scheme-switch.scheme-switch {
+  display: none;
+}
+
+
+/*  The controls for increasing and decreasing the font size of the page.
+ *  This will only affect the "body" of the page. Menues, controls, icons, and
+ *  the page header remain fixed in their size. The menues and page title are
+ *  responsive to the browser's font size, but not to these controls
+ **/
+
+/* All off by default */
+.font-switch {
+  display: none;
+}
+
+/* Only one step, up or down, is available at any given time. Find the one or two
+ * options available, and enable it/them.
+ **/
+/*  Step donw by one */
+#font-size-2:checked ~ #scheme-container #font-dn-1 { display: inline-block; }
+#font-size-3:checked ~ #scheme-container #font-dn-2 { display: inline-block; }
+#font-size-4:checked ~ #scheme-container #font-dn-3 { display: inline-block; }
+#font-size-5:checked ~ #scheme-container #font-dn-4 { display: inline-block; }
+#font-size-6:checked ~ #scheme-container #font-dn-5 { display: inline-block; }
+#font-size-7:checked ~ #scheme-container #font-dn-6 { display: inline-block; }
+/*  Step up by one */
+#font-size-1:checked ~ #scheme-container #font-up-2 { display: inline-block; }
+#font-size-2:checked ~ #scheme-container #font-up-3 { display: inline-block; }
+#font-size-3:checked ~ #scheme-container #font-up-4 { display: inline-block; }
+#font-size-4:checked ~ #scheme-container #font-up-5 { display: inline-block; }
+#font-size-5:checked ~ #scheme-container #font-up-6 { display: inline-block; }
+#font-size-6:checked ~ #scheme-container #font-up-7 { display: inline-block; }
+
+/* The settings menu itself  */
 #view-settings {
   position: absolute;
-  bottom: calc(var(--logo-size) / 2);
+  bottom: calc(var(--logo-size) / 2 + 6px);
   right: 0;
   display: flex;
   flex-direction: column;
@@ -294,202 +462,133 @@ footer {
   transform-origin: 98% 50%;
   transition: all var(--menu-timing) linear;
 }
-#settings-control:checked ~ #scheme-container
-  #view-settings {
-    transform: rotateY(0deg);
-    background-color: var(--menu-bgColor);
-  }
-#view-settings > div {
-  width: calc(var(--logo-size) / 2);
-  height: calc(var(--logo-size) / 2);
-  font-size: 1.75rem;
-  text-align: center;
+/*   Open the menu by rotating from behind the right edge of the window   */
+#settings-control:checked ~ #scheme-container #view-settings {
+  transform: rotateY(0deg);
 }
-#settings-control:checked ~ #scheme-container
-  #settings-switch {
-    scale: none;
-    transform: rotate(360deg);
-  }
 
-
-
-
-
-
-
-.font-switch {
-  font-family: var(--icon-fontFace);
-  display: none;
+/*  Build the page layout   */
+/*   Container for everything. Used so that the color scheme data will
+ *   be available for everything on page. Also allows a control point
+ *   for the font scaling and modal overlays.
+ **/
+#scheme-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
 }
-#font-size-1:checked ~ #scheme-container #font-up-2 { display: inline-block; }
-#font-size-2:checked ~ #scheme-container #font-dn-1 { display: inline-block; }
-#font-size-2:checked ~ #scheme-container #font-up-3 { display: inline-block; }
-#font-size-3:checked ~ #scheme-container #font-dn-2 { display: inline-block; }
-#font-size-3:checked ~ #scheme-container #font-up-4 { display: inline-block; }
-#font-size-4:checked ~ #scheme-container #font-dn-3 { display: inline-block; }
-#font-size-4:checked ~ #scheme-container #font-up-5 { display: inline-block; }
-#font-size-5:checked ~ #scheme-container #font-dn-4 { display: inline-block; }
-#font-size-5:checked ~ #scheme-container #font-up-6 { display: inline-block; }
-#font-size-6:checked ~ #scheme-container #font-dn-5 { display: inline-block; }
-#font-size-6:checked ~ #scheme-container #font-up-7 { display: inline-block; }
-#font-size-7:checked ~ #scheme-container #font-dn-6 { display: inline-block; }
 
-#scheme-switch span {
-  display: inline-block;
-  scale: 0.75;
-  transform: rotate(-360deg);
-  transform-origin: 53% 53%;
-  transition: all var(--menu-timing) linear;
-}
-#scheme-control:checked ~ #scheme-container
-  #scheme-switch span {
-    scale: none;
-    transform: rotate(0deg);
-  }
-#scheme-options {
-  position: absolute;
-  right: calc(var(--logo-size) / 2);
-  bottom: calc(var(--logo-size) / 2);
-  width: 9rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+/*  The page header: logo, title, site menu control  */
+#site-header {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr var(--logo-size);
+  justify-content: space-between;
   align-items: center;
-  font-size: 1rem;ocolor: var(--menu-fgColor);
-  background-color: rgba(0,0,0,0);
-  transform: perspective(350px) rotateY(-90deg);
-  transform-origin: 95% 50%;
-  transition: all var(--menu-timing) linear;
 }
-#scheme-options label {
-  width: 9rem;
-  padding: .5rem;
-  text-align: center;
-}
-#scheme-accept {
-  padding: .75rem;
-  border-radius: .35rem;
-  background-color: green;
-  color: white;
-}
-
-#scheme-control:checked ~ #scheme-container
-  #scheme-options {
-    background-color: var(--menu-bgColor);
-    transform: rotateY(0deg);
-  }
-
-
-#alt-mode-switch,
-#main-mode-switch {
-  display: block;
-  text-align: center;
-}
-
-@media not all and (prefers-color-scheme: light) {
-  #main-is-lite,
-  #alt-is-dark {
-    display: none;
-  }
-}
-@media (prefers-color-scheme: light) {
-  #main-is-dark,
-  #alt-is-lite {
-    display: none;
-  }
-}
-#main-mode-switch,
-#alt-mode-switch {
-  display: none;
-}
-#main-mode:checked ~ #scheme-container
-  #alt-mode-switch {
-    display: block;
-  }
-#alt-mode:checked ~ #scheme-container
-  #main-mode-switch {
-    display: block;
-  }
-
-
-
-/*  wide screen  */
-
-#widescreen:checked ~ #scheme-container
+@media screen and (min-width: 40.5rem) {
   #site-header {
     align-items: start;
   }
-
-#widescreen:checked ~ #scheme-container
-  #site-header > div:nth-child(2) {
+}
+#site-logo {
+  box-sizing: border-box;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  padding: 2px;
+  align-self: start;
+}
+#logo-img {
+  width: calc(var(--logo-size) - 4px);
+  height: calc(var(--logo-size) - 4px);
+  border-radius: calc(var(--logo-size) / 2);
+  background-color: var(--colors-ctrl);
+}
+#title-bar {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 40.5rem) {
+  #title-bar {
     justify-content: space-between;
   }
-
-#widescreen:checked ~ #scheme-container
+}
+#site-header-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+@media screen and (min-width: 40.5rem) {
   #site-header-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
-#widescreen:checked ~ #scheme-container
-  #site-header-title > div:last-child::before {
+}
+#page-title {
+  font-size: 1.25rem;
+}
+#page-tagline {
+  font-size: 1.15rem;
+}
+/*  wide screen  */
+@media screen and (min-width: 40.5rem) {
+  #page-title {
+    font-size: calc(16px * (100vw - 40.5rem)/(896 - 640));
+  }
+  #page-tagline {
+    font-size: calc( 20px + (32 - 20) * (100vw - 40.5rem)/(896 - 640));
+  }
+  #page-tagline::before {
     content: '\a0\2014\a0';
-  }
-#widescreen:checked ~ #scheme-container
-  #head-nav {
-    position: static;
-    font-size: .75rem;
-    width: auto;
-    display: flex;
-    background-color: inherit;
-    flex-direction: row;
-    justify-content: space-between;
-    transform: none;
-    transition: none;
-  }
-#widescreen:checked ~ #scheme-container
-  #head-nav ul {
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-  }
-#widescreen:checked ~ #scheme-container
-  #head-nav-left {
-    justify-content: flex-start;
-  }
-#widescreen:checked ~ #scheme-container
-  #head-nav-right {
-    justify-content: flex-end;
-    flex-grow: 1;
-  }
-#widescreen:checked ~ #scheme-container
-  #head-nav li {
-    display: inline-block;
-    margin: 0 15px;
-  }
-#widescreen:checked ~ #scheme-container
-  #site-nav-switch {
-    display: none;
-  }
-
-
-
-@media (min-width: 40rem) {
-  #site-header-title > div:first-child {
-    font-size: calc(16px * (100vw - 40rem)/(896 - 640));
-  }
-  #site-header-title > div:last-child {
-    font-size: calc( 20px + (32 - 20) * (100vw - 640px)/(896 - 640));
   }
 }
 @media screen and (min-width: 56rem) {
-  #site-header-title > div:first-child {
+  #page-title {
     font-size: 2rem;
   }
-  #site-header-title > div:last-child {
+  #page-tagline {
     font-size: 2rem;
   }
+}
+#page-container {
+  min-height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fill, auto);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+#hero-box {
+  width: 100%;
+  height: 250px;
+  background-color: goldenrod;
+}
+#hero-box:empty {
+  display:none;
+}
+#site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-right: 2px;
+  width: 100%;
+  height: calc(var(--logo-size) / 2 + 6px);
+  display: grid;
+  grid-template-columns: auto calc(var(--logo-size) / 2);
+  align-content: space-between;
+  align-items: center;
+  z-index: 6;
+}
+#copyright {
+  font-size: .625rem;
+  padding: .3rem;
 }
