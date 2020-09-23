@@ -1,0 +1,191 @@
+/*  Variables for consistency and simple modifications later  */
+:root {
+  --icon-fontFace: 'SymbolaRegular', sans-serif;
+  --main-fontFamily: 'GenLight', sans-serif;
+  --menu-fontFace: 'FuturaRennerRegular', sans-serif;
+  --menu-fontSize: .8rem;
+  --menu-timing: .5s;
+  --logo-size: 80px;
+  --radius-effect: 5px;
+}
+
+/*  Global styles and overrides */
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
+  font-family: sans-serif;
+}
+body * {
+  box-sizing: border-box;
+}
+label {
+  cursor: pointer;
+}
+.hidden-control {
+  display: none;
+}
+
+/*      background and text colors standardized   */
+.surface-page {
+  background-color: var(--colors-page);
+  color: var(--colors-onPage);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+.surface-foot {
+  background-color: var(--colors-foot);
+  color: var(--colors-onFoot);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+.surface-head {
+  background-color: var(--colors-head);
+  color: var(--colors-onHead);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+}
+.surface-menu {
+  background-color: var(--colors-menu);
+  color: var(--colors-onMenu);
+  box-shadow: 3px 3px 24px rgba(0,0,0,0.4);
+}
+.surface-ctrl {
+  background-color: var(--colors-ctrl);
+  color: var(--colors-onCtrl);
+  box-shadow: 5px 5px 24px rgba(0,0,0,0.4);
+}
+.surface-primary {
+  background-color: var(--colors-primary);
+  color: var(--colors-onPrimary);
+}
+.onCtrl {
+  color: var(--colors-onCtrl);
+}
+
+/*  Build the page layout   */
+/*   Container for everything. Used so that the color scheme data will
+ *   be available for everything on page. Also allows a control point
+ *   for the font scaling and modal overlays.
+ **/
+#scheme-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+}
+
+/*  The page header: logo, title, site menu control  */
+#site-header {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr var(--logo-size);
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 40.5rem) {
+  #site-header {
+    align-items: start;
+  }
+}
+#site-logo {
+  box-sizing: border-box;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  padding: 2px;
+  align-self: start;
+}
+#logo-img {
+  width: calc(var(--logo-size) - 4px);
+  height: calc(var(--logo-size) - 4px);
+  border-radius: calc(var(--logo-size) / 2);
+  background-color: var(--colors-ctrl);
+}
+#title-bar {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 40.5rem) {
+  #title-bar {
+    justify-content: space-between;
+  }
+}
+#site-header-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+@media screen and (min-width: 40.5rem) {
+  #site-header-title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+#page-title {
+  font-size: 1.25rem;
+}
+#page-tagline {
+  font-size: 1.15rem;
+}
+/*  wide screen  */
+@media screen and (min-width: 40.5rem) {
+  #page-title {
+    font-size: calc(16px * (100vw - 40.5rem)/(896 - 640));
+  }
+  #page-tagline {
+    font-size: calc( 20px + (32 - 20) * (100vw - 40.5rem)/(896 - 640));
+  }
+  #page-tagline::before {
+    content: '\a0\2014\a0';
+  }
+}
+@media screen and (min-width: 56rem) {
+  #page-title {
+    font-size: 2rem;
+  }
+  #page-tagline {
+    font-size: 2rem;
+  }
+}
+#page-container {
+  min-height: 100vh;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fill, auto);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#hero-box {
+  width: 100%;
+  height: 250px;
+  background-color: goldenrod;
+}
+#hero-box:empty {
+  display:none;
+}
+#site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-right: 2px;
+  width: 100%;
+  height: calc(var(--logo-size) / 2 + 6px);
+  display: grid;
+  grid-template-columns: auto calc(var(--logo-size) / 2);
+  align-content: space-between;
+  align-items: center;
+  z-index: 6;
+}
+#copyright {
+  font-size: .625rem;
+  padding: .3rem;
+}
+#page-content {
+  text-align: left;
+  padding: 0 6px;
+  background-color: gray;
+  font-family: var(--main-fontFamily);
+  font-size: 1.5em;
+}

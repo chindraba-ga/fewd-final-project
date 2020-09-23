@@ -1,0 +1,205 @@
+/* Celtica          The most likely candidate for content specials  */
+/* Futhark           A possibility for some off-beat articles, at some point    */
+/* Bramham (runes)   A second possibility for some off-beat articles, at some point   */
+/* FuturaRenner      Possible body accent text techno-flavored     */
+/* GenBold/GenLight  Possible body main text    */
+/* PreCursive        Possible blockqoute fonts   */
+
+
+
+/* Load the extra fonts likely needed for content and controls  */
+/*   The source of the icons I'm using for menus and settings   */
+@font-face {
+  font-family: 'SymbolaRegular';
+    src: url('../assets/fonts/symbola/SymbolaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+@font-face {
+  font-family:"Symbola";
+    src:url("../assets/fonts/symbola/Symbola_hint.eot?") format("eot"),
+        url("../assets/fonts/symbola/Symbola_hint.woff") format("woff"),
+        url("../assets/fonts/symbola/Symbola_hint.ttf") format("truetype"),
+        url("../assets/fonts/symbola/Symbola_hint.svg#Symbola") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+*/
+
+/* Celtica   */
+/*      The most likely candidate for content specials  */
+/*
+@font-face {
+  font-family: 'CelticaBold';
+    src: url('../assets/fonts/celtica/CelticaBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'CelticaBoldOblique';
+    src: url('../assets/fonts/celtica/CelticaBoldOblique.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+*/
+@font-face {
+  font-family: 'CelticaBook';
+    src: url('../assets/fonts/celtica/CelticaBook.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CelticaBookOblique';
+    src: url('../assets/fonts/celtica/CelticaBookOblique.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Futhark   */
+/*      A possibility for some off-beat articles, at some point    */
+/*
+@font-face {
+  font-family: 'FutharkAdaptedRegular';
+    src: url('../assets/fonts/futhark-adapted/FutharkAdaptedRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+/* Bramham   (runes) */
+/*      A second possibility for some off-beat articles, at some point   */
+/*
+@font-face {
+  font-family: 'BramhamSerifMedium';
+    src: url('../assets/fonts/BramhamSerifMedium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+/* FuturaRenner    */
+/*      Possible body accent text techno-flavored     */
+/*
+@font-face {
+  font-family: 'FuturaRennerLight';
+    src: url('../assets/fonts/futura-renner/FuturaRennerLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+@font-face {
+  font-family: 'FuturaRennerRegular';
+    src: url('../assets/fonts/futura-renner/FuturaRennerRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* GenBold/GenLight     */
+/*      Possible body main text    */
+/*
+@font-face {
+  font-family: 'GenBold';
+    src: url('../assets/fonts/gen-light/GenBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+*/
+@font-face {
+  font-family: 'GenLight';
+    src: url('../assets/fonts/gen-light/GenLight.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GenRegular';
+    src: url('../assets/fonts/gen-light/GenRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+@font-face {
+  font-family: 'GenW01Light';
+    src: url('../assets/fonts/gen-light/GenW01Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'GenW01Regular';
+    src: url('../assets/fonts/gen-light/GenW01Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+/* PreCursive    */
+/*      Possible blockqoute fonts   */
+/*
+@font-face {
+  font-family: 'PreCursiveBoldOFLRegular';
+    src: url('../assets/fonts/precursive/PreCursiveBoldOFLRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveItalicOFLRegular';
+    src: url('../assets/fonts/precursive/PreCursiveItalicOFLRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveLinedOFLRegular';
+    src: url('../assets/fonts/precursive/PreCursiveLinedOFLRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveOFLBold';
+    src: url('../assets/fonts/precursive/PreCursiveOFLBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveOFLItalic';
+    src: url('../assets/fonts/precursive/PreCursiveOFLItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveOFLLined';
+    src: url('../assets/fonts/precursive/PreCursiveOFLLined.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+/*
+@font-face {
+  font-family: 'PreCursiveOFLRegular';
+    src: url('../assets/fonts/precursive/PreCursiveOFLRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+@font-face {
+  font-family: 'PreCursiveRegular';
+    src: url('../assets/fonts/precursive/PreCursiveRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+

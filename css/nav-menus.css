@@ -1,0 +1,238 @@
+
+/*************  box formatting options   *******************/
+.box-icon, .nav-icon, #settings-switch {
+  display: inline-block;
+  font-size: 28px;
+  font-family: var(--icon-fontFace);
+  text-align: center;
+}
+.box, .box-left, .box-right {
+  border-style: solid;
+  border-color: var(--colors-border);
+}
+.box {
+  border-width: 1px;
+  border-radius: var(--radius-effect);
+}
+.box-icon {
+  width: calc(var(--logo-size) / 2);
+  height: calc(var(--logo-size) / 2);
+  padding: 2px;
+  margin: 2px;
+}
+.box-left {
+  border-width: 1px 1px 1px 0;
+  border-top-right-radius: var(--radius-effect);
+  border-bottom-right-radius: var(--radius-effect);
+}
+.box-none {
+  border: none;
+}
+.box-right {
+  border-width: 1px 0 1px 1px;
+  border-top-left-radius: var(--radius-effect);
+  border-bottom-left-radius: var(--radius-effect);
+}
+.center-full {
+  align-self: center;
+  text-align: center;
+}
+
+/*  Navigation menus and controls  */
+/*    Base style for all menues  */
+.side-menu {
+  padding: 0;
+  width: 0;
+  font-size: var(--menu-fontSize);
+  font-family: var(--menu-fontFace);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: auto;
+  z-index: 7;
+  transform-origin: 0% 5%;
+  transition: width var(--menu-timing) linear,
+              transform var(--menu-timing) linear;
+}
+.side-menu div {
+  padding: 0;
+  margin: 0 0 0 .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.side-menu span {
+  display: inline-block;
+  border-radius: var(--radius-effect);
+  padding: .5rem;
+  white-space: no-warp;
+}
+.side-menu span.level-2 {
+  padding: 1rem;
+}
+.surface-menu span:hover {
+  background-color: rgba(255,255,255,.1);
+}
+.nav-box {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.nav-box-switch {
+  display: inline-block;
+  padding: 0;
+  border: 1px solid var(--colors-border);
+  transform-origin: 50% 55%;
+}
+.nav-icon {
+  font-family: var(--icon-fontFace);
+  transform: rotate(0deg);
+  transition: transform var(--menu-timing) linear;
+}
+
+
+/*    The site nav menu  */
+#site-nav {
+  position: absolute;
+  top: var(--logo-size);
+  right: 0;
+  width: auto;
+  transform: perspective(250px) rotateX(270deg);
+  transform-origin: 100% 5%;
+  transition: transform var(--menu-timing) linear,
+              background-color calc(2 * var(--menu-timing) / 3) linear calc(var(--menu-timing) / 3);
+}
+
+/*  The site navigation menu switch  */
+#site-nav-icon {
+  text-align: center;
+  align-self: start;
+}
+#site-nav-switch {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-rows: repeat(3,5px);
+  padding: 20px;
+}
+#site-nav-switch > span {
+  background-color: var(--colors-onCtrl);
+  transition: transform var(--menu-timing) linear,
+              opacity calc( var(--menu-timing) / 2) linear calc( var(--menu-timing) / 2);
+}
+/*   Make the hamburger into an X on menu open  */
+#site-nav-control:checked ~ #scheme-container #burger-top {
+  transform: translateX(2.5px) translateY(13px) rotate(-315deg);
+}
+#site-nav-control:checked ~ #scheme-container #burger-mid {
+  opacity: 0;
+}
+#site-nav-control:checked ~ #scheme-container #burger-base {
+  transform: translateX(2.5px) translateY(-13px) rotate(315deg);
+}
+/*   Open the menu by flipping it down   */
+#site-nav-control:checked ~ #scheme-container #site-nav {
+  transform: rotateX(360deg);
+  transition: transform var(--menu-timing) linear;
+}
+/*  Switch from a drop down menu to a menu bar for less narrow screens */
+@media screen and (min-width: 40.5rem) {
+  #site-nav {
+    background-color: inherit;
+    box-shadow: 0 0 0 rgb(0,0,0,0);
+    border: none;
+    position: static;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: none;
+    transition: none;
+  }
+  #site-nav div {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+  #site-nav-left {
+    justify-content: flex-start;
+  }
+  #site-nav-right {
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+  #site-nav span {
+    display: inline-block;
+    margin: 0 .25rem;
+  }
+/*  Don't need to show the hamburger menu at all now */
+  #site-nav-switch {
+    display: none;
+  }
+}
+
+/*    The on-page navigation   */
+#page-nav {
+  height: 16rem;
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 10% 50%;
+}
+#page-nav-switch {
+  margin-top: 5px;
+}
+/*    reverse the display sequence so that the "handle" is on the right   */
+#page-nav-box {
+  left: 0;
+  flex-direction: row-reverse;
+}
+/*    Open the menu by unfolding it from the left side   */
+#page-nav-control:checked ~ #scheme-container #page-nav {
+  width: 9.375rem;
+  transform: rotateX(0deg);
+}
+/*   Rotate the handle on menu open   */
+#page-nav-control:checked ~ #scheme-container #page-nav-icon {
+  transform: rotate(180deg);
+}
+
+/*   The right side menu, archives, or categories, whatever   */
+#archive-nav {
+  height: 16rem;
+  transform: perspective(350px) rotateY(90deg);
+  transform-origin: 90% 50%;
+}
+#archive-nav-switch {
+  margin-top: 5px;
+  transition: margin-top var(--menu-timing) linear;
+}
+#archive-nav-box {
+  right: 0;
+  flex-direction: row;
+}
+/*    Open the menu by unfolding it from the right side   */
+#archive-nav-control:checked ~ #scheme-container #archive-nav {
+  width: 9.375rem;
+  transform: rotateY(0deg);
+}
+/*   Rotate the handle on menu open   */
+#archive-nav-control:checked ~ #scheme-container #archive-nav-icon {
+  transform: rotate(-180deg);
+}
+
+/*   On very narrow pages the two handles overlap. Slide the right menu
+ *   handle down to avoid a collision when both are opened.
+ **/
+#page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+  margin-top: 39px;
+}
+/*   Cancel anti-collision slide once the page is wide enough  */
+@media screen and (min-width: 22rem) {
+  #page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+    margin-top: 5px;
+  }
+}

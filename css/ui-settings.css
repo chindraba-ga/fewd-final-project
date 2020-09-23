@@ -1,0 +1,158 @@
+
+/*   A collection of buttons and menus for controlling settings for the UI   */
+
+/*   The ability to switch between light and dark modes   */
+/*  Containers for the icons  */
+#alt-mode-switch,
+#main-mode-switch {
+  display: none;
+  text-align: center;
+}
+/*   When dark mode is the main mode, lite mode is the alternate, reversed if light
+ *    mode is the main mode. 
+ * #main-is-dark is in the main-mode control with a moon,
+ *      used to turn on dark mode when that is the default
+ * #alt-is-lite is in the alt-mode control with a sun,
+ *      used to turn on lite mode when dark is the default
+ * 
+ * #main-is-lite is in the main-mode control with a sun,
+ *      used to turn on lite mode when that is the default
+ * #alt-is-dark is in the alt-mode control with a moon.
+ *      used to turn on dark mode when lite is the default
+ **/
+
+/*   Unless requested explicitly by the browser, set dark mode as the main mode  */
+@media not all and (prefers-color-scheme: light) {
+  #main-is-lite,
+  #alt-is-dark {
+    display: none;
+  }
+}
+/*   Only if the browser requests light mode will that be the default  */
+@media (prefers-color-scheme: light) {
+  #main-is-dark,
+  #alt-is-lite {
+    display: none;
+  }
+}
+/*  When the main mode is on, display the icon to switch to the alternate */
+#main-mode:checked ~ #scheme-container #alt-mode-switch {
+  display: block;
+}
+/*  When the alternate mode is on, display the icon to switch to the main mode */
+#alt-mode:checked ~ #scheme-container #main-mode-switch {
+  display: block;
+}
+
+/*   Color scheme selection   */
+/*  Scale down the icon when the scheme menu is closed */
+#scheme-icon {
+  display: inline-block;
+  scale: 0.5;
+  transform: rotate(-360deg);
+  transform-origin: 53% 53%;
+  transition: all var(--menu-timing) linear;
+}
+/*  Spin the icon and scale it up while the menu is opening  */
+#scheme-control:checked ~ #scheme-container #scheme-icon {
+  scale: none;
+  transform: rotate(0deg);
+}
+/*  The menu list of available color schemes  */
+#scheme-menu {
+  position: absolute;
+  right: calc(var(--logo-size) / 2 + 4px);
+  bottom: calc(var(--logo-size) / 2 + 6px);
+  display: flex;
+  padding: .6rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 95% 50%;
+  transition: all var(--menu-timing) linear;
+  z-index: 6;
+}
+/*    Open the menu by flipping it out from behind the settings icons  */
+#scheme-control:checked ~ #scheme-container #scheme-menu {
+  transform: rotateY(0deg);
+}
+#scheme-menu span {
+  padding: .25rem;
+  margin: .25rem;
+  text-align: center;
+}
+/*  Give the accept button more room to breathe  */
+/*  Accept closes the menu, the same as the clicking the icon would  */
+/*  Accept might be a bad choice of wording as the changes are instant from the menu */
+#scheme-accept {
+  padding: .75rem;
+}
+/*  Turn off all the color schemes, if possible.
+ *  The .side-menu span declaration above is a better match than a plain class selector.
+ *  Double class selector will have a higher match, overriding that.
+ *  The color scheme specific CSS file has a selector based on id, which will be higher
+ *  than even this. Placing it in the scheme file will cause any scheme in the list to
+ *  not be displayed unless its matching scheme is loaded and available.
+ **/
+.scheme-switch.scheme-switch {
+  display: none;
+}
+
+
+/*  The controls for increasing and decreasing the font size of the page.
+ *  This will only affect the "body" of the page. Menues, controls, icons, and
+ *  the page header remain fixed in their size. The menues and page title are
+ *  responsive to the browser's font size, but not to these controls
+ **/
+
+/* All off by default */
+.font-switch {
+  display: none;
+}
+
+/* Only one step, up or down, is available at any given time. Find the one or two
+ * options available, and enable it/them.
+ **/
+/*  Step donw by one */
+#font-size-2:checked ~ #scheme-container #font-dn-1 { display: inline-block; }
+#font-size-3:checked ~ #scheme-container #font-dn-2 { display: inline-block; }
+#font-size-4:checked ~ #scheme-container #font-dn-3 { display: inline-block; }
+#font-size-5:checked ~ #scheme-container #font-dn-4 { display: inline-block; }
+#font-size-6:checked ~ #scheme-container #font-dn-5 { display: inline-block; }
+#font-size-7:checked ~ #scheme-container #font-dn-6 { display: inline-block; }
+/*  Step up by one */
+#font-size-1:checked ~ #scheme-container #font-up-2 { display: inline-block; }
+#font-size-2:checked ~ #scheme-container #font-up-3 { display: inline-block; }
+#font-size-3:checked ~ #scheme-container #font-up-4 { display: inline-block; }
+#font-size-4:checked ~ #scheme-container #font-up-5 { display: inline-block; }
+#font-size-5:checked ~ #scheme-container #font-up-6 { display: inline-block; }
+#font-size-6:checked ~ #scheme-container #font-up-7 { display: inline-block; }
+
+/* The settings menu itself  */
+#view-settings {
+  position: absolute;
+  bottom: calc(var(--logo-size) / 2 + 6px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: perspective(350px) rotateY(-90deg);
+  transform-origin: 98% 50%;
+  transition: all var(--menu-timing) linear;
+}
+/*   Open the menu by rotating from behind the right edge of the window   */
+#settings-control:checked ~ #scheme-container #view-settings {
+  transform: rotateY(0deg);
+}
+
+/*  Build the page layout   */
+/*   Container for everything. Used so that the color scheme data will
+ *   be available for everything on page. Also allows a control point
+ *   for the font scaling and modal overlays.
+ **/
+#scheme-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+}
