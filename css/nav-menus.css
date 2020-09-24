@@ -230,6 +230,11 @@
   transform: rotate(180deg);
 }
 
+/* Hide the on-page navigation if there's nothing to show */
+#page-nav-box.no-show {
+  display: none;
+}
+
 /*   The right side menu, archives, or categories, whatever   */
 #archive-nav {
   height: 16rem;
@@ -252,6 +257,11 @@
 /*   Rotate the handle on menu open   */
 #archive-nav-control:checked ~ #scheme-container #archive-nav-icon {
   transform: rotate(-180deg);
+}
+
+/* Hide the archive navigation if there's nothing to show */
+#archive-nav-box.no-show {
+  display: none;
 }
 
 /*   On very narrow pages the two handles overlap. Slide the right menu
