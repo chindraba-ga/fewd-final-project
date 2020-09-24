@@ -95,7 +95,7 @@
  *  than even this. Placing it in the scheme file will cause any scheme in the list to
  *  not be displayed unless its matching scheme is loaded and available.
  **/
-.scheme-switch.scheme-switch {
+.scheme-selectore.scheme-selector {
   display: none;
 }
 
