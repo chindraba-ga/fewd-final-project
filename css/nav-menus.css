@@ -1,4 +1,33 @@
-
+.nav-control {
+  z-index: 20;
+}
+.nav-menu {
+  z-index: 18;
+}
+.nav-control.box-left {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 16;
+}
+.nav-item.box-left {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 14;
+}
+.nav-control.box-right {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+.nav-item.box-right {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
 /*************  box formatting options   *******************/
 .box-icon, .nav-icon, #settings-switch {
   display: inline-block;
@@ -151,6 +180,7 @@
     justify-content: space-between;
     transform: none;
     transition: none;
+    z-index: auto;
   }
   #site-nav div {
     padding: 0;

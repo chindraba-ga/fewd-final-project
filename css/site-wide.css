@@ -74,6 +74,10 @@ label {
 
 /*  The page header: logo, title, site menu control  */
 #site-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 6;
   display: grid;
   grid-template-columns: var(--logo-size) 1fr var(--logo-size);
   justify-content: space-between;
@@ -152,6 +156,7 @@ label {
   position: relative;
   top: 0;
   left: 0;
+  z-index: 4;
   padding: 0 22px;
   display: grid;
   grid-template-columns: 1fr;
@@ -172,6 +177,7 @@ label {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 8;
   padding-right: 2px;
   width: 100%;
   height: calc(var(--logo-size) / 2 + 6px);
@@ -179,7 +185,6 @@ label {
   grid-template-columns: auto calc(var(--logo-size) / 2);
   align-content: space-between;
   align-items: center;
-  z-index: 6;
 }
 #copyright {
   font-size: .625rem;

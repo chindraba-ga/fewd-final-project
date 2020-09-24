@@ -62,7 +62,7 @@
     <input id="modal-3" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
     <input id="modal-4" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
     <header id="site-header" class="surface-head">
-      <div id="site-logo">
+      <div id="site-logo" class="ui-control">
         <img id="logo-img" src="assets/logo.png" alt="">
       </div>
       <div id="title-bar">
@@ -71,12 +71,12 @@
           <div id="page-tagline">Chindraba&apos;s Adventures in Computing</div>
         </div>
         <nav id="site-nav" class="side-menu surface-menu box-right">
-          <div id="site-nav-left">
+          <div id="site-nav-left" class="nav-item">
             <span>About</span>
             <span>Portfolio</span>
             <span>Blog</span>
           </div>
-          <div id="site-nav-right">
+          <div id="site-nav-right" class="nav-item">
             <span>References</span>
             <span>Reviews</span>
             <span>Legal</span>
@@ -84,7 +84,7 @@
         </nav>
       </div>
       <div id="site-nav-icon" aria-ignore="true">
-        <label id="site-nav-switch" for="site-nav-control">
+        <label id="site-nav-switch" class="nav-control" for="site-nav-control">
           <span id="burger-top"></span>
           <span id="burger-mid"></span>
           <span id="burger-base"></span>
@@ -95,9 +95,9 @@
     <main id="page-container" class="surface-page">
       <nav id="page-nav-box" class="nav-box">
         <div>
-          <label id="page-nav-switch" class="nav-box-switch surface-ctrl box-left" for="page-nav-control" aria-ignore="true"><span id="page-nav-icon" class="nav-icon">&#x25b6;</span></label>
+          <label id="page-nav-switch" class="nav-box-switch surface-ctrl box-left nav-control" for="page-nav-control" aria-ignore="true"><span id="page-nav-icon" class="nav-icon">&#x25b6;</span></label>
         </div>
-        <div id="page-nav" class="side-menu surface-menu box-left">
+        <div id="page-nav" class="side-menu surface-menu box-left nav-item">
           <div id="page-nav-menu">
             <span class="level-1">Section 1</span>
             <span class="level-1">Section 2</span>
@@ -111,9 +111,9 @@
       </nav>
       <nav id="archive-nav-box" class="nav-box">
         <div>
-          <label id="archive-nav-switch" class="nav-box-switch surface-ctrl box-right" for="archive-nav-control"><span id="archive-nav-icon" class="nav-icon">&#x25c0;</span></label>
+          <label id="archive-nav-switch" class="nav-box-switch surface-ctrl box-right nav-control" for="archive-nav-control"><span id="archive-nav-icon" class="nav-icon">&#x25c0;</span></label>
         </div>
-        <div id="archive-nav" class="side-menu surface-menu box-right">
+        <div id="archive-nav" class="side-menu surface-menu box-right nav-item">
           <div id="archive-nav-menu">
             <span class="level-1">Article year 1</span>
             <span class="level-2">Article 1</span>
@@ -140,11 +140,11 @@
         Copyright © 2020 Chindraba
       </div>
       <aside>
-        <div class="box-icon">
+        <div class="box-icon ui-control">
           <label id="settings-switch" class="onCtrl" for="settings-control">&#x2699;</label>
         </div> 
         <section id="view-settings" class="surface-menu box-right">
-          <div class="box box-icon surface-ctrl">
+          <div class="box box-icon surface-ctrl ui-control">
             <div>
               <label id="font-up-2" class="font-switch" for="font-size-2">&#x1f5da;</label>
               <label id="font-up-3" class="font-switch" for="font-size-3">&#x1f5da;</label>
@@ -154,7 +154,7 @@
               <label id="font-up-7" class="font-switch" for="font-size-7">&#x1f5da;</label>
             </div>
           </div>
-         <div class="box box-icon surface-ctrl">
+         <div class="box box-icon surface-ctrl ui-control">
             <div>
               <label id="font-dn-1" class="font-switch" for="font-size-1">&#x1f5db;</label>
               <label id="font-dn-2" class="font-switch" for="font-size-2">&#x1f5db;</label>
@@ -165,23 +165,23 @@
             </div>
           </div>
           <div>
-            <div class="box box-icon surface-ctrl">
+            <div class="box box-icon surface-ctrl ui-control">
               <label id="scheme-switch" for="scheme-control"><span id="scheme-icon">&#xa66e;</span></label>
             </div>
             <div class="side-menu">
-              <div id="scheme-menu" class="box box-full surface-menu">
-                <span id="default-scheme-switch" class="scheme-selector"><label for="default-scheme">Default</label></span>
+              <div id="scheme-menu" class="box box-full surface-menu ui-menu">
                 <span id="solarized-scheme-switch" class="scheme-selector"><label for="solarized-scheme">Solarized</label></span>
                 <span id="earthtone-scheme-switch" class="scheme-selector"><label for="earthtone-scheme">Earth Tone</label></span>
                 <span id="purpleish-scheme-switch" class="scheme-selector"><label for="purpleish-scheme">Purple-ish</label></span>
                 <span id="redwasrad-scheme-switch" class="scheme-selector"><label for="redwasrad-scheme">Red was Rad</label></span>
-                <span id="blueskies-scheme-switch" class="scheme-switch"><label for="blueskies-scheme">Blue Skies</label></span>
+                <span id="blueskies-scheme-switch" class="scheme-selector"><label for="blueskies-scheme">Blue Skies</label></span>
+                <span id="default-scheme-switch" class="scheme-selector"><label for="default-scheme">Default</label></span>
                 <span class="surface-primary"><label id="scheme-accept" for="scheme-control">Accept</label></span>
               </div>
             </div>
           </div>
           <div>
-            <div class="box box-icon surface-ctrl">
+            <div class="box box-icon surface-ctrl ui-control">
               <label id="main-mode-switch" for="main-mode">
                 <span id="main-is-dark">&#x263e;</span>
                 <span id="main-is-lite">&#x2600;</span>
@@ -195,7 +195,6 @@
         </section>
       </aside>
     </footer>
-    <!-- All the positionable menus -->
     <aside id="modal-layouts">
       <label for="modal-x" id="modal-cover">
         <label id="modal-dialog-1" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
