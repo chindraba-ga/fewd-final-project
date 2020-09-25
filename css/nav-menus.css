@@ -78,6 +78,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  white-space: nowrap;
   overflow-x: auto;
   overflow-y: auto;
   z-index: 7;
@@ -97,7 +98,7 @@
   display: inline-block;
   border-radius: var(--radius-effect);
   padding: 5px 5px 5px .3rem;
-  white-space: no-warp;
+  white-space: nowarp;
 }
 .side-menu span.level-2 {
   padding-left: .8rem;
