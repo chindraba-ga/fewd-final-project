@@ -96,11 +96,11 @@
 .side-menu span {
   display: inline-block;
   border-radius: var(--radius-effect);
-  padding: .5rem;
+  padding: 5px 5px 5px .3rem;
   white-space: no-warp;
 }
 .side-menu span.level-2 {
-  padding: 1rem;
+  padding-left: .8rem;
 }
 .surface-menu span:hover {
   background-color: rgba(255,255,255,.1);
@@ -112,7 +112,10 @@
   justify-content: flex-start;
 }
 .nav-box-switch {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 33px;
   padding: 0;
   border: 1px solid var(--colors-border);
   transform-origin: 50% 55%;
@@ -181,6 +184,7 @@
     transform: none;
     transition: none;
     z-index: auto;
+    flex-grow: 0;
   }
   #site-nav div {
     padding: 0;
