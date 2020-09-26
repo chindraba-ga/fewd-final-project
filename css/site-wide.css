@@ -169,7 +169,7 @@ label {
     content: '';
   }
 }
-#page-container {
+#nav-container {
   min-height: 100vh;
   position: relative;
   top: 0;
@@ -208,10 +208,10 @@ label {
   font-size: .625rem;
   padding: .3rem;
 }
-#page-content {
+#page-container {
   text-align: left;
   padding: 0 6px;
-  background-color: gray;
   font-family: var(--main-fontFamily);
-  font-size: 1.5em;
+  font-size: 1.1em;
+  line-height: 1.25;
 }
