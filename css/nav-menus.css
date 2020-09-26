@@ -239,6 +239,17 @@
 #page-nav-box.no-show {
   display: none;
 }
+@media screen and (min-width: 48rem) {
+  #page-nav {
+    width: 9.375rem;
+    transform: none;
+    height: auto;
+    max-height: 85vh;
+  }
+  #page-nav-switch {
+    display: none;
+  }
+}
 
 /*   The right side menu, archives, or categories, whatever   */
 #archive-nav {
@@ -267,6 +278,17 @@
 /* Hide the archive navigation if there's nothing to show */
 #archive-nav-box.no-show {
   display: none;
+}
+@media screen and (min-width: 57rem) {
+  #archive-nav {
+    width: 9.375rem;
+    transform: none;
+    height: auto;
+    max-height: 85vh;
+  }
+  #archive-nav-switch {
+    display: none;
+  }
 }
 
 /*   On very narrow pages the two handles overlap. Slide the right menu

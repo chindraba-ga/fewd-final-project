@@ -220,6 +220,16 @@ label {
   line-height: 1.25;
   overflow-x: hidden
 }
+@media screen and (min-width: 48rem) {
+  #page-container {
+    margin-left: 10rem;
+  }
+}
+@media screen and (min-width: 57rem) {
+  #page-container {
+    margin-right: 10rem;
+  }
+}
 
 /*  Adjusting the font-size in response to user selection */
 
@@ -249,10 +259,14 @@ label {
 .image-float {
   float: left;
   margin: 5px 10px 10px 0;
+  max-width: 75vw;
+  object-fit: contain;
 }
 .image-float-right {
   float: right;
   margin: 5px 0 10px 10px;
+  max-width: 75vw;
+  object-fit: contain;
 }
 .terminal-case {
   font-family: var(--terminal-fontFace);
