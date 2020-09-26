@@ -98,7 +98,7 @@
   display: inline-block;
   border-radius: var(--radius-effect);
   padding: 5px 5px 5px .3rem;
-  white-space: nowarp;
+  white-space: nowrap;
 }
 .side-menu span.level-2 {
   padding-left: .8rem;

@@ -4,7 +4,7 @@
 /* FuturaRenner      Possible body accent text techno-flavored     */
 /* GenBold/GenLight  Possible body main text    */
 /* PreCursive        Possible blockqoute fonts   */
-
+/* EffectsEighty     Looks like what I want for "code block" text */
 
 
 /* Load the extra fonts likely needed for content and controls  */
@@ -202,4 +202,28 @@
   font-style: normal;
 }
 
+@font-face {
+    font-family: 'Effects Eighty';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../assets/fonts/effectseighty/EffectsEighty.woff') format('woff'), url('../assets/fonts/effectseighty/EffectsEighty.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Effects Eighty';
+    font-weight: bold;
+    font-style: normal;
+    src: url('../assets/fonts/effectseighty/EffectsEightyBold.woff') format('woff'), url('../assets/fonts/effectseighty/EffectsEightyBold.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Effects Eighty';
+    font-weight: normal;
+    font-style: italic;
+    src: url('../assets/fonts/effectseighty/EffectsEightyItalic.woff') format('woff'), url('../assets/fonts/effectseighty/EffectsEightyItalic.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Effects Eighty';
+    font-weight: bold;
+    font-style: italic;
+    src: url('../assets/fonts/effectseighty/EffectsEightyBoldItalic.woff') format('woff'), url('../assets/fonts/effectseighty/EffectsEightyBoldItalic.woff2') format('woff2');
+}
 

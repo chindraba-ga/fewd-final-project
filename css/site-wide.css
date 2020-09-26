@@ -3,8 +3,9 @@
   --icon-fontFace: 'SymbolaRegular', sans-serif;
   --main-fontFamily: 'GenLight', sans-serif;
   --menu-fontFace: 'FuturaRennerRegular', sans-serif;
-  --menu-fontSize: .875rem;
+  --menu-fontSize: .95rem;
   --accent-fontFace: 'CelticaBook', sans-serif;
+  --terminal-fontFace: 'Effects Eighty', monospace;
   --menu-timing: .5s;
   --logo-size: 80px;
   --radius-effect: 5px;
@@ -57,6 +58,10 @@ label {
 .surface-primary {
   background-color: var(--colors-primary);
   color: var(--colors-onPrimary);
+}
+.surface-code {
+  background-color: var(--colors-code);
+  color: var(--colors-onCode);
 }
 .onCtrl {
   color: var(--colors-onCtrl);
@@ -214,4 +219,32 @@ label {
   font-family: var(--main-fontFamily);
   font-size: 1.1em;
   line-height: 1.25;
+}
+
+/*  Styles for content */
+.image-float {
+  float: left;
+  margin: 5px 10px 10px 0;
+}
+.image-float-right {
+  float: right;
+  margin: 5px 0 10px 10px;
+}
+.terminal-case {
+  font-family: var(--terminal-fontFace);
+}
+span.terminal-case {
+  display: inline-block;
+  padding: 2px 3px 0;
+  border-radius: var(--radius-effect);
+  font-size: .93em;
+  line-height: .93;
+  position: relative;
+  top: -0.125em;
+}
+.italic {
+  font-style: oblique;
+}
+.bold {
+  font-weight: 700;
 }
