@@ -217,8 +217,32 @@ label {
   margin: 0 25px;
   padding: 0 0 calc(var(--logo-size) / 2);
   font-family: var(--main-fontFamily);
-  font-size: 1.1em;
   line-height: 1.25;
+  overflow-x: hidden
+}
+
+/*  Adjusting the font-size in response to user selection */
+
+#font-size-1:checked ~ #scheme-container #page-container {
+  font-size: 0.68rem;
+}
+#font-size-2:checked ~ #scheme-container #page-container {
+  font-size: 0.825rem;
+}
+#font-size-3:checked ~ #scheme-container #page-container {
+  font-size: 1.10rem;
+}
+#font-size-4:checked ~ #scheme-container #page-container {
+  font-size: 1.31rem;
+}
+#font-size-5:checked ~ #scheme-container #page-container {
+  font-size: 1.75rem;
+}
+#font-size-6:checked ~ #scheme-container #page-container {
+  font-size: 2.31rem;
+}
+#font-size-7:checked ~ #scheme-container #page-container {
+  font-size: 3rem;
 }
 
 /*  Styles for content */
