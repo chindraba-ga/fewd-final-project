@@ -73,14 +73,14 @@
         <nav id="site-nav" class="side-menu surface-menu box-right">
           <div id="site-menu-box" class="box-menu">
             <div id="site-nav-left" class="nav-item">
-              <span>About</span>
-              <span>Portfolio</span>
-              <span>Blog</span>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./About.html" title="Read more about me">About</a>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Portfolio.html" title="Look at some of the other projects I have">Portfolio</a>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Blog.html" title="Read about what I do, or think">Blog</a>
             </div>
             <div id="site-nav-right" class="nav-item">
-              <span>References</span>
-              <span>Reviews</span>
-              <span>Legal</span>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./References.html" title="A collection of references I find useful">References</a>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Reviews.html" title="A collection of reviews I have done">Reviews</a>
+              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Legal.html" title="Every site needs legal junk on it now">Legal</a>
             </div>
           </div>
         </nav>
@@ -143,21 +143,21 @@
     </nav>
     <main id="page-container">
       <header>
-        <span class="terminal-case surface-code">[ return || ! return ]</span> <span class="italic">That</span> is the question.
+        <h1><span class="terminal-case surface-code">[ return || ! return ]</span> <span class="italic">That</span> is the question.</h1>
       </header>
       <section id="where-it-all-began" aria-title="Where it all began">
-        <h1>Where it all began</h1>
-        <h2>Dijkstra and programming without a computer</h2>
+        <h2>Where it all began</h2>
+        <h3>Dijkstra and programming without a computer</h3>
         <p>There was an interesting fellow by the name of <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_BLANK">Edsger Wybe Dijkstra</a><sup>[1]</sup> who was involved in programming computers before they were built, litterally. By that I mean that a computer was designed to be built, and while the builder was making the computer Dijkstra was creating the software. The idea was that once the computer was built, and operational, the software to make it work would be available. That means that the code was written on some media, usually paper, other than the machine it was to run on. Imagine trying to write a program in a spiral notebook that you cannot test, or even compile, until sometime several months in the future, when someone finally builds the computer, and expecting it to <span class="italic">just work</span>! Not much for the <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_BLANK">Test-driven development</a><sup>[2]</sup> or <a href="https://en.wikipedia.org/wiki/Agile_software_development" target="_BLANK">Agile software development</a><sup>[3]</sup> movements to work with there.</p>
-        <h2>Are <span class="terminal-case surface-code">GOTO</span> statements harmful?</h2>
+        <h3>Are <span class="terminal-case surface-code">GOTO</span> statements harmful?</h3>
         <p><span><a href="https://i.stack.imgur.com/KP9cE.png" target="_BLANK"><img class="image-float" src="https://i.stack.imgur.com/KP9cE.png" alt="Modern-day programmer at the Inquisition in the year 500 for typing GOTO 500"></a><sup>[4]</sup></span> After doing his work for a while, and seeing the practice of many of his colleagues in programming, he realised that the <span class="terminal-case surface-code">GOTO</span> statement was making programs hard to read, and that there needed to be a better method of controlling program flow. He wrote a letter <a href="https://drive.google.com/open?id=1w9BrWLUqnrrZNCQMVWPEXOKDVwbX4nmr" target="_BLANK">"A Case against the GO TO Statement"</a><sup>[5]</sup>. The <a href="https://www.acm.org" target="_BLANK">Association for Computing Machinery</a> published that letter in their journal <a href="https://cacm.acm.org/" target="_BLANK">Communications of the ACM (CACM)</a> in the March 1968 Letters to the editor section as "Go To Statement Considered Harmful". Apparently that set off a fire storm of debate within the community at the time. Much later, 1987, Frank Rubin wrote a letter, published in the CACM in March titled '"GOTO Considered Harmful" Considered Harmful'. In reply the CACM received more letters, and the debate was renewed. Most, if not all, those letters can be read in a <a href="https://drive.google.com/open?id=1MBQfVKcewOZ310WRqci89EndKyQFW9J1" target="_BLANK">compilation</a><sup>[6]</sup></sup> from Lester I. McCann, Senior Lecturer at The University of Arizona. Dijkstra seems to have had the final word with his <a href="https://drive.google.com/file/d/1MxPEIYiUJqddKzjTe8jyKW6rhgCsmPQh/view?usp=sharing" target="_BLANK">On a Somewhat Disappointing Correspondence</a><sup>[7]</sup>.</p>
-        <h2>Structured Programming begins</h2>
+        <h3>Structured Programming begins</h3>
         <p>In 1969, during the years between the initial letter and the sudden rebirth of interest in it, Dijkstra wrote an article <a href="https://drive.google.com/open?id=13FCHQrHO8teoqIf7--xSsVV5x0pF8oJe" target="_BLANK">Notes on Structured Programming</a><sup>[8]</sup>, published in 1972 by the ACM as Chapter I of the book <span class="italic">Structured Programming</span>. The significance of this paper, and that book, is that they helped make structured programming a reality. Few people now programming can envision doing so in an <span class="italic">unstructured</span> manner. Yet, that <span class="italic">unstructured programming</span> is exactly what exited at the time of "The Great CACM GOTO Argument," as McCann termed it.</p>
         <p>In his initial letter, Dijkstra advocated for some kind of structured programming environment. He even set a standard, of sorts, for structured programming clauses to meet: "I do not claim that the clauses mentioned are exhaustive in the sense that they will satisfy all needs, but whatever clauses are suggested (e.g. abortion clauses) they should satisfy the requirement that a programmer independent coordinate system can be maintained to describe the process in a helpful and manageable way."</p>
       </section>
       <section id="single-entry-single-exit" aria-title="Single entry, single exit">
-        <h1>Single entry, single exit</h1>
-        <h2>Read the <span class="bold">source</span></h2>
+        <h2>Single entry, single exit</h2>
+        <h3>Read the <span class="bold">source</span></h3>
         <p>The concept of a single entry and a single exit is presented in section 7 <span class="bold">ON UNDERSTANDING PROGRAMS</span> with the observation that,</p>
         <blockquote>&ldquo;These flowcharts share the property that they have a single entry at the top and a single exit at the bottom: as indicated by the dotted block they can again be interpreted (by disregarding what is inside the dotted lines) as a single action in a sequential computation.&rdquo;"</blockquote>
         <p>In the examples he creates for his flowcharts, he draws the "dotted block" such that leaving the block only goes to one place, the next action in a time-succession, probably also a delineated block.</p>
@@ -165,11 +165,11 @@
         The third example given is for the conditional <span class="terminal-case surface-code">if ? then S1 else S2</span>. The block drawn does not represent the "flow" through and past <span class="terminal-case surface-code">S1</span> somehow interacting with the "flow" through and past <span class="terminal-case surface-code">S2</span>. Both lead to the exit, and how they got there is not important to anything outside of the dotted box. Likewise, in his diagram for the <span class="terminal-case surface-code">case</span> statement, there is no interaction indicated between the various branches. The removal, or addition, of any branch to the <span class="terminal-case surface-code">case</span> <span class="italic">should</span> not change the operation of any other branch of the <span class="terminal-case surface-code">case</span>. Interestingly enough, there are some languages where multiple branches of a <span class="terminal-case surface-code">case</span> might be executed, depending of the order they are defined, and the possible values of the selectors in the switch. Most such languages do provide a mechanism to prevent that, but not all.</p>
       </section>
       <section id="why-the-emphasis-on-that-point" aria-title="Why the emphasis on that point?">
-        <h1>Why the emphasis on that point?</h1>
+        <h2>Why the emphasis on that point?</h2>
         <p>At the time Dijkstra wrote his <a href="https://drive.google.com/open?id=13FCHQrHO8teoqIf7--xSsVV5x0pF8oJe" target="_BLANK">EWD249 monograph</a><sup>[10]</sup>, as well as his <a href="https://drive.google.com/open?id=1w9BrWLUqnrrZNCQMVWPEXOKDVwbX4nmr" target="_BLANK">EWD215 letter</a><sup>[11]</sup>, the bulk of programming was done in either <a href="https://en.wikipedia.org/wiki/Assembly_language" target="_BLANK">Assembly Language</a><sup>[12]</sup> at least partially unique to each computer model or <a href="https://en.wikipedia.org/wiki/Fortran" target="_BLANK">FORTRAN</a><sup>[13]</sup>. Assembly language provides no programming structure at all, so it cannot enforce any. Fortran had some, now considered primitive, structural programming components. Fortran provided in-built abilities for entering a subroutine at more than one location, and allowed the caller to predetermine an alternative address to return to. That the subroutine could also have more than one <span class="terminal-case surface-code">return</span> statement made no difference, either to the model of structured programming Dijkstra was developing, or to the ability to exit from a routine to any arbitrary location (determined at coding time) however the routine actually was exited. Someone else, on the Software Engineering site of Stack Exchange wrote an <a href="https://softwareengineering.stackexchange.com/a/118793/275869" target="_BLANK">excellent answer</a><sup>[14]</sup> to the question <a href="https://softwareengineering.stackexchange.com/q/118703/275869" target="_BLANK">Where did the notion of “one return only” come from?</a>, with example code, that deals with that aspect of "only one retrun" in modern myths.</p>
       </section>
       <section id="sources" class="biblio">
-        <h1>Sources</h1>
+        <h2>Sources</h2>
         <ul>
           <li>[1]: <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_BLANK">[Wikidedia - Edsger W. Dijkstra]&lt;(https://en.wikipedia.org/wiki/Edsger_W._Dijkstra&gt;</a></li>
           <li>[2]: <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_BLANK">[Wikidedia - Test-driven development]&lt;(https://en.wikipedia.org/wiki/Test-driven_development)&gt;</a></li>

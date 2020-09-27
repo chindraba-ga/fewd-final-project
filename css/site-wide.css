@@ -28,7 +28,24 @@ label {
 .hidden-control {
   display: none;
 }
-
+.pad-3rem {
+  padding: 0.3rem;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.block-up {
+  display: inline-block;
+}
+.soft-corner {
+  border-radius: var(--radius-effect);
+}
+.shift-in-1 {
+  margin-left: .5em;
+}
+.shift-in-2 {
+  margin-left: 1em;
+}
 /*      background and text colors standardized   */
 .surface-page {
   background-color: var(--colors-page);
@@ -135,7 +152,7 @@ label {
     min-height: var(--logo-size);
   }
   #site-header-title {
-    font-size: calc((100vw - 405px) / (648 - 405px) * (30 - 16) + 16px);
+    font-size: calc((100vw - 405px) / (648 - 405) * (30 - 16) + 16px);
   }
   #page-title {
     font-size: 1.4em;
@@ -182,7 +199,6 @@ label {
   padding: 0 22px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, auto);
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -218,7 +234,6 @@ label {
   padding: 0 0 calc(var(--logo-size) / 2);
   font-family: var(--main-fontFamily);
   line-height: 1.25;
-  overflow-x: hidden
 }
 @media screen and (min-width: 48rem) {
   #page-container {
@@ -285,4 +300,8 @@ span.terminal-case {
 }
 .bold {
   font-weight: 700;
+}
+.nav-link, .nav-link:visited, .nav-link:hover, .nav-link:focus, .nav-link:visited {
+  color: var(--colors-onMenu);
+  text-decoration: none;
 }

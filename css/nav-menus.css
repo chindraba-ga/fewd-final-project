@@ -108,6 +108,7 @@
   transition: width var(--menu-timing) linear,
               transform var(--menu-timing) linear;
 }
+.surface-menu a:hover,
 .surface-menu span:hover {
   background-color: rgba(255,255,255,.1);
 }
