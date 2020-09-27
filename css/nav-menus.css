@@ -54,6 +54,34 @@
   border-top-right-radius: var(--radius-effect);
   border-bottom-right-radius: var(--radius-effect);
 }
+.box-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.box-menu div {
+  padding: 0;
+  margin: 0 0 0 .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.box-menu span {
+  display: inline-block;
+  border-radius: var(--radius-effect);
+  padding: 5px 5px 5px .3rem;
+  white-space: nowrap;
+}
+.box-menu span.level-2 {
+  padding-left: .8rem;
+}
 .box-none {
   border: none;
 }
@@ -74,34 +102,11 @@
   width: 0;
   font-size: var(--menu-fontSize);
   font-family: var(--menu-fontFace);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 7;
   transform-origin: 0% 5%;
   transition: width var(--menu-timing) linear,
               transform var(--menu-timing) linear;
-}
-.side-menu div {
-  padding: 0;
-  margin: 0 0 0 .5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.side-menu span {
-  display: inline-block;
-  border-radius: var(--radius-effect);
-  padding: 5px 5px 5px .3rem;
-  white-space: nowrap;
-}
-.side-menu span.level-2 {
-  padding-left: .8rem;
 }
 .surface-menu span:hover {
   background-color: rgba(255,255,255,.1);
@@ -179,20 +184,23 @@
     border: none;
     position: static;
     width: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     transform: none;
     transition: none;
     z-index: auto;
     flex-grow: 0;
   }
-  #site-nav div {
-    padding: 0;
-    list-style-type: none;
+  #site-menu-box {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+  }
+  #site-nav div {
+    padding: 0;
     flex-grow: 1;
+  }
+  #site-menu-box div {
+    display: flex;
+    flex-direction: row;
   }
   #site-nav-left {
     justify-content: flex-start;
@@ -201,7 +209,7 @@
     justify-content: flex-end;
     flex-grow: 1;
   }
-  #site-nav span {
+  #site-menu-box span {
     display: inline-block;
     margin: 0 .25rem;
   }
