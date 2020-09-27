@@ -1,10 +1,10 @@
 /*  Variables for consistency and simple modifications later  */
 :root {
-  --icon-fontFace: 'SymbolaRegular', sans-serif;
-  --main-fontFamily: 'GenLight', sans-serif;
-  --menu-fontFace: 'FuturaRennerRegular', sans-serif;
+  --icon-fontFace: 'SymbolaRegular', Arial, Helvetica, sans-serif;
+  --main-fontFamily: 'GenLight', Arial, Helvetica, sans-serif;
+  --menu-fontFace: 'FuturaRennerRegular', Arial, Helvetica, sans-serif;
   --menu-fontSize: .95rem;
-  --accent-fontFace: 'CelticaBook', sans-serif;
+  --accent-fontFace: 'CelticaBook', Arial, Helvetica, sans-serif;
   --terminal-fontFace: 'Effects Eighty', monospace;
   --menu-timing: .5s;
   --logo-size: 80px;
