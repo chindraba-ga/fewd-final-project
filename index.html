@@ -33,7 +33,7 @@
   <!-- hidden menu controls, show menu when checked -->
   <input id="site-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Other pages within the sight -->
   <input id="page-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Table of contents for the page -->
-  <input id="archive-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Archive menu for the site -->
+  <input id="right-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Archive menu for the site -->
   <input id="settings-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
   <input id="scheme-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu for changing the color scheme -->
   <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
@@ -73,14 +73,8 @@
         <nav id="site-nav" class="side-menu surface-menu box-right">
           <div id="site-menu-box" class="box-menu">
             <div id="site-nav-left" class="nav-item">
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./About.html" title="Read more about me">About</a>
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Portfolio.html" title="Look at some of the other projects I have">Portfolio</a>
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Blog.html" title="Read about what I do, or think">Blog</a>
             </div>
             <div id="site-nav-right" class="nav-item">
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./References.html" title="A collection of references I find useful">References</a>
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Reviews.html" title="A collection of reviews I have done">Reviews</a>
-              <a class="nav-link block-up pad-3rem soft-corner nowrap" href="./Legal.html" title="Every site needs legal junk on it now">Legal</a>
             </div>
           </div>
         </nav>
@@ -103,39 +97,18 @@
         <div id="page-nav" class="side-menu surface-menu box-left nav-item">
           <div id="page-menu-box" class="box-menu">
             <div id="page-nav-menu">
-              <span class="level-1">Section 1</span>
-              <span class="level-1">Section 2</span>
-              <span class="level-2">Subsection 2.1</span>
-              <span class="level-2">Subsection 2.2</span>
-              <span class="level-1">Section 3</span>
-              <span class="level-2">Subsection 3.1</span>
-              <span class="level-1">Section 4</span>
             </div>
           </div>
         </div>
       </nav>
       <!-- adding no-show to the class list will hide this menu completely -->
-      <nav id="archive-nav-box" class="nav-box">
+      <nav id="right-nav-box" class="nav-box">
         <div>
-          <label id="archive-nav-switch" class="nav-box-switch surface-ctrl box-right nav-control" for="archive-nav-control"><span id="archive-nav-icon" class="nav-icon">&#x25c0;</span></label>
+          <label id="right-nav-switch" class="nav-box-switch surface-ctrl box-right nav-control" for="right-nav-control"><span id="right-nav-icon" class="nav-icon">&#x25c0;</span></label>
         </div>
-        <div id="archive-nav" class="side-menu surface-menu box-right nav-item">
-          <div id="archive-menu-box" class="box-menu">
-            <div id="archive-nav-menu">
-              <span class="level-1">Article year 1</span>
-              <span class="level-2">Article 1</span>
-              <span class="level-2">Article 2</span>
-              <span class="level-1">Article year 2</span>
-              <span class="level-2">Article 3</span>
-              <span class="level-2">Article 4</span>
-              <span class="level-2">Article 5</span>
-              <span class="level-1">Article year 3</span>
-              <span class="level-2">Article 6</span>
-              <span class="level-2">Article 7</span>
-              <span class="level-1">Article year 4</span>
-              <span class="level-2">Article 8</span>
-              <span class="level-2">Article 9</span>
-              <span class="level-2">Article 10</span>
+        <div id="right-nav" class="side-menu surface-menu box-right nav-item">
+          <div id="right-menu-box" class="box-menu">
+            <div id="right-nav-menu">
             </div>
           </div>
         </div>
