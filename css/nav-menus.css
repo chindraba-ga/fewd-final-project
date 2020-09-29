@@ -260,42 +260,42 @@
   }
 }
 
-/*   The right side menu, archives, or categories, whatever   */
-#archive-nav {
+/*   The right side menu   */
+#right-nav {
   height: 16rem;
   transform: perspective(350px) rotateY(90deg);
   transform-origin: 90% 50%;
 }
-#archive-nav-switch {
+#right-nav-switch {
   margin-top: 5px;
   transition: margin-top var(--menu-timing) linear;
 }
-#archive-nav-box {
+#right-nav-box {
   right: 0;
   flex-direction: row;
 }
 /*    Open the menu by unfolding it from the right side   */
-#archive-nav-control:checked ~ #scheme-container #archive-nav {
+#right-nav-control:checked ~ #scheme-container #right-nav {
   width: 9.375rem;
   transform: rotateY(0deg);
 }
 /*   Rotate the handle on menu open   */
-#archive-nav-control:checked ~ #scheme-container #archive-nav-icon {
+#right-nav-control:checked ~ #scheme-container #right-nav-icon {
   transform: rotate(-180deg);
 }
 
-/* Hide the archive navigation if there's nothing to show */
-#archive-nav-box.no-show {
+/* Hide the right navigation if there's nothing to show */
+#right-nav-box.no-show {
   display: none;
 }
 @media screen and (min-width: 57rem) {
-  #archive-nav {
+  #right-nav {
     width: 9.375rem;
     transform: none;
     height: auto;
     max-height: 85vh;
   }
-  #archive-nav-switch {
+  #right-nav-switch {
     display: none;
   }
 }
@@ -303,12 +303,12 @@
 /*   On very narrow pages the two handles overlap. Slide the right menu
  *   handle down to avoid a collision when both are opened.
  **/
-#page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+#page-nav-control:checked ~ #right-nav-control:checked ~ #scheme-container #right-nav-switch {
   margin-top: 39px;
 }
 /*   Cancel anti-collision slide once the page is wide enough  */
 @media screen and (min-width: 22rem) {
-  #page-nav-control:checked ~ #archive-nav-control:checked ~ #scheme-container #archive-nav-switch {
+  #page-nav-control:checked ~ #right-nav-control:checked ~ #scheme-container #right-nav-switch {
     margin-top: 5px;
   }
 }

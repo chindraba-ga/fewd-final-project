@@ -67,6 +67,10 @@ label {
   color: var(--colors-onMenu);
   box-shadow: 3px 3px 24px rgba(0,0,0,0.4);
 }
+.nav-link, .nav-link:visited, .nav-link:hover, .nav-link:focus, .nav-link:visited {
+  color: var(--colors-onMenu);
+  text-decoration: none;
+}
 .surface-ctrl {
   background-color: var(--colors-ctrl);
   color: var(--colors-onCtrl);
@@ -300,8 +304,4 @@ span.terminal-case {
 }
 .bold {
   font-weight: 700;
-}
-.nav-link, .nav-link:visited, .nav-link:hover, .nav-link:focus, .nav-link:visited {
-  color: var(--colors-onMenu);
-  text-decoration: none;
 }
