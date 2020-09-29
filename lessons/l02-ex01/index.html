@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 2: Guided Walk-Through: HTML Review</title>
+  <style>
+    figcaption {
+      font-size: 85%;
+    }
+    hr {
+      width: 85%;
+    }
+  </style>
+</head>
+<body>
+<h1>It's always good to have links around:</h1>
+<ul>
+  <li>
+    <a href="https://css-tricks.com/">CSS Tricks</a>
+  </li>
+  <li>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">
+        MDN reference for <code>background-position</code>
+    </a>
+  </li>
+  <li>
+    <a href="https://www.whitehouse.gov/">
+      Official Whitehouse website
+    </a>
+  </li>
+  <li>
+    <a href="http://stackoverflow.com/">
+      StackOverflow Q&amp;A site
+    </a>
+  </li>
+</ul>
+<h1>Maybe you would like to read some interesting stuff today?</h1>
+<ul>
+  <li>
+    <a href="https://25iq.com/2016/06/18/a-dozen-things-ive-learned-from-elon-musk-about-business-and-investing/">
+      A Dozen Things I’ve Learned from Elon Musk About Business and Investing
+    </a>
+  </li>
+  <li>
+    <a href="http://www.theatlantic.com/technology/archive/2016/06/antikythera-mechanism-whoa/487832/">
+      The Most Mysterious Object in the History of Technology
+    </a>
+  </li>
+</ul>
+<hr>
+<h1>A political rally in action</h1>
+<figure>
+  <div>
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/rally.jpg" alt="Image of a political rally">
+  </div>
+  <div>
+    <figcaption>Source:
+      <a href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/rally.jpg">
+        https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/rally.jpg
+      </a>
+    </figcaption>
+  </div>
+</figure>
+<form name="week_question" id="week_question" method="post" enctype="application/x-www-form-urlencoded" action="#" target="_blank">
+  <fieldset>
+    <legend>How many days are in a week?</legend>
+    <input id="week_of_5" type="radio" accesskey="5" name="days_in_week" form="week_question">
+    <label for="week_of_5">5</label><br>
+    <input id="week_of_8" type="radio" accesskey="8" name="days_in_week" form="week_question">
+    <label for="week_of_8">8</label><br>
+    <input id="week_of_7" type="radio" accesskey="7" name="days_in_week" form="week_question">
+    <label for="week_of_7">7</label><br>
+    <input id="week_of_3" type="radio" accesskey="3" name="days_in_week" form="week_question">
+    <label for="week_of_3">3</label><br>
+  </fieldset>
+  <input type="submit" value="Post my guess" form="week_question">
+</form>
+</body>
+</html>

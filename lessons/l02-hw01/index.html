@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 2: Assignment: Make a GA Press Release</title>
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: black;
+      background-color: whitesmoke;
+    }
+    .alt-font {
+      font-family: 'Oswald', sans-serif;
+    }
+    sup img {
+      padding: 0 .2rem;
+      width: 1.1rem;
+    }
+    .header-image-container {
+      width: 100%;
+      padding-top: 75.30%;
+      position: relative;
+    }
+    .header-image-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+    }
+    .header-image-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    #ga-spinner {
+      width: 1.25rem;
+    }
+    #location-list {
+      font-size: 0.8em;
+    }
+    .city-lead {
+      text-align: center;
+      font-size: 1.5em; 
+    }
+    .city-list {
+      padding: 0;
+      width: 100%;
+      list-style-type: none;
+    }
+    .city-link {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+    }
+    @media only screen {
+      .print-only {
+        display: none;
+        visibility: hidden;
+      }
+      header {
+        font-size: 2em;
+      }
+      .reverse-box {
+        display: inline-block;
+        padding-right: 0.4em;
+        color: whitesmoke;
+        background-color: black;
+      }
+      @keyframes fade {
+        0%   { opacity: 0; }
+        4%   { opacity: 1; }
+        20%  { opacity: 1; }
+        24%  { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .slide { 
+        opacity: 0;
+        z-index: -2;
+        animation: fade 25s infinite; 
+      }
+      .slideshow img:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .slideshow img:nth-child(2) {
+        animation-delay: 5s;
+      }
+      .slideshow img:nth-child(3) {
+        animation-delay: 10s;
+      }
+      .slideshow img:nth-child(4) {
+        animation-delay: 15s;
+      }
+      .slideshow img:nth-child(5) {
+        animation-delay: 20s;
+      }
+      .attention {
+        color: whitesmoke;
+        background-color: rgb(226,28,65);
+        text-shadow: 0 0 3px rgb(17, 139, 134), 0 0 5px rgb(102, 51, 153);
+      }
+      main {
+        font-size: 1.25em;
+      }
+      #logo-img {
+        width: 15%;
+        max-width: 64px;
+        padding: 5%;
+        z-index: 10;
+      }
+      @keyframes wobble{
+        0% {transform:rotate(0deg)}
+        25% {transform:rotate(30deg)}	
+        50% {transform:rotate(0deg)}
+        75% {transform:rotate(-30deg)}	
+        100% {transform:rotate(0deg)}
+      }
+      a:hover > img {
+        animation:wobble 1s linear infinite;
+      }
+      .city-list {
+        text-align: center;
+      }
+      .city-list li {
+        display: inline-block;
+      }
+      .city-link {
+        display: inline-block;
+        border-radius: .65em;
+        color: whitesmoke;
+        background-color: rgb(226, 28, 35);
+        text-decoration: none;
+        padding: .05em .25em;
+        margin: .25em;
+        line-height: 2.7;
+        text-shadow: 0 0 3px rgb(17, 139, 134), 0 0 5px rgb(102, 51, 153);
+        font-weight: bold;
+      }
+      .city-link:hover {
+        background-color: rgb(17, 139, 134);
+        border-radius: 4em;
+        font-family: 'Roboto', sans-serif;
+        text-shadow: 0 0 3px rgb(226, 28, 35), 0 0 5px rgb(102, 51, 153);
+        transition: all .6s ease;
+      }
+    }
+    @media only print {
+      .screen-only {
+        display: none;
+        visibility: hidden;
+      }
+      body {
+        width: 7in;
+        margin: 0;
+        font-size: 12pt;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      header {
+        font-size: 20pt;
+      }
+      #release-date::before {
+        content: "\2014\20";
+      }
+      .header-image-container {
+        width: 100%;
+        padding-top: 50.21%;
+      }
+      img {
+        filter: grayscale(1);
+      }
+      #more-info-lead {
+        font-size: 12pt;
+      }
+      a, a:active, a:visited {
+        text-decoration: none;
+        color: black;
+      }
+      .city-list {
+        font-size: 10pt;
+      }
+      .tri-column {
+        column-count: 3;
+      }
+      .city-list li {
+        margin-bottom: 3.7pt;
+      }
+      .city-link {
+        border-radius: 4em;
+        border: 1px solid black;
+        padding: .6pt 4pt;
+        margin-bottom: 2.7pt;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- See GitHub repo
+  https://git.generalassemb.ly/chindraba-ga/l02-hw01
+
+-->
+  <header>
+    <div id="title-line" aria-title="Press announcement"><span class="reverse-box alt-font">General Assembly<sup><img src="https://res.cloudinary.com/dr5iclm3d/image/upload/v1548206606/logo.png" alt="General Assembly Logo" aria-hidden="true"></sup></span> offers Classes and Workshops Worldwide</div>
+    <div class="header-image-container" aria-hidden="true">
+      <div class="header-image-box slideshow">
+        <img class="slide screen-only" src="https://generalassemb.ly/sites/default/files/2018-05/SocialImpact_TwoColumn_WHOWEARE.jpg" alt="Image of an academic advisor session">
+        <img class="slide screen-only" src="https://ga-shop-production-herokuapp-com.global.ssl.fastly.net/assets/images/section-tech-img_3f83b.jpg" alt="Image of a woman in class">
+        <img class="slide screen-only" src="https://generalassemb.ly/sites/default/files/2018-05/SocialImpact_TwoColumn_NonProfitPartners.jpg" alt="Image of an award presentation">
+        <img class="slide screen-only" src="https://generalassemb.ly/sites/default/files/2018-05/SocialImpact_TwoColumn_OURMISSION%20%2806cdc840-4c76-41cc-bafc-1557f1ce0985%29.jpg" alt="Image of a graduation ceremony">
+        <img class="slide screen-only" src="https://generalassemb.ly/sites/default/files/2018-05/SocialImpact_TwoColumn_OurSponsorPartnerships.jpg" alt="Staff member group photo">
+        <img class="print-only" src="https://ga-shop.s3.amazonaws.com/production/store/locationmasthead/19/image/retina-9ad10b8c7a7bb714b360c151c886247d.jpg" alt="campus lobby">
+        <img id="logo-img" class="screen-only" src="https://res.cloudinary.com/dr5iclm3d/image/upload/v1548206606/logo.png" alt="General Assembly Logo">
+      </div>
+    </div>
+    <div id="release-date" class="attention" aria-title"Scheduled release">For Immediate Release</div>
+  </header>
+  <hr aria-hidden="true">
+  <main>
+    <div id="release-body" aria-title="Full release information">
+      <span class="reverse-box alt-font">General Assembly,<sup><img src="https://res.cloudinary.com/dr5iclm3d/image/upload/v1548206606/logo.png" alt="General Assembly Logo" aria-hidden="true"></sup></span> which started in New York as a startup incubator, now offers classes and workshops in technology, design, and entrepreneurship, with campuses around the world in:
+    </div>
+    <div id="location-list" aria-title="List of General Assembly campuses">
+        <div id="usa-cities" class="city-lead">North American Campuses</div>
+          <ul class="city-list tri-column">
+            <li><a class="city-link"href="https://generalassemb.ly/locations/atlanta">Atlanta</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/austin">Austin</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/boston">Boston</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/charlotte">Charlotte</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/chicago">Chicago</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/dallas">Dallas</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/denver">Denver</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/detroit">Detroit</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/houston">Houston</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/los-angeles">Los&nbsp;Angeles</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/louisville">Louisville</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/miami">Miami</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/minneapolis">Minneapolis</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/nashville">Nashville</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/new-york-city">New&nbsp;York&nbsp;City</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/orlando">Orlando</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/phoenix">Phoenix</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/raleigh">Raleigh</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/salt-lake-city">Salt&nbsp;Lake&nbsp;City</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/san-diego">San &nbsp;Diego</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/san-francisco">San &nbsp;Francisco</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/seattle">Seattle</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/st-louis">St.&nbsp;Louis</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/tampa">Tampa</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/toronto">Toronto</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/washington-dc">Washington&nbsp;D.C.</a></li>
+          </ul>
+        <div id="world-cities" class="city-lead">International Campuses</div>
+          <ul class="city-list tri-column">
+            <li><a class="city-link"href="https://generalassemb.ly/locations/adelaide">Adelaide</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/brisbane">Brisbane</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/edinburgh">Edinburgh</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/london">London</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/manchester">Manchester</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/melbourne">Melbourne</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/paris">Paris</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/singapore">Singapore</a></li>
+            <li><a class="city-link"href="https://generalassemb.ly/locations/sydney">Sydney</a></li>
+          </ul>
+      </div>
+    </div>
+    <div id="more-info-lead">
+      For more information, visit General Assembly's<sup class="print-only"><img src="https://res.cloudinary.com/dr5iclm3d/image/upload/v1548206606/logo.png" alt="General Assembly Logo"></sup> <a href="https://generalassemb.ly" target="_blank" aria-label="Learn more about General Assembly." title="General Assembly's website">website<img id="ga-spinner" class="screen-only" src="https://res.cloudinary.com/dr5iclm3d/image/upload/v1548206606/logo.png" alt="General Assembly Logo" aria-hidden="true"></a><span class="print-only"> &lt;https://GeneralAssemb.ly&gt;</span>.
+    </div>
+  </main>
+  <hr class="screen-only" aria-hidden="true">
+</body>
+</html>

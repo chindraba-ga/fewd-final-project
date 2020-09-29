@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 12: Assignment: Rebuild a Navbar from Slack</title>
+  <meta name="description" content="Slack exercise">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <style>
+    /* FOUC-fix part-1, hide the body until it's completly loaded and, hopefully, styled */
+    html {
+      opacity: 0;
+      transition: all .5s linear;
+    }
+    /* Set variables to hold potentially changable values for the page */
+    :root {
+      --button-fgColor: white;
+      --button-bgColor: #611f69;
+      --button-bgColorHover: #4a154b;
+      --button-borderRadius: 4px;
+      --hamburgerColor: #454545;
+      --nav-fgColor: #1d1d1d;
+      --nav-fgColorHover: #1264a3;
+      --nav-bgColor: white;
+      --nav-bgColorHover: #f2f2f2;
+      --mobileMenu-fgColor: white;
+      --mobileMenu-bgColor: var(--button-bgColor);
+      --mobileMenu-bgImage: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/sidebar-background.png");
+      --mobileMenu-borderColor: rgba(250,250,250,.1);
+    }
+    /* Override some unwanted default settings */
+    /* Borderless page. Looks better in most cases */
+    html {
+      margin: 0;
+    }
+    /* Remove default spacing from paragraphs */
+    p {
+      margin: 0;
+    }
+    /* Turn of special handling of links that go nowhere */
+    a[href="#"], a[href="#"]:hover, a[href="#"]:active, a[href="#"]:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* ==========================================================================
+       Author's custom styles
+       ========================================================================== */
+
+    body {
+      font-family: 'Lato', sans-serif; /* Lato font was a close match */
+      color: #454545;
+    }
+
+    .placeholder {
+      background: lightslategray;
+      height: 100vh;
+    }
+
+    /**
+      * Notice how you have to put a width on fixed elements
+      * They aren't by default width: 100% when they are block level elements
+      **/
+    .global-header {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      padding: 5px 25px;
+      width: calc(100% - 50px);
+    }
+    /**
+     * =============
+     * NAV
+     * =============
+     * Notice how I want the items to be flex-start, so I don't put anything
+     * Remember, by default, flex gives us justify-content: flex-start
+     */
+    .nav-left {
+      align-items: center;
+      display: flex;
+    }
+
+    /**
+     * I've got the SVG inside a flex container, so I align it into the middle
+     */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo svg {
+      width: 150px; /* Gives logo enough room to breathe */
+    }
+
+    .nav {
+      display: none;
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      display: inline-block;
+    }
+
+    /* Dropdown menus */
+    .nav > li {
+      font-size: 14px;
+      padding: 20px 0;
+      margin: 0 20px;
+    }
+    .nav > li > span {
+      cursor: pointer;
+    }
+    .drop-nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0 0 35px rgba(0,0,0,.2);
+    }
+    .drop-nav div {
+      padding: 0 10px 8px;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: default;
+    }
+    .drop-nav li {
+      display: block;
+      padding: 10px 0;
+      color: var(--nav-fgColor);
+      background-color: var(--nav-bgColor);
+    }
+    .drop-nav li:hover {
+      color: var(--nav-fgColorHover);
+      background-color: var(--nav-bgColorHover);
+    }
+    .drop-nav a {
+      padding: 10px;
+    }
+    #menu-2, #menu-3 {
+      width: 400px;
+    }
+    #menu-2 ul, #menu-3 ul {
+      column-count: 2;
+    }
+
+    .nav-right {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 45px;
+    }
+    .workspaces {
+      display: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      border-radius: var(--button-borderRadius);
+      color: var(--button-fgColor);
+      background-color: var(--button-bgColor);
+    }
+    .workspaces:hover {
+      background-color: var(--button-bgColorHover);
+    }
+
+    /* Sidebar menu */
+    #menu-trigger {
+      width: 27px;
+      height: 17px;
+      cursor: pointer;
+    }
+    #menu-trigger svg {
+      fill: var(--hamburgerColor);
+    }
+    #mobile-menu {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      padding-top: 25px;
+      color: var(--mobileMenu-fgColor);
+      background-image: var(--mobileMenu-bgImage);
+      background-size: cover;
+      background-color: var(--mobileMenu-bgColor);
+      transform: translateX(100%);
+    }
+    /* This selector has to include both the id and class to work.
+     * The selector above uses an id, and the JS uses a class. The rules of CSS are that
+     * an id selector is stronger than an class selector, so this would be ignored.
+     * The other fix would be to use  '[id="mobile-menu"]' as the rule selector above,
+     * giving it the same weight as a class-based selector, so that a simple class here
+     * would be sufficient.
+     **/
+    #mobile-menu.mobile-open {
+      transform: translateX(0);
+    }
+    #mobile-menu header {
+      padding: 0 25px 25px 25px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--mobileMenu-borderColor);
+    }
+    #mobile-menu ul {
+      margin: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+    #mobile-menu li {
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+    #mobile-menu li:nth-last-child(-n+2) {
+      align-self: center;
+    }
+    #mobile-menu li:last-child {
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      color: var(--mobileMenu-bgColor);
+      background-color: var(--mobileMenu-fgColor);
+    }
+
+    /* The breakpoint media query for desktop display */
+    @media (min-width: 1085px) {
+      .nav {
+        display: flex;
+      }
+      .workspaces {
+        display: block;
+      }
+      #menu-trigger {
+        display: none;
+      }
+    }
+
+    /*
+     * The CSS version of control over the drop-down menu
+     * Notice that the style declartion for the menu block needs no change from
+     * that used for either JS version of the control. 
+     * if the entire system was CSS-based this selector would be much plainer:
+     *  '.nav > li > span:hover ~ .drop-nav'
+     **/
+    [id="menu-3-button"] > span:hover ~ [id="menu-3"] {
+      display: block;
+    }
+
+    /* ==========================================================================
+       Helper classes
+       ========================================================================== */
+
+    /*
+     * Hide visually and from screen readers
+     */
+
+    .hidden {
+        display: none !important;
+    }
+
+    /*
+     * Hide only visually, but have it available for screen readers:
+     * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+     *
+     * 1. For long content, line feeds are not interpreted as spaces and small width
+     *    causes content to wrap 1 word per line:
+     *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+     */
+
+    .visuallyhidden {
+        border: 0;
+        clip: rect(0 0 0 0);
+        -webkit-clip-path: inset(50%);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        white-space: nowrap; /* 1 */
+    }
+
+    /*
+     * Extends the .visuallyhidden class to allow the element
+     * to be focusable when navigated to via the keyboard:
+     * https://www.drupal.org/node/897638
+     */
+
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        -webkit-clip-path: none;
+        clip-path: none;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+        white-space: inherit;
+    }
+
+    /*
+     * Hide visually and from screen readers, but maintain layout
+     */
+
+    .invisible {
+        visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top nav -->
+  <header class="global-header" id="top-nav">
+    <section class="nav-left">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" shape-rendering="geometricPrecision" width="100" height="25" aria-label="Slack" class="c-slacklogo--white svg-replaced">
+          <path d="M75.663 47.477l2.929-6.846c3.207 2.375 7.39 3.632 11.574 3.632 3.068 0 5.02-1.187 5.02-3.003-.07-5.03-18.477-1.118-18.617-13.764-.07-6.427 5.648-11.387 13.737-11.387 4.81 0 9.622 1.188 13.038 3.913l-2.737 6.992c-3.143-2.021-7.025-3.43-10.72-3.43-2.51 0-4.184 1.187-4.184 2.725.07 4.96 18.618 2.235 18.827 14.322 0 6.567-5.579 11.178-13.528 11.178-5.856 0-11.225-1.397-15.34-4.332m116.629-9.325a8.498 8.498 0 0 1-7.405 4.33c-4.698 0-8.506-3.816-8.506-8.523s3.808-8.523 8.506-8.523a8.498 8.498 0 0 1 7.405 4.33l8.143-4.52c-3.05-5.451-8.868-9.137-15.548-9.137-9.839 0-17.815 7.991-17.815 17.85 0 9.858 7.976 17.85 17.815 17.85 6.68 0 12.498-3.686 15.548-9.137l-8.143-4.52M109.814 51.11h10.18V1.25h-10.179zm95.761-49.86v49.86h10.18V36.172l12.063 14.938h13.012l-15.34-17.746 14.224-16.559H227.26l-11.505 13.767V1.25h-10.18M151.357 16.807v4.053c-1.673-2.795-5.787-4.751-10.11-4.751-8.925 0-15.967 7.895-15.967 17.815 0 9.92 7.042 17.885 15.967 17.885 4.323 0 8.437-1.956 10.11-4.751v4.052h10.18V16.807h-10.18zm0 21.414c-1.464 2.445-4.532 4.26-7.948 4.26-4.699 0-8.507-3.815-8.507-8.522 0-4.707 3.808-8.523 8.507-8.523 3.416 0 6.484 1.886 7.948 4.4v8.385z"></path>
+          <path d="M21.902.148c-3.299 0-5.973 2.68-5.973 5.985a5.979 5.979 0 0 0 5.973 5.985h5.974V6.133A5.98 5.98 0 0 0 21.902.148m0 15.96H5.973C2.674 16.108 0 18.788 0 22.094c0 3.305 2.674 5.985 5.973 5.985h15.93c3.298 0 5.973-2.68 5.973-5.985 0-3.306-2.675-5.986-5.974-5.986" fill="#36C5F0"></path>
+          <path d="M59.734 22.094c0-3.306-2.675-5.986-5.974-5.986-3.299 0-5.973 2.68-5.973 5.986v5.985h5.973a5.98 5.98 0 0 0 5.974-5.985M43.805 22.094V6.133A5.98 5.98 0 0 0 37.831.148c-3.299 0-5.973 2.68-5.973 5.985v15.96c0 3.307 2.674 5.987 5.973 5.987a5.98 5.98 0 0 0 5.974-5.985" fill="#2EB67D"></path><path d="M37.831 60a5.98 5.98 0 0 0 5.974-5.985 5.98 5.98 0 0 0-5.974-5.985h-5.973v5.985c0 3.305 2.674 5.985 5.973 5.985M37.831 44.04h15.93c3.298 0 5.973-2.68 5.973-5.986a5.98 5.98 0 0 0-5.974-5.985H37.831c-3.299 0-5.973 2.68-5.973 5.985a5.979 5.979 0 0 0 5.973 5.985" fill="#ECB22E"></path>
+          <g>
+            <path d="M0 38.054a5.979 5.979 0 0 0 5.973 5.985 5.98 5.98 0 0 0 5.974-5.985v-5.985H5.973C2.674 32.069 0 34.749 0 38.054m15.929 0v15.96c0 3.306 2.674 5.986 5.973 5.986a5.98 5.98 0 0 0 5.974-5.985V38.054a5.979 5.979 0 0 0-5.974-5.985c-3.299 0-5.973 2.68-5.973 5.985" fill="#E01E5A"></path>
+          </g>
+        </svg>
+      </div>
+      <ul class="nav">
+        <li id="menu-1-button"><span>Why Slack?</span>
+          <nav id="menu-1" class="drop-nav">
+            <div>About the product</div>
+            <ul>
+              <li><a href="#">How it works</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">Customers</a></li>
+              <li><a href="#">Enterprise</a></li>
+            </ul>
+          </nav>
+        </li>
+        <li id="menu-2-button"><span>Solutions</span>
+          <nav id="menu-2" class="drop-nav">
+            <div>Slack for every team</div>
+            <ul>
+              <li><a href="#">Engineering</a></li>
+              <li><a href="#">Sales</a></li>
+              <li><a href="#">IT</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">Human Resources</a></li>
+              <li><a href="#">Project Management</a></li>
+            </ul>
+          </nav>
+        </li>
+        <li id="menu-3-button"><span>Resources</span>
+          <nav id="menu-3" class="drop-nav">
+            <div>Go further with Slack</div>
+            <ul>
+              <li><a href="#">Download</a></li>
+              <li><a href="#">e-Books</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Reports</a></li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">API</a></li>
+            </ul>
+          </nav>
+        </li>
+        <li><span>Pricing</span></li>
+      </ul>
+    </section>
+    <div class="nav-right">
+      <p class="workspaces">Your Workspaces</p>
+      <div class="hamburger-menu" id="menu-trigger">
+        <svg width="24" height="17" viewBox="0 0 24 17" xmlns="http://www.w3.org/2000/svg" aria-label="" class="svg-replaced" shape-rendering="geometricPrecision" title="Hamburger icon">
+          <path d="M0 0h24v3H0zm0 7h24v3H0zm0 7h24v3H0z" fill-rule="evenodd"></path>
+        </svg>
+        <nav id="mobile-menu">
+          <header>
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/slack.svg" alt="Slack logo">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/x.svg" alt="" id="menu-close">
+          </header>
+          <ul>
+            <li><a href="#">Why Slack?</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Your Workspaces</a></li>
+            <li><a href="#">Download Slack</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!--Main content-->
+  <section class="placeholder">
+    <style>
+      .placeholder {
+        margin: 15px;
+        padding: 10px;
+        line-height: 1.4;
+        color: linen;
+        background-color: rgba(0,0,100,.85);
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: auto;
+      }
+      .placeholder header {
+        text-align: center;
+        font-size: 24px;
+      }
+      .placeholder main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .placeholder section {
+        min-width: 40vw;
+        flex: 1 1 0;
+      }
+      @media (min-width: 700px) {
+        .placeholder section {
+          column-count: 2;
+        }
+      }
+      .placeholder a {
+        color: gold;
+      }
+      hr {
+        height: 2px;
+        width: 85%;
+        color: linen;
+        margin: 10px;
+        background-color: ivory;
+        box-shadow: 0 0 35px yellow;
+      }
+      .placeholder ol {
+        list-style: roman;
+      }
+      .placeholder li {
+        display: block;
+      }
+      .placeholder li::before {
+        color: gold;
+      }
+      .placeholder a img {
+        width: 45%;
+        height: auto;
+      }
+    </style>
+    <header>Random nit-picking</header>
+    <main>
+      <hr>
+      <section>
+        <h2>Drop-dowm menu DOM placement dispute</h2>
+        <p>The starter code included the comment near the end of the DOM:</p>
+        <blockquote>Dropdown Menus also go here, but why? They are absolutely positioned, so it doesnt matter where they are in the DOM if you remember....</blockquote>
+        <p>From a technical point of view, using the power of JavaScrip, they can be visually placed anywhere on, or off, the screen. Accessability concerns, however, change that view. Screen readers process the DOM tree in order, as presented in the DOM, with no regard to visual placement. There are flags to help the reader know that the content might change, for whatever reason, but none to inform them of random, absolutely positioned elements outside the DOM flow. Moving elements around results in them being read out of order, and causing much confusion for the visually impaired users.</p>
+        <p>For more information see <a href="https://stackoverflow.com/a/52334370/7412956">Affects of Absolute Positioning on Voice Activation Software</a>, and the links from that discussion.</p>
+      </section>
+      <hr>
+      <section>
+        <h2>Bug in Homework 5 - Solution</h2>
+        <p>It is possible to activate one of the drop-down menus and then enter the 'body' of the page with the menu still hanging.<p>
+        <a href="https://www.chindraba.work/fewd/img/slack-solution-bug-window.png"><img src="https://www.chindraba.work/fewd/img/slack-solution-bug-window.png" alt="full window view of the bug results"></a>
+        <a href="https://www.chindraba.work/fewd/img/slack-solution-bug-section.png"><img src="https://www.chindraba.work/fewd/img/slack-solution-bug-section.png" alt="full window view of the bug results"></a>
+        <h3>Steps to reproduce:</h3>
+        <ol>Variation 1:
+          <li>Move the cursor over one of the three menu triggers</li>
+          <li>Without entering the drop-down box, move the cursor up until it changes from a link pointer</li>
+          <li>Move the cursor left, or right, passed the buttons and back down into the main body</li>
+        </ol>
+        <ol>Variation 2:
+          <li>Move the cursor over either the first button, "Why Slack?", or the last button, "Resources"</li>
+          <li>Without entering the drop-down box, move the cursor left, or right, away from the buttons</li>
+          <li>Move the cursor down, and around the drop-down box if necessary, into the main body</li>
+        </ol>
+        <ol>Variation 3 (slightly more difficult):
+          <li>Move the cursor over one of the three menu triggers</li>
+          <li>Without entering the drop-down box, move the cursor down, between the trigger and its drop-down box, until it changes to a default pointer (probably an arrow)</li>
+          <li>Move the cursor left, or right, passed the box and back down into the main body</li>
+        </ol>
+      </section>
+    </main>
+
+  </section>
+
+
+  <!--Dropdown Menus also go here, but why? They are absolutely positioned, so it doesnt matter where they are in the DOM if you remember.... -->
+  <!--
+        WRONG!  ...  WRONG!  ... Bad habit to get into!
+
+        It does matter where they go in the DOM, absolute or not.
+        Screen readers do much better with a properly laid out DOM than with one
+        that has elements repositioned way out of their normal flow.
+        For things which are visually useful and can be ignored by screenreaders
+        with aria-ignore="true" set, it doesn't matter.
+        Navigation menus just seem to be too important for such an exception.
+        
+        See https://stackoverflow.com/a/52334370/7412956
+          "Affects of Absolute Positioning on Voice Activation Software"
+  -->
+  <script>
+// Think about application structure a bit, very similar to traffic light exercise we did
+
+/**
+ * SIDE MENU
+ * If somebody clicks on the menu icon, let the fireworks begin...
+ * We're listening to the 'menu-trigger' ID for some action, then we fire 'sideMenuAppears'
+ * Likewise, we're listening to the 'menu-close' ID for a click, then we fire 'sideMenuDisappears' when that happens
+ * Make it happen!
+ */
+
+/* When you click menu close, it puts the hide-menu class onto #side-menu, reversing what just happened, make it happen! */
+
+    /* Solution, based on adding/removing class name to a menu, for the mobile menu */
+    function mobileMenuClose() {
+      mobileMenu.classList.remove("mobile-open");
+    }
+    function mobileMenuOpen() {
+      mobileMenu.classList.add("mobile-open");
+    }
+    const mobileMenu = document.getElementById("mobile-menu");
+    document.getElementById("menu-close").addEventListener("click", mobileMenuClose);
+    document.getElementById("menu-trigger").addEventListener("click", mobileMenuOpen, true);
+    
+
+
+    /* System build around the idea popping the menu into and out of the DOM 
+       Uses an Object-Oriented approach to the design */
+
+    /* Remove the // comments from  the lines for menu2 and menu3, and add comments
+     * to the menuSolutions line in the next group to give this method complete control
+     * ALSO requires removing the CSS declaration for [id=menu-3-button]:hover [id=menu-3] {
+     **/
+    function menuDrop() {
+      if ( null != this.menu.parentElement ) {
+        this.parent.removeChild(this.menu);
+      }
+    }
+    function menuAdd() {
+      if ( null == this.menu.parentElement ) {
+        this.parent.appendChild(this.menu);
+      }
+      return true;
+    }
+    function PoppableMenu( menuName, menuParent ) {
+      this.parent = document.getElementById(menuParent);
+      this.menu   = document.getElementById(menuName);
+      this.add    = menuAdd.bind(this);
+      this.drop   = menuDrop.bind(this);
+      this.menu.parentElement.removeChild(this.menu);
+      this.parent.firstElementChild.addEventListener("mouseenter", this.add);
+      this.parent.addEventListener("mouseleave", this.drop);
+      /* Override the display: none in the CSS.              */
+      /* Otherwise, when attached, it will still be unshown. */
+      this.menu.style.display = "block";
+    }
+    const menu1 = new PoppableMenu( "menu-1", "menu-1-button" );
+    // const menu2 = new PoppableMenu( "menu-2", "menu-2-button" );
+    // const menu3 = new PoppableMenu( "menu-3", "menu-3-button" );
+
+
+
+    /* System build around the idea of changing the display property between block and none; */
+
+    /* To give this version complete control over the menus remove the // comments from the lines 
+     * below for menuWhy and menuResources, while adding // comments to the menu1 line above.
+     * ALSO requires removing the CSS declaration for [id=menu-3-button]:hover [id=menu-3] {
+     **/
+    function menuHide() {
+      this.style.display = 'none';
+    }
+    function menuShow() {
+      this.style.display = 'block';
+    }
+    function menuAttach( menuName ) {
+      let elem = document.getElementById(menuName);
+      elem.parentElement.firstElementChild.addEventListener("mouseenter", menuShow.bind(elem));
+      elem.parentElement.addEventListener("mouseleave", menuHide.bind(elem));
+      elem.style.display = 'none';
+      return elem;
+    }
+    // const menuWhy       = menuAttach("menu-1");
+    const menuSolutions = menuAttach("menu-2");
+    // const menuResources = menuAttach("menu-3");
+  </script>
+  <!-- FOUC-fix, part 2, quick fade-in of the, hopefully, rendered and styled content -->
+  <style>
+    html {
+      opacity: 1;
+    }
+  </style>
+</body>
+</html>

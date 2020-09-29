@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 5: Solo Exercise: Make a Grid With Images</title>
+  <style>
+    body {
+      background-repeat: no-repeat;
+      color: black;
+      margin: 0;
+      padding: 35px 70px 200px 70px;
+    }
+
+    /* offset page header height by height of the top header*/
+    h1 {
+      padding-top: 100px;
+    }
+
+    h2 {
+      padding-top: 80px;
+    }
+
+    div {
+      padding-bottom: 30px;
+    }
+
+    .code {
+      font-family: courier;
+    }
+
+    .intro {
+      color: black;
+      margin-top: 25px;
+    }
+
+    .heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+    }
+
+    /*
+      ##################################
+      ######## Container Styles ########
+      ##################################
+
+      Note the 3 levels of nesting in the HTML
+      <main>
+        <div>
+          <img src="">
+        </div>
+      </main>
+
+      CSS Grid controls children but what about the third level images?
+      How do you make the images responsive?
+      Check the solution to see the result but give this a good effort before doing so if you can.
+    */
+  .grid-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 25px;
+    }
+    .grid-city div {
+      border: 1px red solid;
+      background-color: linen;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+      border: 2px gold solid;
+    }
+</style>
+</head>
+<body>
+    <!doctype html>
+    <html>
+    <head>
+      <title>Grid and Flexbox</title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
+    </head>
+
+    <body>
+      <header class="intro">
+        <p class="heading">Make a 3 column grid out of these - try to get these images to fit their div containers.</p>
+      </header>
+      <main class="grid-city">
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-1.JPG">
+        </div>
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-2.JPG">
+        </div>
+        <div>  
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-3.JPG">
+        </div>
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-4.JPG">
+        </div>
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-5.JPG">
+        </div>
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-6.JPG">
+        </div>
+        <div>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-7.JPG">
+        </div>
+        <div>  
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-8.JPG">
+        </div>
+        <div>  
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/dv-9.JPG">
+        </div>
+      </main>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+    </body>
+    </html>
+</body>
+</html>

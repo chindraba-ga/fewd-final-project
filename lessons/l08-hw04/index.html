@@ -1,0 +1,1421 @@
+<!DOCTYPE html><!-- here -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 8: Assignment: Add Modal to the page from Trulia</title>
+  <link href="https://yarnpkg.com/en/package/normalize.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/symbola" type="text/css"/>
+  <style>
+  /*  Build the color scheme setup */
+    /* This page supports both dark and light color schemes, dark by preference */
+    #main-lite, #alt-lite {
+      display: none;
+    }
+    :root { /* Ultimate fallback colors for the default color scheme  -default-base- */
+      --default-base-main-brandMainColor:       rgb(50,182,76);
+      --default-base-main-brandAltColor:        rgb(255,255,255);
+      --default-base-main-page-bgColor:         rgb(18,18,18);
+      --default-base-main-page-fgColor:         rgba(236,236,236,.85);
+      --default-base-main-page-fadeColor:       rgb(192,197,199);
+      --default-base-main-page-linkColor:       rgb(231,144,60);
+      --default-base-main-foot-bgColor:         rgb(53,60,59);
+      --default-base-main-foot-fgColor:         rgba(177,182,187,.5);
+      --default-base-main-flag-textColor:       rgba(255,255,255,.85);
+      --default-base-main-flag-newList:         rgba(145,217,165,.85);
+      --default-base-main-flag-ownerList:       rgba(187,189,191,.45);
+      --default-base-main-flag-priceDrop:       rgb(158,224,149);
+      --default-base-main-flag-priceRise:       rgb(255,54,26);
+      --default-base-main-icon-unitInfo:        rgba(145,217,165,.85);
+      --default-base-main-photo-blendColor:     rgba(0,0,0,.55);
+      --default-base-main-modal-coverColor:     rgba(0,0,0,.55);
+      --default-base-main-showcase-gutterColor: rgba(0,0,0,.85);
+    }
+    :root { /* Dark mode overrides for the default color scheme */
+    /* Entries here will override the --default-base-main-* entries above for dark mode */
+      --default-base-dark-page-fadeColor:   rgba(192,197,199,.85);
+    }
+    :root { /* Lite mode overrides for the default color scheme */
+    /* Entries here will override the --default-base-main-* entries above for lite mode */
+      --default-base-lite-page-bgColor:         rgb(250,250,250);
+      --default-base-lite-page-fgColor:         rgb(34,34,34);
+      --default-base-lite-page-fadeColor:       rgb(120,125,129);
+      --default-base-lite-page-linkColor:       rgb(0,128,0);
+      --default-base-lite-flag-textColor:       rgba(255,255,255,.95);
+      --default-base-lite-flag-newList:         rgba(45,191,102,.70);
+      --default-base-lite-flag-ownerList:       rgba(134,144,152,.45);
+      --default-base-lite-flag-priceDrop:       rgba(0,176,0);
+      --default-base-lite-flag-priceRise:       rgba(215,0,0);
+      --default-base-lite-icon-unitInfo:        rgb(0,0,192);
+      --default-base-lite-photo-blendColor:     rgba(255,255,255,.95);
+      --default-base-lite-modal-coverColor:     rgba(255,255,255,.05);
+      --default-base-lite-showcase-gutterColor: rgb(227,228,230);
+    }
+    :root {
+      --default-dark-brandMainColor:       var( --default-base-dark-brandMainColor,       var( --default-base-main-brandMainColor));
+      --default-dark-brandAltColor:        var( --default-base-dark-brandAltColor,        var( --default-base-main-brandAltColor));
+      --default-dark-page-bgColor:         var( --default-base-dark-page-bgColor,         var( --default-base-main-page-bgColor));
+      --default-dark-page-fgColor:         var( --default-base-dark-page-fgColor,         var( --default-base-main-page-fgColor));
+      --default-dark-page-fadeColor:       var( --default-base-dark-page-fadeColor,       var( --default-base-main-page-fadeColor));
+      --default-dark-page-linkColor:       var( --default-base-dark-page-linkColor,       var( --default-base-main-page-linkColor));
+      --default-dark-foot-bgColor:         var( --default-base-dark-foot-bgColor,         var( --default-base-main-foot-bgColor));
+      --default-dark-foot-fgColor:         var( --default-base-dark-foot-fgColor,         var( --default-base-main-foot-fgColor));
+      --default-dark-flag-textColor:       var( --default-base-dark-flag-textColor,       var( --default-base-main-flag-textColor));
+      --default-dark-flag-newList:         var( --default-base-dark-flag-newList,         var( --default-base-main-flag-newList));
+      --default-dark-flag-ownerList:       var( --default-base-dark-flag-ownerList,       var( --default-base-main-flag-ownerList));
+      --default-dark-flag-priceDrop:       var( --default-base-dark-flag-priceDrop,       var( --default-base-main-flag-priceDrop));
+      --default-dark-flag-priceRise:       var( --default-base-dark-flag-priceRise,       var( --default-base-main-flag-priceRise));
+      --default-dark-icon-unitInfo:        var( --default-base-dark-icon-unitInfo,        var( --default-base-main-icon-unitInfo));
+      --default-dark-photo-blendColor:     var( --default-base-dark-photo-blendColor,     var( --default-base-main-photo-blendColor));
+      --default-dark-modal-coverColor:     var( --default-base-dark-modal-coverColor,     var( --default-base-main-modal-coverColor));
+      --default-dark-showcase-gutterColor: var( --default-base-dark-showcase-gutterColor, var( --default-base-main-showcase-gutterColor));
+
+      --default-lite-brandMainColor:       var( --default-base-lite-brandMainColor,       var( --default-base-main-brandMainColor));
+      --default-lite-brandAltColor:        var( --default-base-lite-brandAltColor,        var( --default-base-main-brandAltColor));
+      --default-lite-page-bgColor:         var( --default-base-lite-page-bgColor,         var( --default-base-main-page-bgColor));
+      --default-lite-page-fgColor:         var( --default-base-lite-page-fgColor,         var( --default-base-main-page-fgColor));
+      --default-lite-page-fadeColor:       var( --default-base-lite-page-fadeColor,       var( --default-base-main-page-fadeColor));
+      --default-lite-page-linkColor:       var( --default-base-lite-page-linkColor,       var( --default-base-main-page-linkColor));
+      --default-lite-foot-bgColor:         var( --default-base-lite-foot-bgColor,         var( --default-base-main-foot-bgColor));
+      --default-lite-foot-fgColor:         var( --default-base-lite-foot-fgColor,         var( --default-base-main-foot-fgColor));
+      --default-lite-flag-textColor:       var( --default-base-lite-flag-textColor,       var( --default-base-main-flag-textColor));
+      --default-lite-flag-newList:         var( --default-base-lite-flag-newList,         var( --default-base-main-flag-newList));
+      --default-lite-flag-ownerList:       var( --default-base-lite-flag-ownerList,       var( --default-base-main-flag-ownerList));
+      --default-lite-flag-priceDrop:       var( --default-base-lite-flag-priceDrop,       var( --default-base-main-flag-priceDrop));
+      --default-lite-flag-priceRise:       var( --default-base-lite-flag-priceRise,       var( --default-base-main-flag-priceRise));
+      --default-lite-icon-unitInfo:        var( --default-base-lite-icon-unitInfo,        var( --default-base-main-icon-unitInfo));
+      --default-lite-photo-blendColor:     var( --default-base-lite-photo-blendColor,     var( --default-base-main-photo-blendColor));
+      --default-lite-modal-coverColor:     var( --default-base-lite-modal-coverColor,     var( --default-base-main-modal-coverColor));
+      --default-lite-showcase-gutterColor: var( --default-base-lite-showcase-gutterColor, var( --default-base-main-showcase-gutterColor));
+    }
+    @media not all and (prefers-color-scheme: light) {
+      #main-mode:checked ~ #default-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --default-dark-brandMainColor);
+        --colors-brandAltColor:        var( --default-dark-brandAltColor);
+        --colors-page-bgColor:         var( --default-dark-page-bgColor);
+        --colors-page-fgColor:         var( --default-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --default-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --default-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --default-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --default-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --default-dark-flag-textColor);
+        --colors-flag-newList:         var( --default-dark-flag-newList);
+        --colors-flag-ownerList:       var( --default-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --default-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --default-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --default-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --default-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --default-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --default-dark-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #default-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --default-lite-brandMainColor);
+        --colors-brandAltColor:        var( --default-lite-brandAltColor);
+        --colors-page-bgColor:         var( --default-lite-page-bgColor);
+        --colors-page-fgColor:         var( --default-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --default-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --default-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --default-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --default-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --default-lite-flag-textColor);
+        --colors-flag-newList:         var( --default-lite-flag-newList);
+        --colors-flag-ownerList:       var( --default-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --default-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --default-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --default-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --default-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --default-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --default-lite-showcase-gutterColor);
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      #main-mode:checked ~ #default-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --default-lite-brandMainColor);
+        --colors-brandAltColor:        var( --default-lite-brandAltColor);
+        --colors-page-bgColor:         var( --default-lite-page-bgColor);
+        --colors-page-fgColor:         var( --default-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --default-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --default-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --default-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --default-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --default-lite-flag-textColor);
+        --colors-flag-newList:         var( --default-lite-flag-newList);
+        --colors-flag-ownerList:       var( --default-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --default-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --default-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --default-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --default-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --default-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --default-lite-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #default-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --default-dark-brandMainColor);
+        --colors-brandAltColor:        var( --default-dark-brandAltColor);
+        --colors-page-bgColor:         var( --default-dark-page-bgColor);
+        --colors-page-fgColor:         var( --default-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --default-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --default-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --default-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --default-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --default-dark-flag-textColor);
+        --colors-flag-newList:         var( --default-dark-flag-newList);
+        --colors-flag-ownerList:       var( --default-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --default-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --default-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --default-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --default-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --default-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --default-dark-showcase-gutterColor);
+      }
+    }
+    :root { /* Ultimate fallback colors for the default color scheme */
+      --retro-base-main-brandMainColor:       rgb(50,182,76);
+      --retro-base-main-brandAltColor:        rgb(255,255,255);
+      --retro-base-main-page-bgColor:         rgb(18,18,18);
+      --retro-base-main-page-fgColor:         green;
+      --retro-base-main-page-fadeColor:       rgb(192,197,199);
+      --retro-base-main-page-linkColor:       rgb(231,144,60);
+      --retro-base-main-foot-bgColor:         rgb(53,60,59);
+      --retro-base-main-foot-fgColor:         rgba(177,182,187,.5);
+      --retro-base-main-flag-textColor:       rgba(255,255,255,.85);
+      --retro-base-main-flag-newList:         rgba(145,217,165,.85);
+      --retro-base-main-flag-ownerList:       rgba(187,189,191,.45);
+      --retro-base-main-flag-priceDrop:       rgb(158,224,149);
+      --retro-base-main-flag-priceRise:       rgb(255,54,26);
+      --retro-base-main-icon-unitInfo:        rgba(145,217,165,.85);
+      --retro-base-main-photo-blendColor:     rgba(0,0,0,.55);
+      --retro-base-main-modal-coverColor:     rgba(0,0,0,.55);
+      --retro-base-main-showcase-gutterColor: rgba(0,0,0,.85);
+    }
+    :root { /* Dark mode overrides for the default color scheme */
+    /* Entries here will override the --retro-base-main-* entries above for dark mode */
+      --retro-base-dark-page-fadeColor:   rgba(192,197,199,.85);
+    }
+    :root { /* Lite mode overrides for the default color scheme */
+    /* Entries here will override the --retro-base-main-* entries above for lite mode */
+      --retro-base-lite-page-bgColor:         rgb(250,250,250);
+      --retro-base-lite-page-fgColor:         gold;
+      --retro-base-lite-page-fadeColor:       rgb(120,125,129);
+      --retro-base-lite-page-linkColor:       rgb(0,128,0);
+      --retro-base-lite-flag-textColor:       rgba(255,255,255,.95);
+      --retro-base-lite-flag-newList:         rgba(45,191,102,.70);
+      --retro-base-lite-flag-ownerList:       rgba(134,144,152,.45);
+      --retro-base-lite-flag-priceDrop:       rgba(0,176,0);
+      --retro-base-lite-flag-priceRise:       rgba(215,0,0);
+      --retro-base-lite-icon-unitInfo:        rgb(0,0,192);
+      --retro-base-lite-photo-blendColor:     rgba(255,255,255,.95);
+      --retro-base-lite-modal-coverColor:     rgba(255,255,255,.05);
+      --retro-base-lite-showcase-gutterColor: rgb(227,228,230);
+    }
+    :root {
+      --retro-dark-brandMainColor:       var( --retro-base-dark-brandMainColor,       var( --retro-base-main-brandMainColor,       var( --default-dark-brandMainColor)));
+      --retro-dark-brandAltColor:        var( --retro-base-dark-brandAltColor,        var( --retro-base-main-brandAltColor,        var( --default-dark-brandAltColor)));
+      --retro-dark-page-bgColor:         var( --retro-base-dark-page-bgColor,         var( --retro-base-main-page-bgColor,         var( --default-dark-page-bgColor)));
+      --retro-dark-page-fgColor:         var( --retro-base-dark-page-fgColor,         var( --retro-base-main-page-fgColor,         var( --default-dark-page-fgColor)));
+      --retro-dark-page-fadeColor:       var( --retro-base-dark-page-fadeColor,       var( --retro-base-main-page-fadeColor,       var( --default-dark-page-fadeColor)));
+      --retro-dark-page-linkColor:       var( --retro-base-dark-page-linkColor,       var( --retro-base-main-page-linkColor,       var( --default-dark-page-linkColor)));
+      --retro-dark-foot-bgColor:         var( --retro-base-dark-foot-bgColor,         var( --retro-base-main-foot-bgColor,         var( --default-dark-foot-bgColor)));
+      --retro-dark-foot-fgColor:         var( --retro-base-dark-foot-fgColor,         var( --retro-base-main-foot-fgColor,         var( --default-dark-foot-fgColor)));
+      --retro-dark-flag-textColor:       var( --retro-base-dark-flag-textColor,       var( --retro-base-main-flag-textColor,       var( --default-dark-flag-textColor)));
+      --retro-dark-flag-newList:         var( --retro-base-dark-flag-newList,         var( --retro-base-main-flag-newList,         var( --default-dark-flag-newList)));
+      --retro-dark-flag-ownerList:       var( --retro-base-dark-flag-ownerList,       var( --retro-base-main-flag-ownerList,       var( --default-dark-flag-ownerList)));
+      --retro-dark-flag-priceDrop:       var( --retro-base-dark-flag-priceDrop,       var( --retro-base-main-flag-priceDrop,       var( --default-dark-flag-priceDrop)));
+      --retro-dark-flag-priceRise:       var( --retro-base-dark-flag-priceRise,       var( --retro-base-main-flag-priceRise,       var( --default-dark-flag-priceRise)));
+      --retro-dark-icon-unitInfo:        var( --retro-base-dark-icon-unitInfo,        var( --retro-base-main-icon-unitInfo,        var( --default-dark-icon-unitInfo)));
+      --retro-dark-photo-blendColor:     var( --retro-base-dark-photo-blendColor,     var( --retro-base-main-photo-blendColor,     var( --default-dark-photo-blendColor)));
+      --retro-dark-modal-coverColor:     var( --retro-base-dark-modal-coverColor,     var( --retro-base-main-modal-coverColor,     var( --default-dark-modal-coverColor)));
+      --retro-dark-showcase-gutterColor: var( --retro-base-dark-showcase-gutterColor, var( --retro-base-main-showcase-gutterColor, var( --default-dark-showcase-gutterColor)));
+                                                                                          
+      --retro-lite-brandMainColor:       var( --retro-base-lite-brandMainColor,       var( --retro-base-main-brandMainColor,       var( --default-lite-brandMainColor)));
+      --retro-lite-brandAltColor:        var( --retro-base-lite-brandAltColor,        var( --retro-base-main-brandAltColor,        var( --default-lite-brandAltColor)));
+      --retro-lite-page-bgColor:         var( --retro-base-lite-page-bgColor,         var( --retro-base-main-page-bgColor,         var( --default-lite-page-bgColor)));
+      --retro-lite-page-fgColor:         var( --retro-base-lite-page-fgColor,         var( --retro-base-main-page-fgColor,         var( --default-lite-page-fgColor)));
+      --retro-lite-page-fadeColor:       var( --retro-base-lite-page-fadeColor,       var( --retro-base-main-page-fadeColor,       var( --default-lite-page-fadeColor)));
+      --retro-lite-page-linkColor:       var( --retro-base-lite-page-linkColor,       var( --retro-base-main-page-linkColor,       var( --default-lite-page-linkColor)));
+      --retro-lite-foot-bgColor:         var( --retro-base-lite-foot-bgColor,         var( --retro-base-main-foot-bgColor,         var( --default-lite-foot-bgColor)));
+      --retro-lite-foot-fgColor:         var( --retro-base-lite-foot-fgColor,         var( --retro-base-main-foot-fgColor,         var( --default-lite-foot-fgColor)));
+      --retro-lite-flag-textColor:       var( --retro-base-lite-flag-textColor,       var( --retro-base-main-flag-textColor,       var( --default-lite-flag-textColor)));
+      --retro-lite-flag-newList:         var( --retro-base-lite-flag-newList,         var( --retro-base-main-flag-newList,         var( --default-lite-flag-newList)));
+      --retro-lite-flag-ownerList:       var( --retro-base-lite-flag-ownerList,       var( --retro-base-main-flag-ownerList,       var( --default-lite-flag-ownerList)));
+      --retro-lite-flag-priceDrop:       var( --retro-base-lite-flag-priceDrop,       var( --retro-base-main-flag-priceDrop,       var( --default-lite-flag-priceDrop)));
+      --retro-lite-flag-priceRise:       var( --retro-base-lite-flag-priceRise,       var( --retro-base-main-flag-priceRise,       var( --default-lite-flag-priceRise)));
+      --retro-lite-icon-unitInfo:        var( --retro-base-lite-icon-unitInfo,        var( --retro-base-main-icon-unitInfo,        var( --default-lite-icon-unitInfo)));
+      --retro-lite-photo-blendColor:     var( --retro-base-lite-photo-blendColor,     var( --retro-base-main-photo-blendColor,     var( --default-lite-photo-blendColor)));
+      --retro-lite-modal-coverColor:     var( --retro-base-lite-modal-coverColor,     var( --retro-base-main-modal-coverColor,     var( --default-lite-modal-coverColor)));
+      --retro-lite-showcase-gutterColor: var( --retro-base-lite-showcase-gutterColor, var( --retro-base-main-showcase-gutterColor, var( --default-lite-showcase-gutterColor)));
+    }
+    @media not all and (prefers-color-scheme: light) {
+      #main-mode:checked ~ #retro-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --retro-dark-brandMainColor);
+        --colors-brandAltColor:        var( --retro-dark-brandAltColor);
+        --colors-page-bgColor:         var( --retro-dark-page-bgColor);
+        --colors-page-fgColor:         var( --retro-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --retro-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --retro-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --retro-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --retro-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --retro-dark-flag-textColor);
+        --colors-flag-newList:         var( --retro-dark-flag-newList);
+        --colors-flag-ownerList:       var( --retro-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --retro-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --retro-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --retro-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --retro-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --retro-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --retro-dark-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #retro-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --retro-lite-brandMainColor);
+        --colors-brandAltColor:        var( --retro-lite-brandAltColor);
+        --colors-page-bgColor:         var( --retro-lite-page-bgColor);
+        --colors-page-fgColor:         var( --retro-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --retro-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --retro-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --retro-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --retro-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --retro-lite-flag-textColor);
+        --colors-flag-newList:         var( --retro-lite-flag-newList);
+        --colors-flag-ownerList:       var( --retro-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --retro-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --retro-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --retro-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --retro-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --retro-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --retro-lite-showcase-gutterColor);
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      #main-mode:checked ~ #retro-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --retro-lite-brandMainColor);
+        --colors-brandAltColor:        var( --retro-lite-brandAltColor);
+        --colors-page-bgColor:         var( --retro-lite-page-bgColor);
+        --colors-page-fgColor:         var( --retro-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --retro-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --retro-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --retro-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --retro-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --retro-lite-flag-textColor);
+        --colors-flag-newList:         var( --retro-lite-flag-newList);
+        --colors-flag-ownerList:       var( --retro-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --retro-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --retro-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --retro-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --retro-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --retro-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --retro-lite-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #retro-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --retro-dark-brandMainColor);
+        --colors-brandAltColor:        var( --retro-dark-brandAltColor);
+        --colors-page-bgColor:         var( --retro-dark-page-bgColor);
+        --colors-page-fgColor:         var( --retro-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --retro-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --retro-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --retro-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --retro-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --retro-dark-flag-textColor);
+        --colors-flag-newList:         var( --retro-dark-flag-newList);
+        --colors-flag-ownerList:       var( --retro-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --retro-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --retro-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --retro-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --retro-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --retro-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --retro-dark-showcase-gutterColor);
+      }
+    }
+    :root { /* Ultimate fallback colors for the default color scheme */
+      --purple-base-main-brandMainColor:       rgb(50,182,76);
+      --purple-base-main-brandAltColor:        rgb(255,255,255);
+      --purple-base-main-page-bgColor:         rgb(18,18,18);
+      --purple-base-main-page-fgColor:         rebeccapurple;
+      --purple-base-main-page-fadeColor:       rgb(192,197,199);
+      --purple-base-main-page-linkColor:       rgb(231,144,60);
+      --purple-base-main-foot-bgColor:         rgb(53,60,59);
+      --purple-base-main-foot-fgColor:         rgba(177,182,187,.5);
+      --purple-base-main-flag-textColor:       rgba(255,255,255,.85);
+      --purple-base-main-flag-newList:         rgba(145,217,165,.85);
+      --purple-base-main-flag-ownerList:       rgba(187,189,191,.45);
+      --purple-base-main-flag-priceDrop:       rgb(158,224,149);
+      --purple-base-main-flag-priceRise:       rgb(255,54,26);
+      --purple-base-main-icon-unitInfo:        rgba(145,217,165,.85);
+      --purple-base-main-photo-blendColor:     rgba(0,0,0,.55);
+      --purple-base-main-modal-coverColor:     rgba(0,0,0,.55);
+      --purple-base-main-showcase-gutterColor: rgba(0,0,0,.85);
+    }
+    :root { /* Dark mode overrides for the default color scheme */
+    /* Entries here will override the --purple-base-main-* entries above for dark mode */
+      --purple-base-dark-page-fadeColor:   rgba(192,197,199,.85);
+    }
+    :root { /* Lite mode overrides for the default color scheme */
+    /* Entries here will override the --purple-base-main-* entries above for lite mode */
+      --purple-base-lite-page-bgColor:         rgb(250,250,250);
+      --purple-base-lite-page-fgColor:         firebrick;
+      --purple-base-lite-page-fadeColor:       rgb(120,125,129);
+      --purple-base-lite-page-linkColor:       rgb(0,128,0);
+      --purple-base-lite-flag-textColor:       rgba(255,255,255,.95);
+      --purple-base-lite-flag-newList:         rgba(45,191,102,.70);
+      --purple-base-lite-flag-ownerList:       rgba(134,144,152,.45);
+      --purple-base-lite-flag-priceDrop:       rgba(0,176,0);
+      --purple-base-lite-flag-priceRise:       rgba(215,0,0);
+      --purple-base-lite-icon-unitInfo:        rgb(0,0,192);
+      --purple-base-lite-photo-blendColor:     rgba(255,255,255,.95);
+      --purple-base-lite-modal-coverColor:     rgba(255,255,255,.05);
+      --purple-base-lite-showcase-gutterColor: rgb(227,228,230);
+    }
+    :root {
+      --purple-dark-brandMainColor:       var( --purple-base-dark-brandMainColor,       var( --purple-base-main-brandMainColor,       var( --default-dark-brandMainColor)));
+      --purple-dark-brandAltColor:        var( --purple-base-dark-brandAltColor,        var( --purple-base-main-brandAltColor,        var( --default-dark-brandAltColor)));
+      --purple-dark-page-bgColor:         var( --purple-base-dark-page-bgColor,         var( --purple-base-main-page-bgColor,         var( --default-dark-page-bgColor)));
+      --purple-dark-page-fgColor:         var( --purple-base-dark-page-fgColor,         var( --purple-base-main-page-fgColor,         var( --default-dark-page-fgColor)));
+      --purple-dark-page-fadeColor:       var( --purple-base-dark-page-fadeColor,       var( --purple-base-main-page-fadeColor,       var( --default-dark-page-fadeColor)));
+      --purple-dark-page-linkColor:       var( --purple-base-dark-page-linkColor,       var( --purple-base-main-page-linkColor,       var( --default-dark-page-linkColor)));
+      --purple-dark-foot-bgColor:         var( --purple-base-dark-foot-bgColor,         var( --purple-base-main-foot-bgColor,         var( --default-dark-foot-bgColor)));
+      --purple-dark-foot-fgColor:         var( --purple-base-dark-foot-fgColor,         var( --purple-base-main-foot-fgColor,         var( --default-dark-foot-fgColor)));
+      --purple-dark-flag-textColor:       var( --purple-base-dark-flag-textColor,       var( --purple-base-main-flag-textColor,       var( --default-dark-flag-textColor)));
+      --purple-dark-flag-newList:         var( --purple-base-dark-flag-newList,         var( --purple-base-main-flag-newList,         var( --default-dark-flag-newList)));
+      --purple-dark-flag-ownerList:       var( --purple-base-dark-flag-ownerList,       var( --purple-base-main-flag-ownerList,       var( --default-dark-flag-ownerList)));
+      --purple-dark-flag-priceDrop:       var( --purple-base-dark-flag-priceDrop,       var( --purple-base-main-flag-priceDrop,       var( --default-dark-flag-priceDrop)));
+      --purple-dark-flag-priceRise:       var( --purple-base-dark-flag-priceRise,       var( --purple-base-main-flag-priceRise,       var( --default-dark-flag-priceRise)));
+      --purple-dark-icon-unitInfo:        var( --purple-base-dark-icon-unitInfo,        var( --purple-base-main-icon-unitInfo,        var( --default-dark-icon-unitInfo)));
+      --purple-dark-photo-blendColor:     var( --purple-base-dark-photo-blendColor,     var( --purple-base-main-photo-blendColor,     var( --default-dark-photo-blendColor)));
+      --purple-dark-modal-coverColor:     var( --purple-base-dark-modal-coverColor,     var( --purple-base-main-modal-coverColor,     var( --default-dark-modal-coverColor)));
+      --purple-dark-showcase-gutterColor: var( --purple-base-dark-showcase-gutterColor, var( --purple-base-main-showcase-gutterColor, var( --default-dark-showcase-gutterColor)));
+                                                                                          
+      --purple-lite-brandMainColor:       var( --purple-base-lite-brandMainColor,       var( --purple-base-main-brandMainColor,       var( --default-lite-brandMainColor)));
+      --purple-lite-brandAltColor:        var( --purple-base-lite-brandAltColor,        var( --purple-base-main-brandAltColor,        var( --default-lite-brandAltColor)));
+      --purple-lite-page-bgColor:         var( --purple-base-lite-page-bgColor,         var( --purple-base-main-page-bgColor,         var( --default-lite-page-bgColor)));
+      --purple-lite-page-fgColor:         var( --purple-base-lite-page-fgColor,         var( --purple-base-main-page-fgColor,         var( --default-lite-page-fgColor)));
+      --purple-lite-page-fadeColor:       var( --purple-base-lite-page-fadeColor,       var( --purple-base-main-page-fadeColor,       var( --default-lite-page-fadeColor)));
+      --purple-lite-page-linkColor:       var( --purple-base-lite-page-linkColor,       var( --purple-base-main-page-linkColor,       var( --default-lite-page-linkColor)));
+      --purple-lite-foot-bgColor:         var( --purple-base-lite-foot-bgColor,         var( --purple-base-main-foot-bgColor,         var( --default-lite-foot-bgColor)));
+      --purple-lite-foot-fgColor:         var( --purple-base-lite-foot-fgColor,         var( --purple-base-main-foot-fgColor,         var( --default-lite-foot-fgColor)));
+      --purple-lite-flag-textColor:       var( --purple-base-lite-flag-textColor,       var( --purple-base-main-flag-textColor,       var( --default-lite-flag-textColor)));
+      --purple-lite-flag-newList:         var( --purple-base-lite-flag-newList,         var( --purple-base-main-flag-newList,         var( --default-lite-flag-newList)));
+      --purple-lite-flag-ownerList:       var( --purple-base-lite-flag-ownerList,       var( --purple-base-main-flag-ownerList,       var( --default-lite-flag-ownerList)));
+      --purple-lite-flag-priceDrop:       var( --purple-base-lite-flag-priceDrop,       var( --purple-base-main-flag-priceDrop,       var( --default-lite-flag-priceDrop)));
+      --purple-lite-flag-priceRise:       var( --purple-base-lite-flag-priceRise,       var( --purple-base-main-flag-priceRise,       var( --default-lite-flag-priceRise)));
+      --purple-lite-icon-unitInfo:        var( --purple-base-lite-icon-unitInfo,        var( --purple-base-main-icon-unitInfo,        var( --default-lite-icon-unitInfo)));
+      --purple-lite-photo-blendColor:     var( --purple-base-lite-photo-blendColor,     var( --purple-base-main-photo-blendColor,     var( --default-lite-photo-blendColor)));
+      --purple-lite-modal-coverColor:     var( --purple-base-lite-modal-coverColor,     var( --purple-base-main-modal-coverColor,     var( --default-lite-modal-coverColor)));
+      --purple-lite-showcase-gutterColor: var( --purple-base-lite-showcase-gutterColor, var( --purple-base-main-showcase-gutterColor, var( --default-lite-showcase-gutterColor)));
+    }
+    @media not all and (prefers-color-scheme: light) {
+      #main-mode:checked ~ #purple-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --purple-dark-brandMainColor);
+        --colors-brandAltColor:        var( --purple-dark-brandAltColor);
+        --colors-page-bgColor:         var( --purple-dark-page-bgColor);
+        --colors-page-fgColor:         var( --purple-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --purple-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --purple-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --purple-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --purple-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --purple-dark-flag-textColor);
+        --colors-flag-newList:         var( --purple-dark-flag-newList);
+        --colors-flag-ownerList:       var( --purple-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --purple-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --purple-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --purple-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --purple-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --purple-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --purple-dark-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #purple-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --purple-lite-brandMainColor);
+        --colors-brandAltColor:        var( --purple-lite-brandAltColor);
+        --colors-page-bgColor:         var( --purple-lite-page-bgColor);
+        --colors-page-fgColor:         var( --purple-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --purple-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --purple-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --purple-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --purple-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --purple-lite-flag-textColor);
+        --colors-flag-newList:         var( --purple-lite-flag-newList);
+        --colors-flag-ownerList:       var( --purple-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --purple-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --purple-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --purple-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --purple-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --purple-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --purple-lite-showcase-gutterColor);
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      #main-mode:checked ~ #purple-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --purple-lite-brandMainColor);
+        --colors-brandAltColor:        var( --purple-lite-brandAltColor);
+        --colors-page-bgColor:         var( --purple-lite-page-bgColor);
+        --colors-page-fgColor:         var( --purple-lite-page-fgColor);
+        --colors-page-fadeColor:       var( --purple-lite-page-fadeColor);
+        --colors-page-linkColor:       var( --purple-lite-page-linkColor);
+        --colors-foot-bgColor:         var( --purple-lite-foot-bgColor);
+        --colors-foot-fgColor:         var( --purple-lite-foot-fgColor);
+        --colors-flag-textColor:       var( --purple-lite-flag-textColor);
+        --colors-flag-newList:         var( --purple-lite-flag-newList);
+        --colors-flag-ownerList:       var( --purple-lite-flag-ownerList);
+        --colors-flag-priceDrop:       var( --purple-lite-flag-priceDrop);
+        --colors-flag-priceRise:       var( --purple-lite-flag-priceRise);
+        --colors-icon-unitInfo:        var( --purple-lite-icon-unitInfo);
+        --colors-photo-blendColor:     var( --purple-lite-photo-blendColor);
+        --colors-modal-coverColor:     var( --purple-lite-modal-coverColor);
+        --colors-showcase-gutterColor: var( --purple-lite-showcase-gutterColor);
+      }
+      #alt-mode:checked ~ #purple-scheme:checked ~ #scheme-container { /* Load the default scheme */
+        --colors-brandMainColor:       var( --purple-dark-brandMainColor);
+        --colors-brandAltColor:        var( --purple-dark-brandAltColor);
+        --colors-page-bgColor:         var( --purple-dark-page-bgColor);
+        --colors-page-fgColor:         var( --purple-dark-page-fgColor);
+        --colors-page-fadeColor:       var( --purple-dark-page-fadeColor);
+        --colors-page-linkColor:       var( --purple-dark-page-linkColor);
+        --colors-foot-bgColor:         var( --purple-dark-foot-bgColor);
+        --colors-foot-fgColor:         var( --purple-dark-foot-fgColor);
+        --colors-flag-textColor:       var( --purple-dark-flag-textColor);
+        --colors-flag-newList:         var( --purple-dark-flag-newList);
+        --colors-flag-ownerList:       var( --purple-dark-flag-ownerList);
+        --colors-flag-priceDrop:       var( --purple-dark-flag-priceDrop);
+        --colors-flag-priceRise:       var( --purple-dark-flag-priceRise);
+        --colors-icon-unitInfo:        var( --purple-dark-icon-unitInfo);
+        --colors-photo-blendColor:     var( --purple-dark-photo-blendColor);
+        --colors-modal-coverColor:     var( --purple-dark-modal-coverColor);
+        --colors-showcase-gutterColor: var( --purple-dark-showcase-gutterColor);
+      }
+    }
+
+
+    #scheme-container {
+      background-color: var(--colors-page-bgColor);
+      color: var(--colors-page-fgColor);
+      border: 0;
+      margin: 0;
+    }
+  /* Override the behavior of some base elements */
+    h1, h2, h3, h4, h5, h6, ul, li, p {
+      padding: 0;
+    }
+    p, ul {
+      margin: 0;
+    }
+    ul {
+      list-style-type: none;
+    }
+    a[href] {
+      color: var(--colors-page-linkColor);
+      text-decoration: none;
+    }
+    p a {
+      text-decoration: underline;
+    }
+  /* The globally applied styles and overrides */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    .menu > li, .unit-stats li {
+      display: inline-block;
+    }
+    .main {
+      display: inline-block;
+    }
+    .centered {
+      text-align: center;
+    }
+    /* Layout the entire page as a grid, with 1 column per row */
+    #page-container {
+      padding: 8px;
+      line-height: 1.4;
+      font-size: 0.875rem; /* 14px for most browser defaults */
+      font-family: 'Source Sans Pro', sans-serif;
+      display: grid;
+      grid-template-columns: 100%;
+    }
+    /* Hide the mode and scheme states, and similar, controls */
+    .hidden-control {
+      display: none;
+    }
+  /* Site header styling */
+    #site-header {
+      background-color: var(--colors-brandMainColor);
+      color: var(--colors-brandAltColor);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #company-logo {
+      width: 78px;
+      height: 25px;
+      padding: 0 12px;       
+      flex-shrink: 0;
+    }
+    #site-header nav {
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+    #site-header nav .menu li {
+      text-transform: capitalize;
+    }
+    #site-header li a[href],
+    #site-footer nav a[href] {
+      margin: 0 .75em;
+      color: inherit;
+    }
+    .circled {
+      height: 1.428em;
+      width: 1.571em;
+      margin: 0 .357em;
+      padding-top: .143em;
+      border: 2px solid var(--colors-brandAltColor);
+      border-radius: 1.571em;
+      display: inline-block;
+      text-align: center;
+    }
+  /* Site footer styling */
+    #site-footer {
+      background-color: var(--colors-foot-bgColor);
+      color: var(--colors-foot-fgColor);
+      display: flex;
+      flex-direction: column;
+    }
+    #site-footer nav {
+      margin: 1em 0;
+      padding: 1.428em 2.143em 0;
+    }
+    #site-footer nav ul {
+      font-size: 1.071em;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    #site-footer a {
+      margin: 0 1.25em;
+    }
+    #footer-bar {
+      padding: 0 3em;
+      font-size: .714em;
+      display:flex;
+      justify-content: space-between;
+    }
+    #footer-bar section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    #copyright {
+      margin-right: .5em;
+    }
+    #mode-control {
+      text-align: right;
+      flex-grow: 1;
+      flex-wrap: nowrap;
+      align-self: flex-end;
+    }
+    #mode-lead {
+      display: none;
+    }
+    #alt-mode:checked ~ #scheme-container #alt-switch,
+    #main-mode:checked ~ #scheme-container #main-switch {
+      display: none;
+    }
+    #main-mode:checked ~ #scheme-container #main-switch,
+    #alt-mode:checked ~ #scheme-container #alt-switch {
+      display: none;
+    }
+    #default-scheme:checked ~ #scheme-container #default-scheme-switch,
+    #retro-scheme:checked ~ #scheme-container #retro-scheme-switch,
+    #purple-scheme:checked ~ #scheme-container #purple-scheme-switch {
+      display: none;
+    }
+    #page-content {
+      display: grid;
+      grid-template-columns: 100%;
+    }
+    #content-header {
+      position: sticky;
+      top: 0;
+      background-color: var(--colors-page-bgColor);
+      z-index: 1;
+    }
+    #content-header div:first-child {
+      padding: 20px 0;
+      font-weight: bold;
+    }
+    #content-header div:last-child {
+      padding-bottom: 15px;
+    }
+    #showcase {
+      background-color: var(--colors-showcase-gutterColor);
+      color: var(--colors-page-fgColor);
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-gap: 15px;
+      justify-content: center;
+    }
+    .unit-listing {
+      min-width: 220px;
+      min-height: 260px;
+      background-color: var(--colors-page-bgColor);
+      border-radius: 5px;
+    }
+    .unit-photo {
+      width: 100%;
+      height:160px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: var(--colors-photo-blendColor);
+      background-blend-mode: multiply;
+      display: flex;
+      align-items: flex-start;
+    }
+    .unit-listing:hover .unit-photo {
+      background-blend-mode: normal;
+    }
+    .unit-new, .unit-owner {
+      padding: 0 .3em;
+      display: none;
+      color: var(--colors-flag-textColor);
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-size: .857em;
+      text-transform: uppercase;
+    }
+    .unit-new {
+      background-color: var(--colors-flag-newList);
+    }
+    .unit-owner {
+      background-color: var(--colors-flag-ownerList);
+    }
+    /* Add the flag to the photo for new listings */
+    .new-list .unit-new {
+      display: inline-block;
+    }
+    /* Add the flag to the photo for listings by the owner */
+    .owner-list .unit-owner {
+      display: inline-block;
+    }
+    .unit-info {
+      padding: 0 1.07em;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: var(--colors-page-bgColor);
+      color: var(--colors-page-fgColor);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .ask-price {
+      font-size: 1.17em;
+      font-weight: 600;
+    }
+    /* Unless overridden in a declaration, the symbols are from the Symbola font */
+    .ask-price::before, .unit-stats > li > span::before {
+      font-family: 'SymbolaRegular', san-serif;
+      color: var(--colors-icon-unitInfo);
+    }
+    .unit-stats > li > span::before {
+      font-weight: 600;
+    }
+    /* Currency symbols added to the left of the list price */
+    .ask-price::before {
+      content: '\24\a0';
+    }
+    .btc::before {
+      content: '\20bf\a0';
+      font-family: 'Source Serif Pro', serif;
+    }
+    .euro::before {
+      content: '\20ac\a0';
+    }
+    .gbp::before {
+      content: '\00a3\a0';
+    }
+    .rub::before {
+      content: '\20bd\a0';
+    }
+    .yen::before {
+      content: '\00a5\a0';
+    }
+    .ask-price::after {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.25em;
+      font-weight: 600;
+    }
+    .list-lower .ask-price::after {
+      content: '\a0\2193';
+      color: var(--colors-flag-priceDrop);
+    }
+    .list-higher .ask-price::after {
+      content: '\a0\2191';
+      color: var(--colors-flag-priceRise);
+    }
+    .unit-data {
+      color: var(--colors-page-fadeColor);
+    }
+    .unit-stats li {
+      padding: 0 .75em .143em 0;
+    }
+    .unit-beds::before {
+      content: '\1f6cf\a0';
+    }
+    .unit-beds::after {
+      content: '\a0\62\64';
+    }
+    .unit-baths::before {
+      content: '\1f6c0\a0';
+    }
+    .unit-baths::after {
+      content: '\a0\62\61';
+    }
+    .unit-footage::before {
+      content: '\25e3\a0';
+    }
+    .unit-footage::after {
+      content: '\a0\73\71\72\74';
+    }
+    .unit-address::before {
+      content: "\1f4cd\20";
+    }
+    /* Add a comma after the city name, and neighborhood name if present */
+    .unit-metro:not(:empty)::after, .unit-city::after {
+      content: '\2c\20';
+    }
+    #content-footer {
+      display: grid;
+      grid-template-columns: 100%;
+      justify-content: start;
+      align-items: center;
+    }
+    #pagination {
+      min-height: 9.3em;
+      padding-top: 1em;
+      display: grid;
+      grid-template-columns: 100%;
+      justify-items: center;
+    }
+    #page-nav {
+      font-family: 'Symbola', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    #page-nav a {
+      margin: 0 .5em;
+    }
+    #area-report {
+      padding: 0 30px;
+    }
+    #area-report-title {
+      margin: 1.25em 0;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+    #area-report p {
+      padding: 0 2.134em;
+    }
+    .step-down {
+      display: block;
+      margin: 1em;
+    }
+    .step-down li {
+      position: relative;
+      display: block;
+    }
+    .step-down li:first-child {
+      margin: 0;
+    }
+    .step-down li::before {
+      float: left;
+      content: '\226b';
+      height: 1.7em;
+      width: 1em;
+      margin-right: .75em;
+    }
+    .step-down li:first-child::before {
+      display: none;
+    }
+    .step-down li > * {
+      display: inline-block;
+    }
+    #crumb-nav {
+      display: grid;
+      grid-template-columns: 100%;
+      justify-items: center;
+    }
+    #modal-cover {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+/*      background-color: var(--modal-coverColor); */
+      background-blend-mode: multiply;
+      visibility: hidden;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: visibility .7s ease-in;
+    }
+    .modal-dialog-box {
+      width: 200px;
+      height: 150px;
+      padding: .3em .7em;
+      background-color: var(--colors-page-bgColor);
+      color: var(--colors-page-fgColor);
+      border: 5px solid var(--colors-brandMainColor);;
+      font-size: 14px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      position: absolute;
+      transform: rotateY(-90deg);
+      transition: transform 1.5s ease-in;
+    }
+    .modal-dialog-box p {
+      margin: .15em 1.5em;
+    }
+    .modal-button {
+      padding: .3em 3em;
+      cursor: pointer;
+      background-color: var(--colors-brandMainColor);
+      color: var(--colors-brandAltColor);
+      transform: rotateX(-90deg);
+      transition: transform 1s ease-out .5s, background-color 1s ease-in .1s;
+    }
+    .modal-button:hover {
+      background-color: darkgreen;
+    }
+    .modal-button:hover {
+      animation: pulse 1s ease 0s 1;
+    }
+    #modal-x:checked ~ #modal-layouts .modal-dialog-box {
+      transform: rotateY(-90deg);
+      transition: transform .1s linear;
+    }
+    #modal-x:checked ~ #modal-layouts .modal-button {
+      transform: rotateX(-90deg);
+      transition: transform .1s linear;
+    }
+    #modal-x:not(:checked) ~ #modal-layouts { visibility: visible; }
+    #modal-x:not(:checked) ~ #modal-layouts #modal-cover { visibility: visible; }
+    #modal-1:checked ~ #modal-layouts #modal-dialog-1 { transform: rotateY(0deg); }
+    #modal-2:checked ~ #modal-layouts #modal-dialog-2 { transform: rotateY(0deg); }
+    #modal-3:checked ~ #modal-layouts #modal-dialog-3 { transform: rotateY(0deg); }
+    #modal-4:checked ~ #modal-layouts #modal-dialog-4 { transform: rotateY(0deg); }
+    .modal-activate:checked ~ #modal-layouts .modal-button {
+      transform: rotateY(0deg);
+    }
+    #settings-controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-content: flex-end;
+    }
+    @media only screen AND (min-width: 29.97rem) {
+      #site-header nav {
+        padding: .45em 0;
+      }
+      #site-header .menu {
+        width: 20rem;
+        height: 4rem;
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: space-between;
+      }
+      .step-down {
+        display: inline-block;
+      }
+      .step-down li {
+        position: static;
+        display: inline-block;
+      }
+      .step-down li::before{
+        display: none;
+      }
+      #crumb-nav a::after {
+        content: '\a0\226b\a0';
+        font-family: 'Symbola', sans-serif;
+      }
+      .step-down li > * {
+        display: inline;
+        margin: 0;
+      }
+      .modal-dialog-box {
+        width: calc(270px + (650 - 200) * ((100vw - 480px) / (1050 - 480)));
+        height: calc(95px + (250 - 150) * ((100vw - 480px) / (1050 - 480)));
+        font-size: calc(14px + (20 - 14) * ((100vw - 480px) / (1050 - 480)));
+        font-weight: 600;
+      }
+    }
+    @media screen AND (min-width: 33.5rem) {
+      #footer-bar section {
+        flex-wrap: nowrap;
+      }
+      #mode-control {
+        flex-grow: 0;
+      }
+      #mode-lead {
+        display: inline;
+      }
+      #content-header {
+        position: static;
+      }
+      #area-report-title {
+        position: static;
+      }
+    }
+    @media screen AND (min-width: 43.2rem) {
+      #site-header {
+        min-height: 2.857em;
+      }
+      #site-header nav {
+        padding: 0;
+      }
+      #site-header .menu {
+        width: 100%;
+        height: auto;
+      }
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+    @media only screen AND (min-width: 65.59rem) {
+      .modal-dialog-box {
+        width: 650px;
+        height: 250px;
+        font-size: 20px;
+        font-weight: 800;
+      }
+    }
+    @keyframes pulse {
+      12.5%	{ transform: scale(1.005); }
+      37.5% { transform: scale(0.99);  }
+      62.5%	{ transform: scale(1.01);  }
+      87.5% { transform: scale(0.99);  }
+    }
+  </style>
+</head>
+<body>
+  <input id="main-mode" class="hidden-control" name="mode_switch" type="radio" value="main_on" checked="true">
+  <input id="alt-mode" class="hidden-control" name="mode_switch" type="radio" value="alt_on">
+  <input id="default-scheme" class="hidden-control" name="scheme_switch" type="radio" value="default_scheme" checked="True">
+  <input id="purple-scheme" class="hidden-control" name="scheme_switch" type="radio" value="purple_scheme">
+  <input id="retro-scheme" class="hidden-control" name="scheme_switch" type="radio" value="retro_scheme">
+<div id="scheme-container">
+  <input name="modal_state" type="radio" id="modal-x" value="modal x" class="hidden-control" checked="true">
+  <input name="modal_state" type="radio" id="modal-1" value="modal 1" class="hidden-control modal-activate">
+  <input name="modal_state" type="radio" id="modal-2" value="modal 2" class="hidden-control modal-activate">
+  <input name="modal_state" type="radio" id="modal-3" value="modal 3" class="hidden-control modal-activate">
+  <input name="modal_state" type="radio" id="modal-4" value="modal 4" class="hidden-control modal-activate">
+  <div id="page-container">
+    <header id="site-header" role="navigation">
+      <div id="company-logo" aria-hidden="true">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/logo.svg" alt="Trulia.com Logo">
+      </div>
+      <nav>
+        <ul class="menu" role="menubar">
+          <li><a href="#" accesskey="b" role="menuitem">buy</a></li>
+          <li><a href="#" accesskey="r" role="menuitem">rent</a></li>
+          <li><a href="#" accesskey="m" role="menuitem">mortgage</a></li>
+          <li class="spacer"><a href="#" accesskey="o" role="menuitem">local scoop</a></li>
+          <li><a href="#" accesskey="s" role="menuitem">Saved Homes</a></li>
+          <li><a href="#" accesskey="e" role="menuitem">Saved Searches</a></li>
+          <li><a href="#" accesskey="j" role="menuitem" id="join-link" aria-label="Sign up or join Trulia"><span class="circled">J</span>jsir</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="page-content">
+      <header id="content-header">
+        <div>Homes For Sale &amp; Real Estate in 20010</div>
+        <div>79 homes available on Trulia</div>
+      </header>
+      <section id="showcase" role="region" aria-labelledby="pagination-results">
+        <label for="modal-1" class="unit-listing  list-lower list-higher new-list owner-list">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-1.jpg')" title="Photo of unit at 3205 Georgia Ave NW #403">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW #403">
+            <div class="ask-price usd" aria-label="list price">475,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">2</span></li>
+                <li aria-label="square footage"><span class="unit-footage">715</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">3205 Georgia Ave NW #403</div>
+              <div>
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing  new-list">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-2.jpg')" title="Photo of unit at 3615 10th St NW #8">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3615 10th St NW #8">
+            <div class="ask-price usd" aria-label="list price">774,900</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1200</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">3615 10th St NW #8</div>
+              <div>
+                <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-2" class="unit-listing  list-lower">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-3.jpg')" title="Photo of unit at 3120 Park Pl NW">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3120 Park Pl NW">
+            <div class="ask-price gbp" aria-label="list price">458,085</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">2</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1100</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">3120 Park Pl NW</div>
+              <div>
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing ">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-4.jpg')" title="Photo of unit at 3221 Warder St NW #1">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3221 Warder St NW #1">
+            <div class="ask-price usd" aria-label="list price">630,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1500</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="x-unit-address fade" aria-label="address">3221 Warder St NW #1</div>
+              <div class="x-unit-area fade">
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-4" class="unit-listing  list-higher">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-5.jpg')" title="Photo of unit at 705 Kenyon St NW">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 705 Kenyon St NW">
+            <div class="ask-price btc" aria-label="list price">1,113</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">9</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">6</span></li>
+                <li aria-label="square footage"><span class="unit-footage">3100</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">705 Kenyon St NW</div>
+              <div>
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-2" class="unit-listing  new-list">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-6.jpg')" title="Photo of unit at 1363 Oak St NW">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 1363 Oak St NW">
+            <div class="ask-price euro" aria-label="list price">889,239</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">6</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">4</span></li>
+                <li aria-label="square footage"><span class="unit-footage">2688</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">1363 Oak St NW</div>
+              <div>
+                <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing ">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-7.jpg')" title="Photo of unit at 1307 Irving St NW #1">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 1307 Irving St NW #1">
+            <div class="ask-price usd" aria-label="list price">720,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1850</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">1307 Irving St NW #1</div>
+              <div>
+                <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing  owner-list list-lower">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-8.jpg')" title="Photo of unit at 752 Park Rd NW">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 752 Park Rd NW">
+            <div class="ask-price usd" aria-label="list price">760,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1920</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">752 Park Rd NW</div>
+              <div>
+                <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-3" class="unit-listing  owner-list new-list">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-09.jpg')" title="Photo of unit at 2932 Vernon Pl NW #1">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 2932 Vernon Pl NW #1">
+            <div class="ask-price yen" aria-label="list price">80,563,040</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+                <li aria-label="square footage"><span class="unit-footage">1715</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">2932 Vernon Pl NW #1</div>
+              <div>
+                <span class="unit-metro"></span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-2" class="unit-listing  list-higher">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-10.jpg')" title="Photo of unit at 3205 Georgia Ave NW, #403">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW, #403">
+            <div class="ask-price rub" aria-label="list price">74,390,035</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">4</span></li>
+                <li aria-label="square footage"><span class="unit-footage">715</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">3205 Georgia Ave NW, #403</div>
+              <div>
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing ">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-11.jpg')" title="Photo of unit at 1356 Kenyon St NW #B">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 1356 Kenyon St NW #B">
+            <div class="ask-price usd" aria-label="list price">474,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">1</span></li>
+                <li aria-label="square footage"><span class="unit-footage">964</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">1356 Kenyon St NW #B</div>
+              <div>
+                <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+        <label for="modal-1" class="unit-listing ">
+          <section class="unit-photo" aria-hidden="true">
+            <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-12.jpg')" title="Photo of unit at 3205 Georgia Ave NW, #505">
+              <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+            </div>
+          </section>
+          <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW, #505">
+            <div class="ask-price usd" aria-label="list price">399,000</div>
+            <section class="unit-data">
+              <ul class="unit-stats">
+                <li aria-label="bedrooms"><span class="unit-beds">1</span></li>
+                <li aria-label="bathrooms"><span class="unit-baths">1</span></li>
+                <li aria-label="square footage"><span class="unit-footage">462</span></li>
+              </ul>
+            </section>
+            <section class="unit-data">
+              <div class="unit-address" aria-label="address">3205 Georgia Ave NW, #505</div>
+              <div>
+                <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+              </div>
+            </section>
+          </section>
+        </label>
+      </section>
+      <footer id="content-footer">
+        <section id="pagination">
+          <nav id="page-nav" class="centered" role="navigation">
+            <ul class="menu" role="menubar" aria-label="Search results pages">
+              <li title="First page"><a href="#" accesskey="f" role="menuitem" aria-label="go to first page">&#x2759;&#x226a;</a></li>
+              <li title="Previous page"><a href="#" accesskey="v" role="menuitem" aria-label="go to previous page">&#x226a;</a></li>
+              <li><a href="#" role="menuitem" aria-label="go to page 1">1</a></li>
+              <li><a href="#" role="menuitem" aria-label="go to page 2">2</a></li>
+              <li><a href="#" role="menuitem" aria-label="go to page 3">3</a></li>
+              <li title="Next page"><a href="#" accesskey="n" role="menuitem" aria-label="go to next page">&#x226b;</a></li>
+              <li title="Last page"><a href="#" accesskey="l" role="menuitem" aria-label="go to last page">&#x226b;&#x2759;</a></li>
+            </ul>
+          </nav>
+          <section>
+            <div id="pagination-results" class="centered">1 - 30 of 79 Results</div>
+          </section>
+          <nav id="crumb-nav" role="navigation">
+            <ul role="menubar" class="menu step-down" aria-label="Geographic area options">
+              <li role="menuitem" aria-label="Country"><a href="#">United States</a></li>
+              <li role="menuitem" aria-label="State or province"><a href="#">District of Columbia</a></li>
+              <li role="menuitem" aria-label="City"><a href="#">Washingtion</a></li>
+              <li><span>20010</span></li>
+            </ul>
+          </nav>
+        </section>
+        <section id="area-report" aria-labelledby="area-report-title">
+          <div>
+            <div id="area-report-title">20010 Real Estate Insights</div>
+          </div>
+          <div>
+            <p>
+              Zipcode 20010 is located in Washington, District of Columbia.
+            </p>
+            <p>
+              The plethora of grocery stores in ZIP code 20010 makes it easy to stock up on specialty foods, like organic and gluten-free options, without having to leave the area. There is <a href="https://www.trulia.com/real_estate/20010-Washington/">easy access to public transportation</a>, which is the preferred way to travel here due to its ease of use and abundant travel options. Bicycles are big sellers in ZIP code 20010; everyone seems to be riding these days, whether it's for the daily commute or a fun afternoon with the family.
+            </p>
+            <p>
+              Many houses in ZIP code 20010 are historic with one-of-a-kind architecture, and it's clear to see why it's so important to maintain them and keep history living on. This year, the average listing price grew to $658,471  in this locale, a noticeable appreciation of 12.5 percent from $585,528 the year prior. During the same period, inventory is noticeably increasing in this locale year-over-year, with a 20 percent increase in for-sale listings last year alone. Enjoy a cozy night by the fire, as many residences here come equipped with authentic fireplaces. ZIP code 20010 has some great historic estates so if you move to one of these homes, you'll be inheriting a piece of history. If you enjoy a view and the ability to see far and wide, <a href="https://www.trulia.com/for_sale/20010_zip/penthouse_keyword/">consider a penthouse in this place</a> for an unparalleled experience.
+            </p>
+          </div>
+        </section>
+      </footer>
+    </main>
+    <footer id="site-footer" role="navigation">
+      <nav>
+        <ul class="menu" role="menubar">
+          <li><a href="#" class="x-foot-link" accesskey="t" role="menuitem">About Trulia</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="z" role="menuitem">About Zillow Group</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="c" role="menuitem">Careers</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="i" role="menuitem">Investor Relations</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="a" role="menuitem">Advertising Terms</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="p" role="menuitem">Privacy</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="u" role="menuitem">Terms of Use</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="q" role="menuitem">Listings Quality Policy</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="w" role="menuitem">Subscription Terms</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="d" role="menuitem">Ad Choices</a></li>
+          <li><a href="#" class="x-foot-link" accesskey="h" role="menuitem">Help</a></li>
+        </ul>
+      </nav>
+      <section id="footer-bar">
+        <section>
+          <div id="copyright">Copyright © 2018 Trulia, LLC. All rights reserved.</div>
+          <div>Equal Housing Opportunity.</div>
+        </section>
+        <div id="settings-controls">
+          <div id="scheme-control">
+            <label for="default-scheme" id="default-scheme-switch">Trulia Scheme </label>
+            <label for="retro-scheme" id="retro-scheme-switch">Retro Scheme </label>
+            <label for="purple-scheme" id="purple-scheme-switch">Purple Scheme </label>
+          </div>
+          <div id="mode-control"><span id="mode-lead">Enable </span><label id="main-switch" for="main-mode"><span id="main-lite">Light</span><span id="main-dark">Dark</span></label><label id="alt-switch" for="alt-mode"><span id="alt-lite">Dark</span><span id="alt-dark">Light</span></label>&nbsp;Mode</div>
+        </div>
+      </section>
+    </footer>
+  </div>
+  <section id="modal-layouts">
+    <label for="modal-x" id="modal-cover">
+      <label for="" id="modal-dialog-1" class="modal-dialog-box">
+        <p>Are you interested in this house? Better get 3-4 jobs or win the lottery.</p>
+        <label for="modal-x" class="modal-button">Let's find something else...</label>
+      </label>
+      <label for="" id="modal-dialog-2" class="modal-dialog-box">
+        <p>Are you interested in this house? Better get local currency first. Come back when you're ready.</p>
+        <label for="modal-x" class="modal-button">Let's find something else...</label>
+      </label>
+      <label for="" id="modal-dialog-3" class="modal-dialog-box">
+        <p>西洋人はこの物件を購入する傾向があります。住宅協会のルール。</p>
+        <label for="modal-x" class="modal-button">Let's find something else...</label>
+      </label>
+      <label for="" id="modal-dialog-4" class="modal-dialog-box">
+        <p>We are unable to accept Bitcoin payments at this time. Sorry for the inconvenience.</p>
+        <label for="modal-x" class="modal-button">Let's find something else...</label>
+      </label>
+    </label>
+  </section>
+</div>
+</body>
+</html>

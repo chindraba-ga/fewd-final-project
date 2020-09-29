@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 6: Assignment: Rebuild a page from Trulia</title>
+  <link href="https://yarnpkg.com/en/package/normalize.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/symbola" type="text/css"/>
+  <style>
+  /*  Build the theme color setup */
+    /* Assign default colors to variables for use in the CSS */
+    :root {
+      --base-page-bgColor:     rgba(255,255,255,1);
+      --base-page-fgColor:     rgba(0,0,0,1);
+      --base-page-linkColor:   rgba(0,128,0,1);
+      --base-head-bgColor:     rgba(50,182,76,1);
+      --base-head-fgColor:     rgba(255,255,255,1);
+      --base-foot-bgColor:     var(--base-page-bgColor);
+      --base-foot-fgColor:     var(--base-page-fgColor);
+      --base-showcase-bgColor: var(--base-page-bgColor);
+      --base-showcase-fgColor: var(--base-page-fgColor);
+      --base-photo-bgColor:    var(--base-page-bgColor);
+      --base-flag-newList:     rgba(45,191,102,0.70);
+      --base-flag-ownerList:   rgba(134,144,152,0.45);
+      --base-flag-textColor:   rgba(255,255,255,.95);
+      --base-icon-unitInfo:    var(--base-page-fgColor);
+      --base-flag-priceDrop:   var(--base-page-fgColor);
+      --base-flag-priceRise:   var(--base-page-fgColor);
+      --base-info-fadeColor:   var(--base-fgColor);
+    }
+    /* Assign the colors to variables based on theme */
+    /*                  Lite theme                   */
+    :root {
+      /* --lite-page-bgColor:     rgba(0,0,0,0); */
+      --lite-page-fgColor:     rgba(34,34,34,1);
+      --lite-page-linkColor:   rgba(58,142,82,1);
+      --lite-foot-bgColor:     rgba(71,78,82,1);
+      --lite-foot-fgColor:     rgba(177,182,187,.5);
+      --lite-showcase-bgColor: rgba(227,228,230,1);
+      --lite-photo-bgColor:    rgba(255,255,255,0);
+      --lite-icon-unitInfo:    rgb(0,0,192);
+      --lite-flag-priceDrop:   rgb(0,192,0);
+      --lite-flag-priceRise:   rgb(215,0,0);
+      --lite-info-fadeColor:   rgb(120,125,129);
+    }
+    /*                  Dark theme                   */
+    :root {
+      --dark-page-bgColor:     rgba(43,0,0,1);
+      --dark-page-fgColor:     rgba(236,236,236,1);
+      --dark-page-linkColor:   rgba(231,144,60,1);
+      --dark-showcase-bgColor: rgba(0,0,0,.85);
+      --dark-showcase-fgColor: var(--dark-page-fgColor);
+      --dark-photo-bgColor:    rgba(0,0,0,0.55);
+      --dark-icon-unitInfo:    rgb(0,255,127);
+      --dark-flag-priceDrop:   rgb(0,212,0);
+      --dark-flag-priceRise:   rgb(180,0,0);
+      --dark-info-fadeColor:   rgb(118,195,118);
+    }
+    /* Assign overwrite colors for lite theme. Likely defaults anyway */
+    /*   values not assigned here will use the defaults above */
+    #lite-theme:checked ~ #page-container {
+      --page-bgColor:     var(--lite-page-bgColor,     var(--base-page-bgColor));
+      --page-fgColor:     var(--lite-page-fgColor,     var(--base-page-fgColor));
+      --page-linkColor:   var(--lite-page-linkColor,   var(--base-page-linkColor));
+      --head-bgColor:     var(--lite-head-bgColor,     var(--base-head-bgColor));
+      --head-fgColor:     var(--lite-head-fgColor,     var(--base-head-fgColor));
+      --foot-bgColor:     var(--lite-foot-bgColor,     var(--base-foot-bgColor));
+      --foot-fgColor:     var(--lite-foot-fgColor,     var(--base-foot-fgColor));
+      --showcase-bgColor: var(--lite-showcase-bgColor, var(--base-showcase-bgColor));
+      --showcase-fgColor: var(--lite-showcase-fgColor, var(--base-showcase-fgColor));
+      --photo-bgColor:    var(--lite-photo-bgColor,    var(--base-photo-bgColor));
+      --flag-newList:     var(--lite-flag-newList,     var(--base-flag-newList));
+      --flag-ownerList:   var(--lite-flag-ownerList,   var(--base-flag-ownerList));
+      --flag-textColor:   var(--lite-flag-textColor,   var(--base-flag-textColor));
+      --icon-unitInfo:    var(--lite-icon-unitInfo,    var(--base-icon-unitInfo));
+      --flag-priceDrop:   var(--lite-flag-priceDrop,   var(--base-flag-priceDrop));
+      --flag-priceRise:   var(--lite-flag-priceRise,   var(--base-flag-priceRise));
+      --info-fadeColor:   var(--lite-info-fadeColor,   var(--base-info-fadeColor));
+    }
+    /* Assign overwrite colors for dark theme. */
+    /*   values not assigned here will use the defaults above, even in dark theme */
+    #dark-theme:checked ~ #page-container {
+      --page-bgColor:     var(--dark-page-bgColor,     var(--base-page-bgColor));
+      --page-fgColor:     var(--dark-page-fgColor,     var(--base-page-fgColor));
+      --page-linkColor:   var(--dark-page-linkColor,   var(--base-page-linkColor));
+      --head-bgColor:     var(--dark-head-bgColor,     var(--base-head-bgColor));
+      --head-fgColor:     var(--dark-head-fgColor,     var(--base-head-fgColor));
+      --foot-bgColor:     var(--dark-foot-bgColor,     var(--base-foot-bgColor));
+      --foot-fgColor:     var(--dark-foot-fgColor,     var(--base-foot-fgColor));
+      --showcase-bgColor: var(--dark-showcase-bgColor, var(--base-showcase-bgColor));
+      --showcase-fgColor: var(--dark-showcase-fgColor, var(--base-showcase-fgColor));
+      --photo-bgColor:    var(--dark-photo-bgColor,    var(--base-photo-bgColor));
+      --flag-newList:     var(--dark-flag-newList,     var(--base-flag-newList));
+      --flag-ownerList:   var(--dark-flag-ownerList,   var(--base-flag-ownerList));
+      --flag-textColor:   var(--dark-flag-textColor,   var(--base-flag-textColor));
+      --icon-unitInfo:    var(--dark-icon-unitInfo,    var(--base-icon-unitInfo));
+      --flag-priceDrop:   var(--dark-flag-priceDrop,   var(--base-flag-priceDrop));
+      --flag-priceRise:   var(--dark-flag-priceRise,   var(--base-flag-priceRise));
+      --info-fadeColor:   var(--dark-info-fadeColor,   var(--base-info-fadeColor));
+    }
+  /* Override the behavior of some base elements */
+    h1, h2, h3, h4, h5, h6, ul, li, p {
+      padding: 0;
+    }
+    p, ul {
+      margin: 0;
+    }
+    ul {
+      list-style-type: none;
+    }
+    a[href] {
+      color: var(--page-linkColor);
+      text-decoration: none;
+    }
+    p a {
+      text-decoration: underline;
+    }
+  /* The globally applied styles and overrides */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    .menu > li, .unit-stats li {
+      display: inline-block;
+    }
+    .main {
+      display: inline-block;
+    }
+    .centered {
+      text-align: center;
+    }
+    /* Layout the entire page as a grid, with 1 column per row */
+    #page-container {
+      padding: 8px;
+      line-height: 1.4;
+      font-size: 0.875rem; /* 14px for most browser defaults */
+      font-family: 'Source Sans Pro', sans-serif;
+      display: grid;
+      grid-template-columns: 100%;
+    }
+    /* Hide the theme state, and similar, controls */
+    .hidden-control {
+      display: none;
+    }
+  /* Site header styling */
+    #site-header {
+      background-color: var(--head-bgColor);
+      color: var(--head-fgColor);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #company-logo {
+      width: 78px;
+      height: 25px;
+      padding: 0 12px;       
+      flex-shrink: 0;
+    }
+    #site-header nav {
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+    #site-header nav .menu li {
+      text-transform: capitalize;
+    }
+    #site-header li a[href],
+    #site-footer nav a[href] {
+      margin: 0 .75em;
+      color: inherit;
+    }
+    .circled {
+      height: 1.428em;
+      width: 1.571em;
+      margin: 0 .357em;
+      padding-top: .143em;
+      border: 2px solid var(--head-fgColor);
+      border-radius: 1.571em;
+      display: inline-block;
+      text-align: center;
+    }
+  /* Site footer styling */
+    #site-footer {
+      background-color: var(--foot-bgColor);
+      color: var(--foot-fgColor);
+      display: flex;
+      flex-direction: column;
+    }
+    #site-footer nav {
+      margin: 1em 0;
+      padding: 1.428em 2.143em 0;
+    }
+    #site-footer nav ul {
+      font-size: 1.071em;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    #site-footer a {
+      margin: 0 1.25em;
+    }
+    #footer-bar {
+      padding: 0 3em;
+      font-size: .714em;
+      display:flex;
+      justify-content: space-between;
+    }
+    #footer-bar section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    #copyright {
+      margin-right: .5em;
+    }
+    #theme-control {
+      text-align: right;
+      flex-grow: 1;
+      flex-wrap: nowrap;
+      align-self: flex-end;
+    }
+    #theme-lead {
+      display: none;
+    }
+    #dark-theme:checked ~ #page-container #dark-switch,
+    #lite-theme:checked ~ #page-container #lite-switch {
+      display: none;
+    }
+    #page-content {
+      display: grid;
+      grid-template-columns: 100%;
+    }
+    #content-header div:first-child {
+      padding: 20px 0;
+      font-weight: bold;
+    }
+    #content-header div:last-child {
+      padding-bottom: 15px;
+    }
+    #showcase {
+      background-color: var(--showcase-bgColor);
+      color: var(--showcase-fgColor);
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-gap: 15px;
+      justify-content: center;
+    }
+    #showcase a[href] {
+      color: inherit;
+    }
+    .unit-listing {
+      min-width: 220px;
+      min-height: 260px;
+      background-color: var(--page-bgColor);
+      border-radius: 5px;
+    }
+    .unit-photo {
+      width: 100%;
+      height:160px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: var(--photo-bgColor);
+      background-blend-mode: multiply;
+      display: flex;
+      align-items: flex-start;
+    }
+    .unit-listing:hover .unit-photo {
+      background-blend-mode: normal;
+    }
+    .unit-new, .unit-owner {
+      padding: 0 .3em;
+      display: none;
+      color: var(--flag-textColor);
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-size: .857em;
+      text-transform: uppercase;
+    }
+    .unit-new {
+      background-color: var(--flag-newList);
+    }
+    .unit-owner {
+      background-color: var(--flag-ownerList);
+    }
+    /* Add the flag to the photo for new listings */
+    .new-list .unit-new {
+      display: inline-block;
+    }
+    /* Add the flag to the photo for listings by the owner */
+    .owner-list .unit-owner {
+      display: inline-block;
+    }
+    .unit-info {
+      padding: 0 1.07em;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: var(--page-bgColor);
+      color: var(--page-fgColor);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .ask-price {
+      font-size: 1.17em;
+      font-weight: 600;
+    }
+    /* Unless overridden in a declaration, the symbols are from the Symbola font */
+    .ask-price::before, .unit-stats > li > span::before {
+      font-family: 'SymbolaRegular', san-serif;
+      color: var(--icon-unitInfo);
+    }
+    .unit-stats > li > span::before {
+      font-weight: 600;
+    }
+    /* Currency symbols added to the left of the list price */
+    .ask-price::before {
+      content: '\24\a0';
+    }
+    .btc::before {
+      content: '\20bf\a0';
+      font-family: 'Source Serif Pro', serif;
+    }
+    .euro::before {
+      content: '\20ac\a0';
+    }
+    .gbp::before {
+      content: '\00a3\a0';
+    }
+    .rub::before {
+      content: '\20bd\a0';
+    }
+    .yen::before {
+      content: '\00a5\a0';
+    }
+    .ask-price::after {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.25em;
+      font-weight: 600;
+    }
+    .list-lower .ask-price::after {
+      content: '\a0\2193';
+      color: var(--flag-priceDrop);
+    }
+    .list-higher .ask-price::after {
+      content: '\a0\2191';
+      color: var(--flag-priceRise);
+    }
+    .unit-data {
+      color: var(--info-fadeColor);
+    }
+    .unit-stats li {
+      padding: 0 .75em .143em 0;
+    }
+    .unit-beds::before {
+      content: '\1f6cf\a0';
+    }
+    .unit-beds::after {
+      content: '\a0\62\64';
+    }
+    .unit-baths::before {
+      content: '\1f6c0\a0';
+    }
+    .unit-baths::after {
+      content: '\a0\62\61';
+    }
+    .unit-footage::before {
+      content: '\25e3\a0';
+    }
+    .unit-footage::after {
+      content: '\a0\73\71\72\74';
+    }
+    .unit-address::before {
+      content: "\1f4cd\20";
+    }
+    /* Add a comma after the city name, and neighborhood name if present */
+    .unit-metro:not(:empty)::after, .unit-city::after {
+      content: '\2c\20';
+    }
+    #content-footer {
+      display: grid;
+      grid-template-columns: 100%;
+      justify-content: start;
+      align-items: center;
+    }
+    #pagination {
+      min-height: 9.3em;
+      padding-top: 1em;
+      display: grid;
+      grid-template-columns: 100%;
+      justify-items: center;
+    }
+    #page-nav {
+      font-family: 'Symbola', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    #page-nav a {
+      margin: 0 .5em;
+    }
+    #area-report {
+      padding: 0 30px;
+    }
+    #area-report-title {
+      margin: 1.25em 0;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+    #area-report p {
+      padding: 0 2.134em;
+    }
+    .step-down {
+      display: block;
+      margin: 1em;
+    }
+    .step-down li {
+      position: relative;
+      display: block;
+    }
+    .step-down li:first-child {
+      margin: 0;
+    }
+    .step-down li::before {
+      float: left;
+      content: '\226b';
+      height: 1.7em;
+      width: 1em;
+      margin-right: .75em;
+    }
+    .step-down li:first-child::before {
+      display: none;
+    }
+    .step-down li > * {
+      display: inline-block;
+    }
+    #crumb-nav {
+      display: grid;
+      grid-template-columns: 100%;
+      justify-items: center;
+    }
+    @media screen AND (min-width: 30rem) {
+      #site-header nav {
+        padding: .45em 0;
+      }
+      #site-header .menu {
+        width: 20rem;
+        height: 4rem;
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: space-between;
+      }
+      .step-down {
+        display: inline-block;
+      }
+      .step-down li {
+        position: static;
+        display: inline-block;
+      }
+      .step-down li::before{
+        display: none;
+      }
+      #crumb-nav a::after {
+        content: '\a0\226b\a0';
+        font-family: 'Symbola', sans-serif;
+      }
+      .step-down li > * {
+        display: inline;
+        margin: 0;
+      }
+    }
+    @media screen AND (min-width: 33rem) {
+      #footer-bar section {
+        flex-wrap: nowrap;
+      }
+      #theme-control {
+        flex-grow: 0;
+      }
+      #theme-lead {
+        display: inline;
+      }
+    }
+    @media screen AND (min-width: 43rem) {
+      #site-header {
+        min-height: 2.857em;
+      }
+      #site-header nav {
+        padding: 0;
+      }
+      #site-header .menu {
+        width: 100%;
+        height: auto;
+      }
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+<input id="lite-theme" class="hidden-control" name="theme_switch" type="radio" value="lite_on" checked="true">
+<input id="dark-theme" class="hidden-control" name="theme_switch" type="radio" value="dark_on">
+<div id="page-container">
+  <header id="site-header" role="navigation">
+    <div id="company-logo" aria-hidden="true">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/logo.svg" alt="Trulia.com Logo">
+    </div>
+    <nav>
+      <ul class="menu" role="menubar">
+        <li><a href="#" accesskey="b" role="menuitem">buy</a></li>
+        <li><a href="#" accesskey="r" role="menuitem">rent</a></li>
+        <li><a href="#" accesskey="m" role="menuitem">mortgage</a></li>
+        <li class="spacer"><a href="#" accesskey="o" role="menuitem">local scoop</a></li>
+        <li><a href="#" accesskey="s" role="menuitem">Saved Homes</a></li>
+        <li><a href="#" accesskey="e" role="menuitem">Saved Searches</a></li>
+        <li><a href="#" accesskey="j" role="menuitem" id="join-link" aria-label="Sign up or join Trulia"><span class="circled">J</span>jsir</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="page-content">
+    <header id="content-header">
+      <div>Homes For Sale &amp; Real Estate in 20010</div>
+      <div>79 homes available on Trulia</div>
+    </header>
+    <section id="showcase" role="region" aria-labelledby="pagination-results">
+      <a href="#" class="unit-listing  list-lower list-higher new-list owner-list">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-1.jpg')" title="Photo of unit at 3205 Georgia Ave NW #403">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW #403">
+          <div class="ask-price usd" aria-label="list price">475,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">2</span></li>
+              <li aria-label="square footage"><span class="unit-footage">715</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">3205 Georgia Ave NW #403</div>
+            <div>
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  new-list">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-2.jpg')" title="Photo of unit at 3615 10th St NW #8">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3615 10th St NW #8">
+          <div class="ask-price usd" aria-label="list price">774,900</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1200</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">3615 10th St NW #8</div>
+            <div>
+              <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  list-lower">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-3.jpg')" title="Photo of unit at 3120 Park Pl NW">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3120 Park Pl NW">
+          <div class="ask-price gbp" aria-label="list price">458,085</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">2</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1100</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">3120 Park Pl NW</div>
+            <div>
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing ">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-4.jpg')" title="Photo of unit at 3221 Warder St NW #1">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3221 Warder St NW #1">
+          <div class="ask-price usd" aria-label="list price">630,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1500</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="x-unit-address fade" aria-label="address">3221 Warder St NW #1</div>
+            <div class="x-unit-area fade">
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  list-higher">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-5.jpg')" title="Photo of unit at 705 Kenyon St NW">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 705 Kenyon St NW">
+          <div class="ask-price btc" aria-label="list price">1,113</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">9</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">6</span></li>
+              <li aria-label="square footage"><span class="unit-footage">3100</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">705 Kenyon St NW</div>
+            <div>
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  new-list">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-6.jpg')" title="Photo of unit at 1363 Oak St NW">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 1363 Oak St NW">
+          <div class="ask-price euro" aria-label="list price">889,239</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">6</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">4</span></li>
+              <li aria-label="square footage"><span class="unit-footage">2688</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">1363 Oak St NW</div>
+            <div>
+              <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing ">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-7.jpg')" title="Photo of unit at 1307 Irving St NW #1">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 1307 Irving St NW #1">
+          <div class="ask-price usd" aria-label="list price">720,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1850</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">1307 Irving St NW #1</div>
+            <div>
+              <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  owner-list list-lower">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-8.jpg')" title="Photo of unit at 752 Park Rd NW">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 752 Park Rd NW">
+          <div class="ask-price usd" aria-label="list price">760,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1920</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">752 Park Rd NW</div>
+            <div>
+              <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  owner-list new-list">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-09.jpg')" title="Photo of unit at 2932 Vernon Pl NW #1">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 2932 Vernon Pl NW #1">
+          <div class="ask-price yen" aria-label="list price">80,563,040</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">3</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">3</span></li>
+              <li aria-label="square footage"><span class="unit-footage">1715</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">2932 Vernon Pl NW #1</div>
+            <div>
+              <span class="unit-metro"></span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing  list-higher">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-10.jpg')" title="Photo of unit at 3205 Georgia Ave NW, #403">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW, #403">
+          <div class="ask-price rub" aria-label="list price">74,390,035</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">4</span></li>
+              <li aria-label="square footage"><span class="unit-footage">715</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">3205 Georgia Ave NW, #403</div>
+            <div>
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing ">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-11.jpg')" title="Photo of unit at 1356 Kenyon St NW #B">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 1356 Kenyon St NW #B">
+          <div class="ask-price usd" aria-label="list price">474,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">2</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">1</span></li>
+              <li aria-label="square footage"><span class="unit-footage">964</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">1356 Kenyon St NW #B</div>
+            <div>
+              <span class="unit-metro">Columbia Heights</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+      <a href="#" class="unit-listing ">
+        <section class="unit-photo" aria-hidden="true">
+          <div class="unit-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/house-12.jpg')" title="Photo of unit at 3205 Georgia Ave NW, #505">
+            <span class="unit-new">New</span><span class="unit-owner">For Sale by Owner</span>
+          </div>
+        </section>
+        <section class="unit-info" role="region" aria-label="information about unit at 3205 Georgia Ave NW, #505">
+          <div class="ask-price usd" aria-label="list price">399,000</div>
+          <section class="unit-data">
+            <ul class="unit-stats">
+              <li aria-label="bedrooms"><span class="unit-beds">1</span></li>
+              <li aria-label="bathrooms"><span class="unit-baths">1</span></li>
+              <li aria-label="square footage"><span class="unit-footage">462</span></li>
+            </ul>
+          </section>
+          <section class="unit-data">
+            <div class="unit-address" aria-label="address">3205 Georgia Ave NW, #505</div>
+            <div>
+              <span class="unit-metro">Pleasant Plains</span><span class="unit-city">Washington</span><span class="unit-state">DC</span>
+            </div>
+          </section>
+        </section>
+      </a>
+    </section>
+    <footer id="content-footer">
+      <section id="pagination">
+        <nav id="page-nav" class="centered" role="navigation">
+          <ul class="menu" role="menubar" aria-label="Search results pages">
+            <li title="First page"><a href="#" accesskey="f" role="menuitem" aria-label="go to first page">&#x2759;&#x226a;</a></li>
+            <li title="Previous page"><a href="#" accesskey="v" role="menuitem" aria-label="go to previous page">&#x226a;</a></li>
+            <li><a href="#" role="menuitem" aria-label="go to page 1">1</a></li>
+            <li><a href="#" role="menuitem" aria-label="go to page 2">2</a></li>
+            <li><a href="#" role="menuitem" aria-label="go to page 3">3</a></li>
+            <li title="Next page"><a href="#" accesskey="n" role="menuitem" aria-label="go to next page">&#x226b;</a></li>
+            <li title="Last page"><a href="#" accesskey="l" role="menuitem" aria-label="go to last page">&#x226b;&#x2759;</a></li>
+          </ul>
+        </nav>
+        <section>
+          <div id="pagination-results" class="centered">1 - 30 of 79 Results</div>
+        </section>
+        <nav id="crumb-nav" role="navigation">
+          <ul role="menubar" class="menu step-down" aria-label="Geographic area options">
+            <li role="menuitem" aria-label="Country"><a href="#">United States</a></li>
+            <li role="menuitem" aria-label="State or province"><a href="#">District of Columbia</a></li>
+            <li role="menuitem" aria-label="City"><a href="#">Washingtion</a></li>
+            <li><span>20010</span></li>
+          </ul>
+        </nav>
+      </section>
+      <section id="area-report" aria-labelledby="area-report-title">
+        <div>
+          <div id="area-report-title">20010 Real Estate Insights</div>
+        </div>
+        <div>
+          <p>
+            Zipcode 20010 is located in Washington, District of Columbia.
+          </p>
+          <p>
+            The plethora of grocery stores in ZIP code 20010 makes it easy to stock up on specialty foods, like organic and gluten-free options, without having to leave the area. There is <a href="https://www.trulia.com/real_estate/20010-Washington/">easy access to public transportation</a>, which is the preferred way to travel here due to its ease of use and abundant travel options. Bicycles are big sellers in ZIP code 20010; everyone seems to be riding these days, whether it's for the daily commute or a fun afternoon with the family.
+          </p>
+          <p>
+            Many houses in ZIP code 20010 are historic with one-of-a-kind architecture, and it's clear to see why it's so important to maintain them and keep history living on. This year, the average listing price grew to $658,471  in this locale, a noticeable appreciation of 12.5 percent from $585,528 the year prior. During the same period, inventory is noticeably increasing in this locale year-over-year, with a 20 percent increase in for-sale listings last year alone. Enjoy a cozy night by the fire, as many residences here come equipped with authentic fireplaces. ZIP code 20010 has some great historic estates so if you move to one of these homes, you'll be inheriting a piece of history. If you enjoy a view and the ability to see far and wide, <a href="https://www.trulia.com/for_sale/20010_zip/penthouse_keyword/">consider a penthouse in this place</a> for an unparalleled experience.
+          </p>
+        </div>
+      </section>
+    </footer>
+  </main>
+  <footer id="site-footer" role="navigation">
+    <nav>
+      <ul class="menu" role="menubar">
+        <li><a href="#" class="x-foot-link" accesskey="t" role="menuitem">About Trulia</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="z" role="menuitem">About Zillow Group</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="c" role="menuitem">Careers</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="i" role="menuitem">Investor Relations</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="a" role="menuitem">Advertising Terms</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="p" role="menuitem">Privacy</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="u" role="menuitem">Terms of Use</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="q" role="menuitem">Listings Quality Policy</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="w" role="menuitem">Subscription Terms</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="d" role="menuitem">Ad Choices</a></li>
+        <li><a href="#" class="x-foot-link" accesskey="h" role="menuitem">Help</a></li>
+      </ul>
+    </nav>
+    <section id="footer-bar">
+      <section>
+        <div id="copyright">Copyright © 2018 Trulia, LLC. All rights reserved.</div>
+        <div>Equal Housing Opportunity.</div>
+      </section>
+      <div id="theme-control"><span id="theme-lead">Enable </span><label id="lite-switch" for="lite-theme">Light</label><label id="dark-switch" for="dark-theme">Dark</label>&nbsp;Mode</div>
+    </section>
+  </footer>
+</div>
+</body>
+</html>

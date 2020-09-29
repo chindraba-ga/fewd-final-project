@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 3: Partner Exercise: Practicing the Box Model</title>
+  <style>
+    body {
+      font-size: 28px;
+    }
+    .centered {
+      text-align: center;
+    }
+    .to-right {
+      text-align: right;
+    }
+    .nav-menu {
+      display: inline-block;
+      list-style-type: none;
+    }
+    .light-back {
+      background-color: WhiteSmoke;
+    }
+    .light-back2 {
+      bcakground-color: #f9f9f9;
+    }
+    .dark-back {
+      background-color: #e1e1e1;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+    }
+    .nav-item {
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-item:first-child::before {
+      content: "";
+    }
+    .nav-item::before {
+      content: " | ";
+    }
+    footer {
+      font-size: 1.1rem;
+    }
+    section, #company-logo {
+      font-size: 1.65rem;
+    }
+    .product-name {
+      font-size: 1rem;
+    }
+    #header-box {
+      position: relative;
+      left: 0;
+      right:0;
+    }
+  </style>
+</head>
+<body>
+  <header class="dark-back bordered">
+    <div class="header-box">
+      <div id="companay-logo" class="centered bordered">Logo</div>
+      <nav class="to-right marked">
+        <ul id="nav-menu">
+          <li class="nav-item">About</li>
+          <li class="nav-item">News</li>
+          <li class="nav-item">Login</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="bordered">
+    <section id="opener" class="centered light-back bordered">
+      <div class="marked">We are changing the world</div>
+      <div class="marked">&mdash;some startup</div>
+    </section>
+    <section id="product-listing" aria-title="Product listing" class="dark-back bordered">
+      <div class="product-display centered">
+        <div class="product-image light-back bordered" aria-hidden="true">
+          <img class="marked" src="https://chindraba.work/assets/graph-paper-white-pink-grid-100x150.png" alt="Picture of Item 1">
+        </div>
+        <div class="product-name marked">
+          Item 1
+        </div>
+      </div>
+      <div class="product-display centered">
+        <div class="product-image light-back bordered" aria-hidden="true">
+          <img class="marked" src="https://chindraba.work/assets/graph-paper-white-pink-grid-150x150.png" alt="Picture of Item 2">
+        </div>
+        <div class="product-name marked">
+          Item 2
+        </div>
+      </div>
+      <div class="product-display centered">
+        <div class="product-image light-back bordered" aria-hidden="true">
+          <img class="marked" src="https://chindraba.work/assets/graph-paper-white-pink-grid-210x150.png" alt="Picture of Item 3">
+        </div>
+        <div class="product-name marked">
+          Item 3
+        </div>
+      </div>
+    </section>
+    <section id="closer" class="centered light-back">
+      <div class="marked">How great would this website be?</div>
+      <div class="marked">Probably not that great, could use some better content, right?</div>
+    </section>
+  </main>
+  <footer class="dark-back">
+      <div id="copyright" class="to-right" title="Copyright notice">Copyright <span id="coyright-year">2016</span></div>
+  </footer>
+</body>
+</html>

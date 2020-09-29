@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <link href="https://https://yarnpkg.com/en/package/normalize.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Lesson 4: Assignment: Startup Matchmaker</title>
+  <style>
+    /* Fonts, classes are so I can reuse the styles on a variety of elements */
+    .merriweather { font-family: 'Merriweather', serif; }
+          .oswald { font-family: 'Oswald', sans-serif; }
+            .lato { font-family: 'Lato', sans-serif; }
+
+    /* ################################################## */
+    /* ########### Global classes / overrides ########### */
+    /* ################################################## */
+    h1, h2, h3, h4, h5, h6, p {
+      margin: 0;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      padding: 15px 0;
+    }
+
+    /* Colors */
+    /* Dark yellow: #f2ff00 */
+    /* Lighter yellow: #ffd900 */
+    /* Light gray: #adadad */
+    /* Medium gray: #878787 */
+
+    /* Background Image */
+    /* https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/coworking.jpg */
+    
+body {
+  margin: 5px 5px 0 5px;;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+header {
+  display: block;
+  background-color: black;
+  padding: 20px 30px;
+  border-bottom: 5px solid #f2ff00;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  padding-left: 15px;
+  font-size: 18px;
+}
+a, a:active, a:hover, a:visited {
+  text-decoration: none;
+  color: whitesmoke;
+}
+#logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f2ff00;
+  padding: 10px;
+  text-align: center;
+}
+.struck {
+  text-decoration: line-through;
+}
+.accent {
+  display: inline-block;
+  border-bottom: 2px solid #f2ff00;
+}
+#tagline {
+  background-color: #adadad;
+  text-align: center;
+  font-size: calc(16px + (28 - 16) * ((100vw - 350px) / (950 - 350)));
+  font-style: italic;
+  padding: 15px;
+}
+#attention {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/coworking.jpg) center center no-repeat;
+  background-size: cover;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#action-group {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  flex-grow:1;
+}
+.call-to-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#attention .call-to-action {
+  margin: 0 25px 100px 0;
+  width: 380px;
+  height: 230px;
+  padding: 40px;
+  flex-grow: 0;
+  background-color: whitesmoke;
+  opacity: 90%;
+}
+#action-group .call-to-action {
+  margin: 10px 0;
+  width: 85vw;
+  min-width: 246px;
+  padding: 20px 15px 15px;
+  flex-grow: 1;
+  border-bottom: 1px solid #adadad;
+}
+#action-group .call-to-action:first-child {
+  border: none;
+}
+@media only screen AND (min-width: 599.5px) {
+  #action-group {
+    justify-content: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+  }
+  #action-group .call-to-action {
+    width: 40vw;
+    border: none;
+  }
+  #action-group .call-to-action:first-child {
+    border-left: 1px solid #adadad;
+  }
+  #action-group .call-to-action:last-child {
+    border-bottom: 1px solid #adadad;
+  }
+}
+@media only screen AND (min-width: 749.5px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #logo {
+    text-align: left;
+  }
+}
+@media only screen AND (min-width: 949.5px) {
+  #tagline {
+    font-size: 28px;
+  }
+  #action-group .call-to-action {
+    width: 29vw;
+    border-left: 1px solid #adadad;
+  }
+  #action-group .call-to-action:last-child {
+    border: none;
+  }
+}
+h2 {
+  padding: 0 20px 0;
+}
+.call-to-action p {
+  padding: 10px 20px;
+  flex-grow: 1;
+}
+.call-to-action div:last-child {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  flex-grow: 1;
+  border-left: none;
+}
+.call-to-action form {
+  padding: 0 20px;
+}
+.call-to-action input {
+  text-align: center;
+  border: none;
+  background-color: #ababab;
+  border-bottom: 2px solid #8b8b8b;
+  border-radius: 5px;
+  padding: 8px 0;
+  font-size: 24px;
+  width: 100%;
+  text-transform: uppercase;
+}
+#attention .call-to-action input {
+  background-color: #f2ff00;
+  border-bottom: 2px solid #ffd900 ;
+}
+footer {
+  background-color: black;
+  color: whitesmoke;
+  padding: 10px;
+  align-content: flex-end;
+  flex-grow: 1;
+}
+  </style>
+</head>
+<body>
+<!-- Put your glorious code here -->
+  <header>
+    <div id="logo" class="merriweather">
+      Startup Matchmaker
+    </div>
+    <nav>
+      <ul class="lato">
+        <li class="nav-item oswald">
+          <a href="#">Find Developers</a>
+        </li>
+        <li class="nav-item oswald">
+          <a href="#">Find Designers</a>
+        </li>
+        <li class="nav-item">
+          <a href="#">How it Works</a>
+        </li>
+        <li class="nav-item">
+          <a href="#">Our Team</a>
+        </li>
+        <li class="nav-item">
+          <a href="#">Blog</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section id="tagline" class="lato">
+    <div>
+      Because two brains <span class="struck">taste</span> <span class="accent">are</span> better than one          
+    </div>
+  </section>
+  <section id="attention" class="lato">
+    <div class="call-to-action">
+      <h2>
+        Meet your Match!
+      </h2>
+      <div>
+        <p>
+          Have a great idea for a product, but need help making it a reality? We're here to help. Startup Matchmaker is the best place for designers and developers to find each other.
+        </p>
+      </div>
+      <div>
+        <form name="create-profile" action="#" method="get">
+          <input class="oswald" type="submit" value="Create a Profile">
+        </form>
+      </div>
+    </div>
+  </section>        
+  <section id="action-group">
+    <div class="call-to-action">
+      <h2 class="merriweather">
+        Find a Designer
+      </h2>
+      <div>
+        <p>
+          Need someone who can make a product intuitive and appealing? Get ready.
+        </p>
+      </div>
+      <div>
+        <form name="find-designer" action="#" method="get">
+          <input class="oswald" type="submit" value="Start Your Search">
+        </form>
+      </div>
+    </div>
+    <div class="call-to-action">
+      <h2 class="merriweather">
+        Find a Developer
+      </h2>
+      <div>
+        <p>
+          Looking for a fantastic developer to work with on the next big thing? Look no further.
+        </p>
+      </div>
+      <div>
+        <form name="find-developer" action="#" method="get">
+          <input class="oswald" type="submit" value="Start Your Search">
+        </form>
+      </div>
+    </div>
+    <div class="call-to-action">
+      <h2 class="merriweather">
+        Create a Profile
+      </h2>
+      <div>
+        <p>
+          Are you a Designer? Developer? Put yourself out there so that others can find you!
+        </p>
+      </div>
+      <div>
+        <form name="sign-up" action="#" method="get">
+          <input class="oswald" type="submit" value="Sign up now">
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer>&copy; 2019 Startup Matchmaker. Made in NY.</footer>
+</body>
+</html>
