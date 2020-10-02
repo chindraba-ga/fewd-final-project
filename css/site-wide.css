@@ -1,3 +1,7 @@
+@import "/css/scheme-default.css";
+@import "/css/scheme-solarized.css";
+@import "/css/scheme-freshmint.css";
+
 /*  Variables for consistency and simple modifications later  */
 :root {
   --icon-fontFace: 'SymbolaRegular', Arial, Helvetica, sans-serif;
