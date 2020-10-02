@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="language" content="English">
   <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
@@ -37,13 +40,6 @@
   <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
   <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
   <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
-  <!-- Keeping track of the chosen color scheme -->
-  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
-  <input id="solarized-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="earthtone-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="purpleish-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="redwasrad-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="blueskies-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
   <!-- Keeping track of the current font size, relative to the base -->
   <input id="font-size-1" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .680em, 10.89px -->
   <input id="font-size-2" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .825em, 13.20px -->
@@ -52,6 +48,8 @@
   <input id="font-size-5" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.75em, 28px -->
   <input id="font-size-6" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 2.31em, 37px -->
   <input id="font-size-7" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 3.00em. 48px -->
+  <!-- Keeping track of the chosen color scheme -->
+  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
   <div id="scheme-container" class="surface-page" aria-ignore="true">
     <!-- Keeping track of the active modal, if any, modal-x is none -->
     <input id="modal-x" name="modal_state" class="hidden-control" checked="true" type="radio" aria-ignore="true">
@@ -173,11 +171,6 @@
             <div class="side-menu">
               <div id="scheme-menu-box" class="box-menu">
                 <div id="scheme-menu" class="box box-full surface-menu ui-menu">
-                  <span id="solarized-scheme-switch" class="scheme-selector"><label for="solarized-scheme">Solarized</label></span>
-                  <span id="earthtone-scheme-switch" class="scheme-selector"><label for="earthtone-scheme">Earth Tone</label></span>
-                  <span id="purpleish-scheme-switch" class="scheme-selector"><label for="purpleish-scheme">Purple-ish</label></span>
-                  <span id="redwasrad-scheme-switch" class="scheme-selector"><label for="redwasrad-scheme">Red was Rad</label></span>
-                  <span id="blueskies-scheme-switch" class="scheme-selector"><label for="blueskies-scheme">Blue Skies</label></span>
                   <span id="default-scheme-switch" class="scheme-selector"><label for="default-scheme">Default</label></span>
                   <span class="surface-primary"><label id="scheme-accept" for="scheme-control">Accept</label></span>
                 </div>

@@ -124,27 +124,59 @@
   },
 };
 
+const colorSchemes = {
+  'solarized': 'Solarized',
+  'freshmint': 'Fresh Mint',
+};
 
+const contentBody = document.getElementById('scheme-container');
+const schemeMenu = document.getElementById('default-scheme-switch');
+Object.keys(colorSchemes).forEach( (schemeHandle) => {
+  contentBody.parentNode.insertBefore(
+    newElement({
+      'tag': 'input',
+      'classList': 'hidden-control',
+      'attribs': {
+        'id': schemeHandle,
+        'type': 'radio',
+        'name': 'scheme-selector',
+        'aria-ignore': 'true',
+      },
+    }),
+    contentBody
+  );
+  schemeMenu.parentNode.insertBefore(
+    newElement({
+      'tag': 'span',
+      'id': `${schemeHandle}-switch`,
+      'classList': 'scheme-selector',
+      'content': newElement({
+        'tag': 'label',
+        'attribs': {
+          'htmlFor': schemeHandle,
+        },
+        'content': colorSchemes[schemeHandle]
+      }),
+    }),
+    schemeMenu
+  );
+});
 
-
-/*
-  div#site-nav.side-menu.surface-menu.box-right
-    div#site-menu-box.box-menu
-      div#site-nav-left
-        a.[info]
-      div#site-nav-right
-        a.[info]
-  div#page-nave.side-menu.surface-menu.box-left.nav-item
-    div#page-menu-box.box-menu
-      div#page-nav-menu
-        a.[info]
-  div#right-nav.side-menu.surface-menu.box-right.nav-item
-    div#right-menu-box.box-menu
-      div#right-nav-menu
-        span.level-1/2
-
-  
-*/
+function addContent(elem, data) {
+  switch(typeof data) {
+    case 'number':
+    case 'string':
+      elem.innerHTML = data;
+      break;
+    case 'object':
+      if (data instanceof Array) {
+        data.forEach( (content) => addContent(elem, content) );
+      } else {
+        elem.appendChild(data);
+      };
+      break;
+  }
+}
 
 /*  Generic element creator to combine the normal process of adding all the "bits" */
 /*    elemInfo is an object,
@@ -162,11 +194,21 @@ function newElement(elemInfo) {
       newElem.setAttribute(attrib, elemInfo.attribs[attrib]);
     }
   }
-  if (('content' in elemInfo) && (0 < elemInfo.content.length)) {
-    newElem.innerHTML = elemInfo.content;
+  if ('content' in elemInfo) {
+    addContent(newElem, elemInfo.content);
   }
-  if (('classList' in elemInfo) && (0 < elemInfo.classList.length)) {
-    newElem.classList.add(...elemInfo.classList);
+  if ('classList' in elemInfo) {
+    switch(typeof elemInfo.classList) {
+      case 'string':
+        let theClasses = elemInfo.classList.split(/\s/);
+        newElem.classList.add(elemInfo.classList);
+        break;
+      case 'object':
+        if (elemInfo.classList instanceof Array) {
+          newElem.classList.add(...elemInfo.classList);
+        };
+        break;
+    }
   }
   return newElem;
 }
