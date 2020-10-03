@@ -9,12 +9,7 @@
   <meta name="language" content="English">
   <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
   <meta name="author" content="Chindraba (Ronald Lamoreaux)">
-  <title>Ronald Lamoreaux Final Project (FEWDR)</title>
-  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-  <link href="/css/nav-menus.css" rel="stylesheet" type="text/css">
-  <link href="/css/ui-settings.css" rel="stylesheet" type="text/css">
-  <link href="/css/site-wide.css" rel="stylesheet" type="text/css">
+  <title>Product Reviews - Rabbit Hole Reports (FEWDR Final Project: Ronald Lamoreaux)</title>
   <!--
       Copies of this project can be found on:
         GitHub: https://github.com/chindraba-ga/fewd-final-project
@@ -28,6 +23,8 @@
         Live Web: https://fewd.chindraba.work/index.html
           The wireframes are at https://fewd.chindraba.work/wireframes/wireframe-combined-v.1.0.pdf
   -->
+  <link href="/css/common.css" rel="stylesheet" type="text/css">
+  <!-- Add stylesheets unique to the page here -->
 </head>
 <body>
   <input id="widescreen" class="hidden-control" type="checkbox" aria-ignore="true"><!-- checked="true" -->
@@ -206,6 +203,11 @@
     2b9a 3D-Right
     2b9b 3D-Down
   -->
-  <script src="/js/main.js"></script>
+  <!-- always load the site standard script file first -->
+  <script src="/js/common.js"></script>
+  <!-- load the files for building and controlling the ui and navigations -->
+  <script src="/js/nav-menus.js"></script>
+  <script src="/js/ui-settings.js"></script>
+  <!-- load any page specific script files here -->
 </body>
 </html>

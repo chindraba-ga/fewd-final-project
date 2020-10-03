@@ -9,12 +9,7 @@
   <meta name="language" content="English">
   <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
   <meta name="author" content="Chindraba (Ronald Lamoreaux)">
-  <title>Ronald Lamoreaux Final Project (FEWDR)</title>
-  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-  <link href="/css/nav-menus.css" rel="stylesheet" type="text/css">
-  <link href="/css/ui-settings.css" rel="stylesheet" type="text/css">
-  <link href="/css/site-wide.css" rel="stylesheet" type="text/css">
+  <title>Contact Me - Rabbit Hole Reports (FEWDR Final Project: Ronald Lamoreaux)</title>
   <!--
       Copies of this project can be found on:
         GitHub: https://github.com/chindraba-ga/fewd-final-project
@@ -28,6 +23,8 @@
         Live Web: https://fewd.chindraba.work/index.html
           The wireframes are at https://fewd.chindraba.work/wireframes/wireframe-combined-v.1.0.pdf
   -->
+  <link href="/css/common.css" rel="stylesheet" type="text/css">
+  <!-- Add stylesheets unique to the page here -->
 </head>
 <body>
   <input id="widescreen" class="hidden-control" type="checkbox" aria-ignore="true"><!-- checked="true" -->
@@ -37,9 +34,6 @@
   <input id="right-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Archive menu for the site -->
   <input id="settings-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
   <input id="scheme-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu for changing the color scheme -->
-  <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
-  <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
-  <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
   <!-- Keeping track of the current font size, relative to the base -->
   <input id="font-size-1" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .680em, 10.89px -->
   <input id="font-size-2" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .825em, 13.20px -->
@@ -48,6 +42,9 @@
   <input id="font-size-5" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.75em, 28px -->
   <input id="font-size-6" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 2.31em, 37px -->
   <input id="font-size-7" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 3.00em. 48px -->
+  <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
+  <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
+  <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
   <!-- Keeping track of the chosen color scheme -->
   <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
   <div id="scheme-container" class="surface-page" aria-ignore="true">
@@ -114,23 +111,23 @@
       <header>
         <h1>List of Recent Blog Articles</h1>
       </header>
-      <h2>Title of the Newest Blog Article</h2>
-      <h3>The newest blog entry&amp;s subtitle</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla facilisi etiam dignissim diam. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Aliquam vestibulum morbi blandit cursus. Urna id volutpat lacus laoreet non curabitur. Enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra. Feugiat sed lectus vestibulum mattis ullamcorper velit.</p>
-      <p>Rutrum tellus pellentesque eu tincidunt tortor aliquam. Odio aenean sed adipiscing diam donec adipiscing tristique risus. Blandit libero volutpat sed cras ornare arcu dui vivamus. Aliquam malesuada bibendum arcu vitae elementum curabitur. Convallis tellus id interdum velit laoreet id. Sagittis nisl rhoncus mattis rhoncus urna. Sed egestas ..... <a href="#">[More]</a></p>
+      <h2><span class="terminal-case surface-code">[ return || ! return ]</span> <span class="italic">That</span> is the question.</h2>
+      <h4>A Review of the Church-Turing Thesis</h4>
+      <p>There was an interesting fellow by the name of <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_BLANK">Edsger Wybe Dijkstra</a> who was involved in programming computers before they were built, litterally. By that I mean that a computer was designed to be built, and while the builder was making the computer Dijkstra was creating the software. The idea was that once the computer was built, and operational, the software to make it work would be available. That means that the code was written on some media, usually paper, other than the machine it was to run on. Imagine trying to write a program in a spiral notebook that you cannot test, or even compile, until sometime several months in the future, when someone finally builds the computer, and expecting it to <span class="italic">just work</span>! Not much for the <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_BLANK">Test-driven development</a> or <a href="https://en.wikipedia.org/wiki/Agile_software_development" target="_BLANK">Agile software development</a><sup>[3]</sup> movements to work with there.</p>
+      <p>After doing his work for a while, and seeing the practice of many of his colleagues in programming, he realised that the <span class="terminal-case surface-code">GOTO</span> statement was making programs hard to read, and that there needed to be a better method of controlling program flow.  ..... <a href="/return-or-not-return.html">[More]</a></p>
       <h2>The Next Blog Article</h2>
-      <h3>Subtitle for the Next Article</h3>
+      <h4>Subtitle for the Next Article</h4>
       <p>Egestas fringilla phasellus. Nullam non nisi est sit amet facilisis magna etiam. Magna ac placerat vestibulum lectus mauris ultrices. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget egestas. Sed lectus vestibulum mattis ullamcorper velit sed.</p>
       <p>Magna ac placerat vestibulum lectus mauris ultrices eros. Elementum pulvinar etiam non quam. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Amet purus gravida quis blandit turpis ..... <a href="#">[More]</a></p>
       <h2>Another Blog Article</h2>
-      <h3>Subtitle for this Article</h3>
+      <h4>Subtitle for this Article</h4>
       <p>ursus in hac. Malesuada bibendum arcu vitae elementum curabitur vitae. Est velit egestas dui id ornare arcu odio ut. Nec ultrices dui sapien eget mi. Mauris in aliquam sem fringilla ut morbi tincidunt. Velit aliquet sagittis id consectetur. Sapien faucibus et molestie ac feugiat sed lectus. Eros donec ac odio tempor orci dapibus ultrices in iaculis. Tristique nulla aliquet enim tortor at. Tincidunt ornare massa eget egestas purus viverra accumsan in. Proin nibh nisl condimentum id venenatis. Posuere urna nec tincidunt praesent semper feugiat nibh.</p>
 
 <p>Massa ultricies mi quis hendrerit dolor magna eget. Nibh sit amet commodo nulla facilisi nullam. Sed risus ultricies tristique nulla. A erat nam at lectus urna duis convallis convallis tellus. Auctor elit sed vulputate mi sit. Nunc congue nisi vitae suscipit tellus mauris a diam. Morbi blandit cursus risus at ultrices mi tempus. Libero justo laoreet sit amet cursus sit amet dictum. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus vitae. Tristique sollicitudin nibh sit amet commodo nulla facilisi. Quis hendrerit dolor magna eget est lorem. Eu sem integer vitae justo eget. Eget lorem dolor sed viverra ipsum nunc aliquet. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Ut ornare lectus sit amet est placerat in egestas. Et malesuada fames ac turpis egestas sed tempus urna.</p>
 
 <p>Eget nunc lobortis mattis aliquam faucibus. Adipiscing elit ut aliquam purus sit amet luctus venenatis. Dictum at tempor commodo ullamcorper a lacus. Sollicitudin tempor id eu nisl. Scelerisque viverra mauris in aliquam sem fringilla ut morbi. Arcu dictum varius duis at consectetur. At tellus at urna condimentum mattis pellentesque id nibh. Leo vel orci porta ..... <a href="#">[More]</a></p>
       <h2>The Final Blog Article</h2>
-      <h3>The Final Article&apos;s Subtitle</h3>
+      <h4>The Final Article&apos;s Subtitle</h4>
 <p>non pulvinar neque laoreet. Nisl nisi scelerisque eu ultrices vitae auctor eu augue. Aliquet nibh praesent tristique magna sit amet purus gravida quis. Tincidunt tortor aliquam nulla facilisi. Turpis massa tincidunt dui ut. Tellus in hac habitasse platea. Vitae tortor condimentum lacinia quis vel eros donec ac. Nunc aliquet bibendum enim facilisis.</p>
 <p>Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar. Ipsum suspendisse ultrices gravida dictum fusce. Lectus magna fringilla urna porttitor rhoncus dolor purus non. Et molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Sem viverra aliquet eget sit. Nunc sed velit dignissim sodales ut. Cras pulvinar mattis nunc sed blandit libero volutpat. Vitae tempus quam pellentesque nec. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis. Odio ut enim blandit volutpat maecenas volutpat. Pellentesque sit amet porttitor eget dolor. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam. Placerat orci nulla pellentesque dignissim. Adipiscing elit ut aliquam purus sit.</p>
 <p>Non pulvinar neque laoreet suspendisse interdum consectetur. Sed velit dignissim sodales ut eu sem. Ut eu sem integer vitae justo eget magna. Odio euismod lacinia at quis. Mi in nulla posuere sollicitudin. Vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Morbi tristique senectus et ..... <a href="#">[More]</a></p>
@@ -219,6 +216,11 @@
     2b9a 3D-Right
     2b9b 3D-Down
   -->
-  <script src="/js/main.js"></script>
+  <!-- Always load the site standard script file first -->
+  <script src="/js/common.js"></script>
+  <!-- Load the files for building and controlling the UI and navigations -->
+  <script src="/js/nav-menus.js"></script>
+  <script src="/js/ui-settings.js"></script>
+  <!-- Load any page specific script files here -->
 </body>
 </html>

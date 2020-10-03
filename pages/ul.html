@@ -2,18 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="language" content="English">
   <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
   <meta name="author" content="Chindraba (Ronald Lamoreaux)">
-  <title>Ronald Lamoreaux Final Project (FEWDR)</title>
-  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-  <link href="/css/nav-menus.css" rel="stylesheet" type="text/css">
-  <link href="/css/ui-settings.css" rel="stylesheet" type="text/css">
-  <link href="/css/scheme-default.css" rel="stylesheet" type="text/css">
-  <link href="/css/scheme-solarized.css" rel="stylesheet" type="text/css">
-  <link href="/css/site-wide.css" rel="stylesheet" type="text/css">
+  <title>Unix &amp; Linux Posts - Rabbit Hole Reports (FEWDR Final Project: Ronald Lamoreaux)</title>
   <!--
       Copies of this project can be found on:
         GitHub: https://github.com/chindraba-ga/fewd-final-project
@@ -27,6 +23,8 @@
         Live Web: https://fewd.chindraba.work/index.html
           The wireframes are at https://fewd.chindraba.work/wireframes/wireframe-combined-v.1.0.pdf
   -->
+  <link href="/css/common.css" rel="stylesheet" type="text/css">
+  <!-- Add stylesheets unique to the page here -->
 </head>
 <body>
   <input id="widescreen" class="hidden-control" type="checkbox" aria-ignore="true"><!-- checked="true" -->
@@ -39,13 +37,6 @@
   <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
   <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
   <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
-  <!-- Keeping track of the chosen color scheme -->
-  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
-  <input id="solarized-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="earthtone-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="purpleish-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="redwasrad-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
-  <input id="blueskies-scheme" name="scheme-selector" class="hidden-control" type="radio" aria-ignore="true">
   <!-- Keeping track of the current font size, relative to the base -->
   <input id="font-size-1" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .680em, 10.89px -->
   <input id="font-size-2" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .825em, 13.20px -->
@@ -54,6 +45,8 @@
   <input id="font-size-5" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.75em, 28px -->
   <input id="font-size-6" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 2.31em, 37px -->
   <input id="font-size-7" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 3.00em. 48px -->
+  <!-- Keeping track of the chosen color scheme -->
+  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
   <div id="scheme-container" class="surface-page" aria-ignore="true">
     <!-- Keeping track of the active modal, if any, modal-x is none -->
     <input id="modal-x" name="modal_state" class="hidden-control" checked="true" type="radio" aria-ignore="true">
@@ -160,11 +153,6 @@
             <div class="side-menu">
               <div id="scheme-menu-box" class="box-menu">
                 <div id="scheme-menu" class="box box-full surface-menu ui-menu">
-                  <span id="solarized-scheme-switch" class="scheme-selector"><label for="solarized-scheme">Solarized</label></span>
-                  <span id="earthtone-scheme-switch" class="scheme-selector"><label for="earthtone-scheme">Earth Tone</label></span>
-                  <span id="purpleish-scheme-switch" class="scheme-selector"><label for="purpleish-scheme">Purple-ish</label></span>
-                  <span id="redwasrad-scheme-switch" class="scheme-selector"><label for="redwasrad-scheme">Red was Rad</label></span>
-                  <span id="blueskies-scheme-switch" class="scheme-selector"><label for="blueskies-scheme">Blue Skies</label></span>
                   <span id="default-scheme-switch" class="scheme-selector"><label for="default-scheme">Default</label></span>
                   <span class="surface-primary"><label id="scheme-accept" for="scheme-control">Accept</label></span>
                 </div>
@@ -213,6 +201,11 @@
     2b9a 3D-Right
     2b9b 3D-Down
   -->
-  <script src="/js/main.js"></script>
+  <!-- always load the site standard script file first -->
+  <script src="/js/common.js"></script>
+  <!-- load the files for building and controlling the ui and navigations -->
+  <script src="/js/nav-menus.js"></script>
+  <script src="/js/ui-settings.js"></script>
+  <!-- load any page specific script files here -->
 </body>
 </html>

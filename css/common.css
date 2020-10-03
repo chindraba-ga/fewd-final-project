@@ -1,8 +1,24 @@
+/* Load the normalize reset sheet first */
+@import url("/css/normalize.css");
+/* Load the default color theme which will apply to everything
+ * until something else changes it. Changes require DOM elements
+ * which may not be present yet.
+ */
 @import "/css/scheme-default.css";
+/* Load in the sheets to control navigation and UI elements */
+@import "/css/nav-menus.css";
+@import "/css/ui-settings.css";
+/* Load in whatever fonts have been selected for the site */
+@import "/css/fonts.css";
+
+/* Load in any available color schemes desired. List may grow. */
 @import "/css/scheme-solarized.css";
 @import "/css/scheme-freshmint.css";
 
-/*  Variables for consistency and simple modifications later  */
+
+/*  Variables for consistency and simple modifications later
+ *  possiblity for themes to change these elements if every designed to do so
+ */
 :root {
   --icon-fontFace: 'SymbolaRegular', Arial, Helvetica, sans-serif;
   --main-fontFamily: 'GenLight', Arial, Helvetica, sans-serif;
@@ -15,8 +31,7 @@
   --radius-effect: 5px;
 }
 
-/*  Global styles and overrides */
-
+/*  Global styles and overrides beyond what the reset sheet above has done */
 body {
   margin: 0;
   padding: 0;
@@ -32,25 +47,10 @@ label {
 .hidden-control {
   display: none;
 }
-.pad-3rem {
-  padding: 0.3rem;
-}
-.nowrap {
-  white-space: nowrap;
-}
-.block-up {
-  display: inline-block;
-}
-.soft-corner {
-  border-radius: var(--radius-effect);
-}
-.shift-in-1 {
-  margin-left: .5em;
-}
-.shift-in-2 {
-  margin-left: 1em;
-}
-/*      background and text colors standardized   */
+
+
+
+/* Background and text colors standardized   */
 .surface-page {
   background-color: var(--colors-page);
   color: var(--colors-onPage);
@@ -88,10 +88,33 @@ label {
   background-color: var(--colors-code);
   color: var(--colors-onCode);
 }
+.surface-error {
+  background-color: var(--colors-error);
+  color: var(--colors-onError);
+}
 .onCtrl {
   color: var(--colors-onCtrl);
 }
 
+/* Some commonly used formatting for elements */
+.pad-3rem {
+  padding: 0.3rem;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.block-up {
+  display: inline-block;
+}
+.soft-corner {
+  border-radius: var(--radius-effect);
+}
+.shift-in-1 {
+  margin-left: .5em;
+}
+.shift-in-2 {
+  margin-left: 1em;
+}
 /*  Build the page layout   */
 /*   Container for everything. Used so that the color scheme data will
  *   be available for everything on page. Also allows a control point
