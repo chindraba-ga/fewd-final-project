@@ -27,33 +27,7 @@
   <!-- Add stylesheets unique to the page here -->
 </head>
 <body>
-  <input id="widescreen" class="hidden-control" type="checkbox" aria-ignore="true"><!-- checked="true" -->
-  <!-- hidden menu controls, show menu when checked -->
-  <input id="site-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Other pages within the sight -->
-  <input id="page-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Table of contents for the page -->
-  <input id="right-nav-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- Archive menu for the site -->
-  <input id="settings-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu of page settings: color scheme, dark mode, and font size -->
-  <input id="scheme-control" class="hidden-control" type="checkbox" aria-ignore="true"> <!-- The menu for changing the color scheme -->
-  <!-- Keeping track of the current font size, relative to the base -->
-  <input id="font-size-1" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .680em, 10.89px -->
-  <input id="font-size-2" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- .825em, 13.20px -->
-  <input id="font-size-3" name="font-sizes" class="hidden-control" type="radio" checked="true" aria-ignore="true"> <!-- Default -->
-  <input id="font-size-4" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.31em, 21px -->
-  <input id="font-size-5" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 1.75em, 28px -->
-  <input id="font-size-6" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 2.31em, 37px -->
-  <input id="font-size-7" name="font-sizes" class="hidden-control" type="radio" aria-ignore="true"> <!-- 3.00em. 48px -->
-  <!-- Keeping track of the chosen light/dark mode. pairs with the browser request, if any and defaults to dark mode -->
-  <input id="main-mode" class="hidden-control" type="radio" name="dark-mode-selector" checked="true" aria-ignore="true">
-  <input id="alt-mode" class="hidden-control" type="radio" name="dark-mode-selector" aria-ignore="true">
-  <!-- Keeping track of the chosen color scheme -->
-  <input id="default-scheme" name="scheme-selector" class="hidden-control" type="radio" checked="true" aria-ignore="true">
-  <div id="scheme-container" class="surface-page" aria-ignore="true">
-    <!-- Keeping track of the active modal, if any, modal-x is none -->
-    <input id="modal-x" name="modal_state" class="hidden-control" checked="true" type="radio" aria-ignore="true">
-    <input id="modal-1" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
-    <input id="modal-2" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
-    <input id="modal-3" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
-    <input id="modal-4" name="modal_state" class="hidden-control modal-activate" type="radio" aria-ignore="true">
+  <div id="scheme-container" class="surface-page">
     <header id="site-header" class="surface-head">
       <div id="site-logo" class="ui-control">
           <label for="widescreen"><img id="logo-img" src="assets/logo.png" alt=""></label>
@@ -63,50 +37,9 @@
           <div id="page-title">Rabbit Hole Reports</div>
           <div id="page-tagline">Chindraba&apos;s Adventures in Computing</div>
         </div>
-        <nav id="site-nav" class="side-menu surface-menu box-right">
-          <div id="site-menu-box" class="box-menu">
-            <div id="site-nav-left" class="nav-item">
-            </div>
-            <div id="site-nav-right" class="nav-item">
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div id="site-nav-icon" aria-ignore="true">
-        <label id="site-nav-switch" class="nav-control" for="site-nav-control">
-          <span id="burger-top"></span>
-          <span id="burger-mid"></span>
-          <span id="burger-base"></span>
-        </label>
       </div>
     </header>
     <section id="hero-box" aria-ignore="true"></section>
-    <nav id="nav-container" class="surface-page">
-      <!-- adding no-show to the class list will hide this menu completely -->
-      <nav id="page-nav-box" class="nav-box">
-        <div>
-          <label id="page-nav-switch" class="nav-box-switch surface-ctrl box-left nav-control" for="page-nav-control" aria-ignore="true"><span id="page-nav-icon" class="nav-icon">&#x25b6;</span></label>
-        </div>
-        <div id="page-nav" class="side-menu surface-menu box-left nav-item">
-          <div id="page-menu-box" class="box-menu">
-            <div id="page-nav-menu">
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!-- adding no-show to the class list will hide this menu completely -->
-      <nav id="right-nav-box" class="nav-box">
-        <div>
-          <label id="right-nav-switch" class="nav-box-switch surface-ctrl box-right nav-control" for="right-nav-control"><span id="right-nav-icon" class="nav-icon">&#x25c0;</span></label>
-        </div>
-        <div id="right-nav" class="side-menu surface-menu box-right nav-item">
-          <div id="right-menu-box" class="box-menu">
-            <div id="right-nav-menu">
-            </div>
-          </div>
-        </div>
-      </nav>
-    </nav>
     <main id="page-container">
       <header>
         <h1>Chindraba&apos;s Adventures in Computing</h1>
@@ -136,86 +69,7 @@
       <div id="copyright">
         Copyright &copy; 2020 Chindraba
       </div>
-      <aside>
-        <div class="box-icon ui-control">
-          <label id="settings-switch" class="onCtrl" for="settings-control">&#x2699;</label>
-        </div> 
-        <section id="view-settings" class="surface-menu box-right">
-          <div class="box box-icon surface-ctrl ui-control">
-            <div>
-              <label id="font-up-2" class="font-switch" for="font-size-2">&#x1f5da;</label>
-              <label id="font-up-3" class="font-switch" for="font-size-3">&#x1f5da;</label>
-              <label id="font-up-4" class="font-switch" for="font-size-4">&#x1f5da;</label>
-              <label id="font-up-5" class="font-switch" for="font-size-5">&#x1f5da;</label>
-              <label id="font-up-6" class="font-switch" for="font-size-6">&#x1f5da;</label>
-              <label id="font-up-7" class="font-switch" for="font-size-7">&#x1f5da;</label>
-            </div>
-          </div>
-         <div class="box box-icon surface-ctrl ui-control">
-            <div>
-              <label id="font-dn-1" class="font-switch" for="font-size-1">&#x1f5db;</label>
-              <label id="font-dn-2" class="font-switch" for="font-size-2">&#x1f5db;</label>
-              <label id="font-dn-3" class="font-switch" for="font-size-3">&#x1f5db;</label>
-              <label id="font-dn-4" class="font-switch" for="font-size-4">&#x1f5db;</label>
-              <label id="font-dn-5" class="font-switch" for="font-size-5">&#x1f5db;</label>
-              <label id="font-dn-6" class="font-switch" for="font-size-6">&#x1f5db;</label>
-            </div>
-          </div>
-          <div>
-            <div class="box box-icon surface-ctrl ui-control">
-              <label id="scheme-switch" for="scheme-control"><span id="scheme-icon">&#xa66e;</span></label>
-            </div>
-            <div class="side-menu">
-              <div id="scheme-menu-box" class="box-menu">
-                <div id="scheme-menu" class="box box-full surface-menu ui-menu">
-                  <span id="default-scheme-switch" class="scheme-selector"><label for="default-scheme">Default</label></span>
-                  <span class="surface-primary"><label id="scheme-accept" for="scheme-control">Accept</label></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="box box-icon surface-ctrl ui-control">
-              <label id="main-mode-switch" for="main-mode">
-                <span id="main-is-dark">&#x263e;</span>
-                <span id="main-is-lite">&#x2600;</span>
-              </label>
-              <label id="alt-mode-switch" for="alt-mode">
-                <span id="alt-is-dark">&#x263d;</span>
-                <span id="alt-is-lite">&#x2600;</span>
-              </label>
-            </div>
-          </div>
-        </section>
-      </aside>
     </footer>
-    <aside id="modal-layouts">
-      <label for="modal-x" id="modal-cover">
-        <label id="modal-dialog-1" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label id="modal-dialog-2" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label id="modal-dialog-3" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
-        <label id="modal-dialog-4" class="modal-box" for=""><p></p><label class="modal-button" for="modal-x"></label></label>
-      </label>
-    </aside>
-  </div>
-  <!--  hex codepoint for different icons
-    25b2 Symbola Up Dark
-    25b3 Symbola Up Lite
-    25b6 Symbola Left Dark
-    25b7 Symbola Left Lite
-    25bc Symbola Down Dark
-    25bd Symbola Down Lite
-    25c0 Symbola Right Dark
-    25c1 Symbola Right Lite
-    2b88 Circled Left
-    2b89 Circled Up
-    2b8a Circled Right
-    2b8b Circled Down
-    2b98 3D-Left
-    2b99 3D-Up
-    2b9a 3D-Right
-    2b9b 3D-Down
-  -->
   <!-- Always load the site standard script file first -->
   <script src="/js/common.js"></script>
   <!-- Load the files for building and controlling the UI and navigations -->

@@ -265,6 +265,7 @@ label {
   padding: 0 0 calc(var(--logo-size) / 2);
   font-family: var(--main-fontFamily);
   line-height: 1.25;
+  min-height: 100vh;
 }
 @media screen and (min-width: 48rem) {
   #page-container {
