@@ -20,37 +20,45 @@ const hiddenControls = [
   {
     'id': 'widescreena',
     'type': 'checkbox',
+    'value': 'isWide'
   },
   {
     'id': 'site-nav-control',
     'type': 'checkbox',
+    'value': 'site-nav-open',
   },
   {
     'id': 'page-nav-control',
     'type': 'checkbox',
+    'value': 'page-nav-open',
   },
   {
     'id': 'right-nav-control',
     'type': 'checkbox',
+    'value': 'right-nav-open',
   },
   {
     'id': 'settings-control',
     'type': 'checkbox',
+    'value': 'settings-open',
   },
   {
     'id': 'scheme-control',
     'type': 'checkbox',
+    'value': 'scheme-open',
   },
   {
     'id': 'main-mode',
     'type': 'radio',
     'name': 'dark-mode-selector',
     'checked': 'true',
+    'value': 'main',
   },
   {
     'id': 'alt-mode',
     'type': 'radio',
     'name': 'dark-mode-selector',
+    'value': 'alt',
   },
 ];
 
@@ -74,6 +82,7 @@ function _newHiddenControl(controlData) {
     'attribs': {
       'id': controlData.id,
       'type': controlData.type,
+      'value': controlData.value,
     },
     'classList': ['hidden-control'],
   };
@@ -91,6 +100,7 @@ function _newFontControl(level) {
     'id': `font-size-${level}`,
     'type': 'radio',
     'name': 'font-size',
+    'value': level,
   };
   if (3 === level) {
     fontData.checked = 'true';
@@ -116,6 +126,7 @@ function _newSchemeControl(schemeName) {
     'id': `${schemeName}-scheme`,
     'type': 'radio',
     'name': 'scheme-selector',
+    'value': schemeName,
   });
 }
 
@@ -337,8 +348,20 @@ const settingsBlock = newElement({
 addTopControlGroup([...hiddenControlGroup, ...schemeControlGroup, ...fontControlGroup]);
 
 footerBody.appendChild(settingsBlock);
+function saveUI() {
+  document.cookie = `${document.querySelector('[name="dark-mode-selector"]:checked').value}&${document.querySelector('[name="scheme-selector"]:checked').value}&${document.querySelector('[name="font-size"]:checked').value}`;
+}
+function restoreUI() {
+  if (typeof document.cookie !== 'undefined' && document.cookie !== '') {
+    document.getElementById(`${document.cookie.split(/&/)[0]}-mode`).checked = true;
+    document.getElementById(`${document.cookie.split(/&/)[1]}-scheme`).checked = true;
+    document.getElementById(`font-size-${document.cookie.split(/&/)[2]}`).checked = true;
+  }
+}
+document.querySelectorAll('input[name="font-size"]').forEach( el => el.addEventListener('change', saveUI));
+document.querySelectorAll('input[name="scheme-selector"]').forEach( el => el.addEventListener('change', saveUI));
+document.querySelectorAll('input[name="dark-mode-selector"]').forEach( el => el.addEventListener('change', saveUI));
 
-
-
+restoreUI();
 
 
