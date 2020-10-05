@@ -1,4 +1,6 @@
-'use strict';
+/* From https://github.com/bestiejs/punycode.js
+ * Under the MIT License
+ */
 
 /** Highest positive signed 32-bit float value */
 const maxInt = 2147483647; // aka. 0x7FFFFFFF or 2^31-1
@@ -436,5 +438,3 @@ const punycode = {
 	'toASCII': toASCII,
 	'toUnicode': toUnicode
 };
-
-module.exports = punycode;
