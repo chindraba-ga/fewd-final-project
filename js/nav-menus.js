@@ -32,21 +32,21 @@ const menuEntries = {
     {
       "content": "About",
       "attribs": {
-        "href": "/about.html",
+        "href": "/pages/about.html",
         "title": "Read more about me",
       },
     },
     {
       "content": "Blog",
       "attribs": {
-        "href": "/blog.html",
+        "href": "/pages/blog.html",
         "title": "Read about what I do, or think",
       },
     },
     {
       "content": "Portfolio",
       "attribs": {
-        "href": "/portfolio.html",
+        "href": "/pages/portfolio.html",
         "title": "Look at some of the other projects I have",
       },
     },
@@ -56,21 +56,21 @@ menuEntries['rightNav'] = [
   {
     "content": "References",
     "attribs": {
-      "href": "/references.html",
+      "href": "/pages/references.html",
       "title": "A collection of references I find useful",
     },
   },
   {
     "content": "Reviews",
     "attribs": {
-      "href": "/reviews.html",
+      "href": "/pages/reviews.html",
       "title": "A collection of reviews I have done",
     },
   },
   {
     "content": "Legal",
     "attribs": {
-      "href": "/legal.html",
+      "href": "/pages/legal.html",
       "title": "Every site needs legal junk. It&apo;s the law.",
     },
   },
@@ -79,7 +79,7 @@ menuEntries['sideBar'] = [
   {
     "content": "Projects",
     "attribs": {
-      "href": "/projects.html",
+      "href": "/pages/projects.html",
       "title" : "The projects and homework from the FEWDR course I am taking",
     },
   },
@@ -115,7 +115,7 @@ menuEntries['sideBar'] = [
   {
     "content": "Contact",
     "attribs": {
-      "href": "/contact.html",
+      "href": "/pages/contact.html",
       "title" : "Different methods of connecting with me",
     },
   },

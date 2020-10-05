@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="language" content="English">
+  <meta name="viewport" content="viewport-fit=contain, width=device-width, height=device-height, initial-scale=1.0">
+  <meta name="author" content="Chindraba (Ronald Lamoreaux)">
+  <title>Lesson 13: Assignment: CitiPix</title>
+  <style>
+    /******************************************
+    /* BASE STYLES
+    /*******************************************/
+
+    body {
+      color: #000;
+      font-size: 12px;
+      line-height: 1.4;
+      font-family: Helvetica, Arial, sans-serif;
+      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/citipix_skyline.jpg) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+
+    /******************************************
+    /* LAYOUT
+    /*******************************************/
+
+    /* Center the container */
+    .container {
+        width: 960px;
+        margin: auto;
+      padding-top: 5em;
+    }
+
+    header {
+      background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7));
+      padding: 15px 0;
+    }
+
+    .citipix-container {
+      text-align: center;
+      color: #fff;
+      font-family: helvetica, arial, sans-serif;
+    }
+
+    .citipix-title {
+      font-size: 32px;
+    }
+
+    .citipix-description {
+      font-size: 22px;
+    }
+
+    #citipix-form {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 350px;
+    }
+
+    @media (min-width: 1100px) {
+      #citipix-form {
+        flex-direction: row;
+      }
+    }
+
+    #city-type {
+      border: 1px solid #111;
+      color: #6b6b6c;
+      font-size: 24px;
+      height: 72px;
+      margin: 0 0 25px 0;
+      padding: 0px 30px;
+      width: calc(100% - 120px);
+    }
+
+    @media (min-width: 800px) {
+      #city-type {
+        font-size: 38px;
+        width: 680px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      #city-type {
+        margin: 0 25px 0 0;
+      }
+    }
+
+    #submit-btn {
+      background: #ffe500;
+      color: #000;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      transition: 0.4s ease-in-out;
+      width: 250px;
+      height: 72px;
+    }
+
+    @media (min-width: 1100px) {
+      #submit-btn {
+        font-size: 32px;
+      }
+    }
+
+    #submit-btn:hover {
+      background: #fff600;
+    }
+
+
+
+    /* Styles you can add into the document dynamically with JS - hint, hint ;) */
+    .nyc {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/nyc.jpg)
+    }
+    .sf {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/sf.jpg)
+    }
+    .la {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/la.jpg)
+    }
+    .austin {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/austin.jpg)
+    }
+    .sydney {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2522641/sydney.jpg)
+    }
+  </style>
+</head>
+<body>
+  <header class="citipix-container">
+    <h1 class="citipix-title">CitiPix</h1>
+    <p class="citipix-description">Find your city to change the background...</p>
+  </header>
+  <form id="citipix-form"> 
+    <input type="text" id="city-type" placeholder="Enter a city name...">
+    <input type="submit" value="Update" id="submit-btn">
+  </form>
+  <script type="text/javascript">
+    // Get DOM object city-form ID, which is on the form element
+
+    const bodyElement = document.body;
+
+    // using the 'submit' event of the form seems better than the 'click' event of the button.
+    // With the form as the target of the event I can get the element from the form, as hinted to by the top instruction.
+    // In the wild, it's also possible the form might have multiple submit triggers and the form's submit event will be triggerd by any of them rather than attaching a listener to each of the discrete possibilites 
+
+    document.getElementById("citipix-form").addEventListener('submit', function(e) {
+      e.preventDefault();
+      switch (e.target.elements.namedItem('city-type').value.trim().split(' ').join('').toLowerCase()) {
+        case 'newyork':
+        case 'newyorkcity':
+        case 'bigapple':
+        case 'ny':
+        case 'nyc':
+          bodyElement.className = 'nyc';
+          break;
+        case 'sanfranciso':
+        case 'sf':
+          bodyElement.className = 'sf';
+          break;
+        case 'losangelas':
+        case 'shakytown':
+        case 'la':
+          bodyElement.className = 'la';
+          break;
+        case 'austin':
+        case 'austincity':
+          bodyElement.className = 'austin';
+          break;
+        case 'aussie':
+        case 'sydney':
+          bodyElement.className = 'sydney';
+          break;
+        default: bodyElement.className = '';
+      }
+      e.target.elements.namedItem('city-type').value = null;
+    })
+
+      // True form submissions go to a backend service, but we want to handle things in the front-end. How can we do this?
+
+      // Get the text input fields values with .value on the input - but how exactly?
+
+      // You always want to scan and clean data when you get it from the browser, think about .trim and .toLowerCase - this will make your conditional detection more consistent
+
+
+    // This about conditional logic. We want to check through each possible input a user gives us to make this work properly. Think about conditional statements, going through the list of possible city options.
+
+    // If a user gives us 'Austin' versus 'austin' - how can we make those point to the same background? 
+
+    // We know we want to change the background on the page by switching classes. But how do we replace one class with another using JS???
+  </script>
+</body>
+</html>
