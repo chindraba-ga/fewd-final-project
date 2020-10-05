@@ -262,7 +262,7 @@ label {
 #page-container {
   text-align: left;
   margin: 0 25px;
-  padding: 0 0 calc(var(--logo-size) / 2);
+  padding: 0 0 calc(var(--logo-size) / 2 + 25px);
   font-family: var(--main-fontFamily);
   line-height: 1.25;
   min-height: 100vh;
