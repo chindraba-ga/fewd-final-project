@@ -166,13 +166,3 @@
   scale: 1.25;
   transform: rotate(360deg);
 }
-/*  Build the page layout   */
-/*   Container for everything. Used so that the color scheme data will
- *   be available for everything on page. Also allows a control point
- *   for the font scaling and modal overlays.
- **/
-#scheme-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0;
-}
