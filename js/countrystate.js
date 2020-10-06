@@ -193,6 +193,7 @@ fetch("/js/countrycitystatejson/lib/compiledCities.json")
         if (typeof regionLabels[countryShortCode] === 'undefined') {
           regionLabel.style.visibility = 'hidden';
           regionSelect.style.visibility = 'hidden';
+          regionSelect.innerHTML = '';
         } else {
           let optionList = [];
           let regionOptions = [];
