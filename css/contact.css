@@ -1,12 +1,36 @@
 /* Special styles for the contact form */
 #stack-flair {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
   grid-template-rows: repeat(auto-fill, 100px);
   grid-gap: 10px;
+  max-width: 98%;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+#grid-control:checked ~ #stack-flair {
+  grid-template-columns: repeat(auto-fit, 250px);
+}
+#list-control:checked ~ #stack-flair {
+  grid-template-columns: 1fr;
+}
+#grid-control:checked ~ #stack-flair .block-header {
+  grid-column-start: span 3;
+}
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.block-layout {
+  flex-grow: 1;
+  text-align: right;
+}
+#grid-control:checked ~ #stack-flair #grid-switch {
+  display: none
+}
+#list-control:checked ~ #stack-flair #list-switch {
+  display: none;
 }
 #error-msg-box {
   border-color: rgba(255,255,255,.35);
