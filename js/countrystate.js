@@ -245,9 +245,3 @@ fetch("/js/countrycitystatejson/lib/compiledCities.json")
     countryCityData.setCountryOptions();
     countryCityData.setRegionOptions();
   });
-function countryChange() {
-  const countryShortCode = countrySelect.value;
-  countryCityData.setRegionOptions();
-}
-countrySelect.addEventListener('change', countryChange);
-
