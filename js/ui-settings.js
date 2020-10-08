@@ -18,7 +18,7 @@ const fontIcons = {
 /* Menu controls and other hidden switches not in common groups */
 const hiddenControls = [
   {
-    'id': 'widescreena',
+    'id': 'widescreen',
     'type': 'checkbox',
     'value': 'isWide'
   },
@@ -353,9 +353,9 @@ function saveUI() {
 }
 function restoreUI() {
   if (typeof document.cookie !== 'undefined' && document.cookie !== '') {
-    document.getElementById(`${document.cookie.split(/&/)[0]}-mode`).checked = true;
-    document.getElementById(`${document.cookie.split(/&/)[1]}-scheme`).checked = true;
-    document.getElementById(`font-size-${document.cookie.split(/&/)[2]}`).checked = true;
+    document.getElementById(`${document.cookie.split(/;/)[0].split(/&/)[0]}-mode`).checked = true;
+    document.getElementById(`${document.cookie.split(/;/)[0].split(/&/)[1]}-scheme`).checked = true;
+    document.getElementById(`font-size-${document.cookie.split(/;/)[0].split(/&/)[2]}`).checked = true;
   }
 }
 document.querySelectorAll('input[name="font-size"]').forEach( el => el.addEventListener('change', saveUI));
