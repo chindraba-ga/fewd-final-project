@@ -25,10 +25,6 @@ const regionLabels = {           'CH' : 'Select your Canton',
   'TH' : 'Select your Province', 'FR' : 'Select your Department', 'AU' : 'Select your Province or Territory',
 };
 
-const countrySelect = document.getElementById('contact-country');                             
-const regionSelect = document.getElementById('contact-region');                                                
-const regionLabel = document.getElementById('contact-region-label');                                           
-                                                                                                               
 /* Country and state data, along with the first 7 methods here, are from                                       
  * https://github.com/khkwan0/countryCityStateJson                                                             
  *     GPL-3.0-or-later                                                                                        
@@ -145,7 +141,7 @@ fetch("/js/countrycitystatejson/lib/compiledCities.json")
         return res;
       },
       setCountryOptions: (optionInfo = {}) => {
-        const selectElem = document.getElementById('contact-country');
+        const selectElem = contactFields.country;
         let optionList = [];
         let countryOptions = {};
         let countryOptionsBase = optionInfo || {};
@@ -188,61 +184,100 @@ fetch("/js/countrycitystatejson/lib/compiledCities.json")
         const usElem = document.getElementById('contact-country-US');
         selectElem.insertBefore(usElem, selectElem.children[1]);
       },
-      setRegionOptions: (optionInfo = {}) => {
-        let countryShortCode = countrySelect.value;
-        if (typeof regionLabels[countryShortCode] === 'undefined') {
-          regionLabel.style.visibility = 'hidden';
-          regionSelect.style.visibility = 'hidden';
-          regionSelect.innerHTML = '';
+      getRegionOptions: (optionInfo = {}) => {
+        let countryShortCode = contactFields.country.value;
+        if ('00' === countryShortCode) {
+          return [];
+        }
+        let regionOptions = [];
+        let regionOptionsBase = optionInfo || {};
+        if (typeof optionInfo['tag'] !== 'undefined') {
+          regionOptionsBase['tag'] = optionInfo['tag'];
         } else {
-          let optionList = [];
-          let regionOptions = [];
-          let regionOptionsBase = optionInfo || {};
-          if (typeof optionInfo['tag'] !== 'undefined') {
-            regionOptionsBase['tag'] = optionInfo['tag'];
-          } else {
-            regionOptionsBase['tag'] = 'option';
-          }
-          if (typeof optionInfo['classList'] !== 'undefined') {
-            regionOptionsBase['classList'] = optionInfo['classList'];
-          }
-          if (typeof optionInfo['attribs'] !== 'undefined') {
-            regionOptionsBase['attribs'] = optionInfo['attribs'];
-          } else {
-            regionOptionsBase['attribs'] = {};
-          }
-          countryCityData.getStatesByShort(countryShortCode).forEach(
-            (regionName) => {
-              var setStateOptions = {};
-              const pattern = /''/gi;
-              regionOptionsInfo = {};
-              for (key in regionOptionsBase) {
-                regionOptionsInfo[key] = regionOptionsBase[key];
+          regionOptionsBase['tag'] = 'option';
+        }
+        if (typeof optionInfo['classList'] !== 'undefined') {
+          regionOptionsBase['classList'] = optionInfo['classList'];
+        }
+        if (typeof optionInfo['attribs'] !== 'undefined') {
+          regionOptionsBase['attribs'] = optionInfo['attribs'];
+        } else {
+          regionOptionsBase['attribs'] = {};
+        }
+        countryCityData.getStatesByShort(countryShortCode).forEach(
+          (regionName) => {
+            var setStateOptions = {};
+            const pattern = /''/gi;
+            regionOptionsInfo = {};
+            for (key in regionOptionsBase) {
+              regionOptionsInfo[key] = regionOptionsBase[key];
+            }
+            regionOptionsInfo['content'] = regionName.replaceAll(/''/g,'\xb4');
+            let regionId = regionName.replaceAll(/\s/g,'-');
+            if (typeof regionOptionsInfo.attribs === 'undefined') {
+              regionOptionsInfo['attribs'] = {
+                'id': `contact-region-${regionId}`.replaceAll(/''/g,'-'),
+                'value': regionName.replaceAll(/''/g,'\xb4'),
               }
-              regionOptionsInfo['content'] = regionName.replaceAll(/''/g,'\xb4');
-              let regionId = regionName.replaceAll(/\s/g,'-');
+            } else {
               regionOptionsInfo.attribs['id'] = `contact-region-${regionId}`.replaceAll(/''/g,'-');
               regionOptionsInfo.attribs['value'] = regionName.replaceAll(/''/g,'\xb4');
-              regionOptions.push(newElement(regionOptionsInfo));
             }
-          );
-          regionLabel.innerHTML = '';
-          addContent(regionLabel, `${regionLabels[countryShortCode]}:`);
-          regionLabel.style.visibility = 'visible';
-          clearElement(regionSelect);
-          regionSelect.append(newElement({
-            'tag': 'option',
-            'attribs' : {
-              'id': 'contact-region-00',
-              'value': '00',
-            },
-            'content': regionLabels[countryShortCode],
-          }));
-          regionSelect.append(...regionOptions);
-          regionSelect.style.visibility = 'visible';
-        }
+            regionOptions.push(newElement(regionOptionsInfo));
+          }
+        );
+        regionOptions.unshift(newElement({
+          'tag': 'option',
+          'attribs' : {
+            'id': 'contact-region-00',
+            'value': '00',
+          },
+          'content': regionLabels[countryShortCode],
+        }));
+        return regionOptions;
       },
     };
     countryCityData.setCountryOptions();
-    countryCityData.setRegionOptions();
   });
+
+/*
+function setRegionOptions(optionInfo = {}) {
+  let countryShortCode = contactFields.country.value;
+  contactFields.regionType.innerHTML = '';
+//  errMsgReason.innerHTML = '';
+  if (typeof regionLabels[countryShortCode] === 'undefined') {
+    contactZones.region.classList.add('contact-reserved');
+    contactFields.region.innerHTML = '';
+  } else {
+    contactFields.regionLabel.innerHTML = '';
+    addContent(contactFields.regionLabel, `${regionLabels[countryShortCode]}:`);
+    contactFields.regionLabel.style.visibility = 'visible';
+    clearElement(contactFields.region);
+    contactFields.region.append(newElement({
+      'tag': 'option',
+      'attribs' : {
+        'id': 'contact-region-00',
+        'value': '00',
+      },
+      'content': regionLabels[countryShortCode],
+    }));
+    contactFields.region.append(...countryCityData.getRegionOptions());
+    contactFields.region.style.visibility = 'visible';
+//    addContent(errMsgRegionText, regionLabels[countryShortCode].replace(/Select your /,'').toLowerCase());
+  }
+}
+*/
+
+function setRegionOptions(optionInfo = {}) {
+  let countryShortCode = contactFields.country.value;
+  clearElement(contactFields.regionLabel);
+  clearElement(contactFields.region);
+  if (typeof regionLabels[countryShortCode] === 'undefined') {
+    contactZones.region.classList.add('contact-reserved');
+  } else {
+    addContent(contactFields.regionLabel, regionLabels[countryShortCode]);
+    addContent(contactFields.region, countryCityData.getRegionOptions(countryShortCode));
+    contactZones.region.classList.remove('contact-reserved');
+  }
+}
+
