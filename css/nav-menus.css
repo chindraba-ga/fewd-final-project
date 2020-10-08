@@ -250,13 +250,23 @@
 }
 @media screen and (min-width: 48rem) {
   #page-nav {
-    width: 9.375rem;
+    width: calc(9.375rem + .15 * (100vw - 48rem));
     transform: none;
     height: auto;
     max-height: 85vh;
   }
   #page-nav-switch {
     display: none;
+  }
+}
+@media screen and (min-width: 57rem) {
+  #page-nav {
+    width: calc(9.375rem + .15 * (100vw - 57rem));
+  }
+}
+@media screen and (min-width: 90rem) {
+  #page-nav {
+    width: 14.325rem;
   }
 }
 
@@ -290,13 +300,18 @@
 }
 @media screen and (min-width: 57rem) {
   #right-nav {
-    width: 9.375rem;
+    width: calc(9.375rem + .15 * (100vw - 57rem));
     transform: none;
     height: auto;
     max-height: 85vh;
   }
   #right-nav-switch {
     display: none;
+  }
+}
+@media screen and (min-width: 90rem) {
+  #right-nav {
+    width: 14.325rem;
   }
 }
 
