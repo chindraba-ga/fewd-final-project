@@ -74,18 +74,20 @@
       <input id="grid-control" class="hidden-control" type="radio" name="layout-choice" checked="true">
       <input id="list-control" class="hidden-control" type="radio" name="layout-choice">
       <div id="stack-flair">
-        <h4 class="block-header">
-            <div class="block-label">Currently active profiles</div>
-            <div class="block-layout">
-              <label id="grid-switch" class="box box-icon surface-ctrl ui-control" for="grid-control">&#x229e;</label>
-              <label id="list-switch" class="box box-icon surface-ctrl ui-control" for="list-control">&#x2263;</label>
+        <h4 class="flair-header box surface-menu">
+            <div class="flair-label">Currently active profiles</div>
+            <div class="flair-layout">
+              <label id="flair-grid" class="box box-icon surface-ctrl ui-control" for="grid-control">&#x229e;</label>
+              <label id="flair-list" class="box box-icon surface-ctrl ui-control" for="list-control">&#x2263;</label>
             </div>
         </h4>
-        <h4><a href="https://unix.stackexchange.com/users/207673/chindraba"><img src="https://unix.stackexchange.com/users/flair/207673.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Unix &amp; Linux Stack Exchange, Q&amp;A for users of Linux, FreeBSD and other Un*x-like operating systems" title="profile for Chindraba at Unix &amp; Linux Stack Exchange, Q&amp;A for users of Linux, FreeBSD and other Un*x-like operating systems"></a></h4>
-        <h4><a href="https://superuser.com/users/686699/chindraba"><img src="https://superuser.com/users/flair/686699.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Super User, Q&amp;A for computer enthusiasts and power users" title="profile for Chindraba at Super User, Q&amp;A for computer enthusiasts and power users"></a></h4>
-        <h4><a href="https://cseducators.stackexchange.com/users/104/gypsy-spellweaver"><img src="https://cseducators.stackexchange.com/users/flair/104.png?theme=dark" width="208" height="58" alt="profile for Gypsy Spellweaver at Computer Science Educators Stack Exchange, Q&amp;A for those involved in the field of teaching Computer Science" title="profile for Gypsy Spellweaver at Computer Science Educators Stack Exchange, Q&amp;A for those involved in the field of teaching Computer Science"></a></h4>
-        <h4><a href="https://stackoverflow.com/users/7412956/chindraba"><img src="https://stackoverflow.com/users/flair/7412956.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Chindraba at Stack Overflow, Q&amp;A for professional and enthusiast programmers"></a></h4>
-        <h4><a href="https://codereview.stackexchange.com/users/126950/chindraba"><img src="https://codereview.stackexchange.com/users/flair/126950.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews" title="profile for Chindraba at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews"></a></h4>
+        <div class="flair-box">
+            <h4><a href="https://unix.stackexchange.com/users/207673/chindraba"><img class="flair-img" src="https://unix.stackexchange.com/users/flair/207673.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Unix &amp; Linux Stack Exchange, Q&amp;A for users of Linux, FreeBSD and other Un*x-like operating systems" title="profile for Chindraba at Unix &amp; Linux Stack Exchange, Q&amp;A for users of Linux, FreeBSD and other Un*x-like operating systems"></a></h4>
+            <h4><a href="https://superuser.com/users/686699/chindraba"><img class="flair-img"  src="https://superuser.com/users/flair/686699.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Super User, Q&amp;A for computer enthusiasts and power users" title="profile for Chindraba at Super User, Q&amp;A for computer enthusiasts and power users"></a></h4>
+            <h4><a href="https://cseducators.stackexchange.com/users/104/gypsy-spellweaver"><img class="flair-img"  src="https://cseducators.stackexchange.com/users/flair/104.png?theme=dark" width="208" height="58" alt="profile for Gypsy Spellweaver at Computer Science Educators Stack Exchange, Q&amp;A for those involved in the field of teaching Computer Science" title="profile for Gypsy Spellweaver at Computer Science Educators Stack Exchange, Q&amp;A for those involved in the field of teaching Computer Science"></a></h4>
+            <h4><a href="https://stackoverflow.com/users/7412956/chindraba"><img class="flair-img"  src="https://stackoverflow.com/users/flair/7412956.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Chindraba at Stack Overflow, Q&amp;A for professional and enthusiast programmers"></a></h4>
+            <h4><a href="https://codereview.stackexchange.com/users/126950/chindraba"><img class="flair-img"  src="https://codereview.stackexchange.com/users/flair/126950.png?theme=dark" width="208" height="58" alt="profile for Chindraba at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews" title="profile for Chindraba at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews"></a></h4>
+        </div>
       </div>
       <h3>Keybase</h3>
       <h4><a href="https://keybase.io/chindraba">As Chindraba</a></h4>
@@ -97,60 +99,76 @@
       <input type="radio" id="contact-is-shout" class="hidden-control" name="contact-control" value="shout">
       <input type="radio" id="contact-is-other" class="hidden-control" name="contact-control" value="unique">
       <form id="contact-form">
-       <fieldset id="contact-info" class="surface-ctrl field-left">
-          <legend class="surface-primary">About you</legend>
-          <div>
-            <label id="contact-name-label" for="contact-name">Your name (or pseudonym):</label>
-            <input type="text" id="contact-name" name="contact_name" placeholder="Your name">
+       <fieldset id="contact-info" class="surface-ctrl field-left super-soft-corner ridged">
+          <legend class="surface-primary menu-font soft-corner grooved">About you</legend>
+          <div id="contact-name-zone" class="soft-corner">
+            <label id="contact-name-label" class="soft-corner" for="contact-name">Your name (or pseudonym):</label>
+            <input type="text" id="contact-name" class="soft-corner" name="contact_name" placeholder="Your name">
           </div>
-          <div>
-            <label id="contat-email-label" for="contact-email">Your email address:</label>
-            <input type="email" id="contact-email" name="contact_email" placeholder="Email address">
+          <div id="contact-email-zone" class="soft-corner">
+            <label id="contat-email-label" class="soft-corner" for="contact-email">Your email address:</label>
+            <input type="email" id="contact-email" class="soft-corner" name="contact_email" placeholder="Email address">
           </div>
-          <div>
-            <label id="contact-country-label" for="contact-country">Your country:</label>
-            <select id="contact-country"></select>
+          <div id="contact-country-zone" class="soft-corner">
+            <label id="contact-country-label" class="soft-corner" for="contact-country">Your country:</label>
+            <select id="contact-country" class="soft-corner"></select>
           </div>
-          <div>
-            <label id="contact-region-label" for="contact-region"></label>
-            <select id="contact-region"></select>
+          <div id="contact-region-zone" class="contact-reserved soft-corner">
+            <label id="contact-region-label" class="soft-corner" for="contact-region"></label>
+            <select id="contact-region" class="soft-corner"></select>
           </div>
-        </fieldset class="surface-ctrl">
-        <fieldset id="contact-choice" class="surface-ctrl field-left">
-          <legend class="surface-primary">Reason for contact?</legend>
+        </fieldset>
+        <fieldset id="contact-choice" class="surface-ctrl field-left super-soft-corner ridged">
+          <legend class="surface-primary menu-font soft-corner grooved">Reason for contact?</legend>
           <label for="contact-is-feedback"><span class="btn-3d btn-fade btn-bar soft-corner bold surface-primary contact-feedback">Cheers &amp; Jeers</span></label>
           <label for="contact-is-general"><span class="btn-3d btn-fade btn-bar soft-corner bold surface-primary contact-general">Just sayin&apos;</span></label>
           <label for="contact-is-shout"><span class="btn-3d btn-fade btn-bar soft-corner bold surface-primary contact-shout">Shout-out</span></label>
           <label for="contact-is-bug"><span class="btn-3d btn-fade btn-bar soft-corner bold surface-primary contact-bug">Bug hunting</span></label>
           <label for="contact-is-other"><span class="btn-3d btn-fade btn-bar soft-corner bold surface-primary contact-other">Reasons O&apos; My Own</span></label>
-          <label for="contact-other-reason" class="contact-reserved contact-other">What&apos;s your real reason?</label>
-          <input type="text" id="contact-other-reason" name="contact_other_reason" class="contact-reserved contact-other" placeholder="Give it up!">
+          <div id="contact-reason-zone" class="contact-reserved contact-other soft-corner">
+            <label for="contact-reason" class="soft-corner">What&apos;s your real reason?</label>
+            <input type="text" id="contact-reason" class="soft-corner" name="contact_reason" placeholder="Give it up!">
+          </div>
         </fieldset>
-        <fieldset id="contact-entry" class="surface-ctrl field-right">
-            <legend class="surface-primary">Let loose your inner Shakespear</legend>
-            <textarea id="contact-feedback-pros" name="contact_feedback_pros" class="contact-optional contact-feedback" placeholder="What are the good points you found on the site?"></textarea>
-            <hr class="contact-optional contact-feedback">
-            <textarea id="contact-feedback-cons" name="contact_feedback_cons" class="contact-optional contact-feedback" placeholder="What are you unhappy with about the site?"></textarea>
-            <label for="contact-bug-page" class="contact-optional contact-bug">Where did you find the bug?</label>
-            <input type="text" id="contact-bug-page" name="contact_bug_page" class="contact-optional contact-bug" placeholder="Which page?">
+        <fieldset id="contact-entry" class="surface-ctrl field-right super-soft-corner ridged">
+            <legend class="surface-primary menu-font soft-corner grooved">Let loose your inner Shakespear</legend>
+            <div id="contact-bug-page-zone" class="contact-optional contact-bug soft-corner">
+              <label for="contact-bug-page" class="soft-corner">Where did you find the bug?</label>
+              <input type="text" id="contact-bug-page" class="soft-corner" name="contact_bug_page" placeholder="Which page?">
+            </div>
             <hr class="contact-optional contact-bug">
-            <textarea id="contact-bug-data" name="contact_bug_data" class="contact-optional contact-bug" placeholder="Describe the bug you found. Typos count as bugs."></textarea>
-            <textarea id="contact-general-response" name="contact_general_response" class="contact-optional contact-general" placeholder="Speak your mind"></textarea>
-            <textarea id="contact-shout-response" name="contact_shout_response" class="contact-optional contact-shout" placeholder="Say it loud and clear for all to hear"></textarea>
-            <textarea id="contact-other-response" name="contact_other_response" class="contact-optional contact-other" placeholder="Say what needs saying"></textarea>
-            <label for="contact-shout-for" class="contact-optional contact-shout">And lucky winner is?</label>
-            <input type="text" id="contact-shout-for" name="contact_shout_for" class="contact-optional contact-shout" placeholder="Who are they?">
+            <div id="contact-bug-text-zone" class="contact-optional contact-bug soft-corner">
+              <textarea id="contact-bug-data" name="contact_bug_data" class="contact-optional contact-bug" placeholder="Describe the bug you found. Typos count as bugs."></textarea>
+            </div>
+            <div id="contact-feedback-zone" class="contact-optional contact-feedback soft-corner">
+              <textarea id="contact-feedback-pros" name="contact_feedback_pros" placeholder="What are the good points you found on the site?"></textarea>
+              <hr>
+              <textarea id="contact-feedback-cons" name="contact_feedback_cons" placeholder="What are you unhappy with about the site?"></textarea>
+            </div>
+            <div id="contact-general-response-zone" class="contact-optional contact-general soft-corner">
+              <textarea id="contact-general" name="contact_general" class="soft-corner" placeholder="Speak your mind"></textarea>
+            </div>
+            <div id="contact-other-zone" class="contact-optional contact-other soft-corner">
+              <textarea id="contact-other" name="contact_other" class="soft-corner" placeholder="Say what needs saying"></textarea>
+            </div>
+            <div id="contact-shout-response-zone" class="contact-optional contact-shout soft-corner">
+              <textarea id="contact-shout-response" name="contact_shout_response" class="contact-optional contact-shout" placeholder="Say it loud and clear for all to hear"></textarea>
+            </div>
+            <div id="contact-shout-for-zone" class="contact-optional contact-shout soft-corner">
+              <label for="contact-shout-for" class="soft-corner">And lucky winner is?</label>
+              <input type="text" id="contact-shout-for" class="soft-corner" name="contact_shout_for" placeholder="Who are they?">
+            </div>
             <hr class="contact-optional contact-feedback contact-bug contact-general contact-other contact-shout">
-            <input type="submit" class="contact-optional surface-primary bold soft-corner bar-btn contact-feedback" value="&#x1f680;&#xa0;Lock n&apos; Load">
-            <input type="submit" class="contact-optional surface-primary bold soft-corner bar-btn contact-bug" value="&#x1f99f;&#xa0;Swat it">
-            <input type="submit" class="contact-optional surface-primary bold soft-corner bar-btn contact-general" value="&#x1f4ee;&#xa0;Send it to me">
-            <input type="submit" class="contact-optional surface-primary bold soft-corner bar-btn contact-shout" value="&#x1f3c6;&#xa0;Tell the world">
-            <input type="submit" class="contact-optional surface-primary bold soft-corner bar-btn contact-other" value="&#x26a1;&#xa0;Send it">
+            <input type="submit" class="contact-optional surface-primary bold soft-corner btn-bar contact-feedback" value="&#x1f680;&#xa0;Lock n&apos; Load">
+            <input type="submit" class="contact-optional surface-primary bold soft-corner btn-bar contact-bug" value="&#x1f99f;&#xa0;Swat it">
+            <input type="submit" class="contact-optional surface-primary bold soft-corner btn-bar contact-general" value="&#x1f4ee;&#xa0;Send it to me">
+            <input type="submit" class="contact-optional surface-primary bold soft-corner btn-bar contact-shout" value="&#x1f3c6;&#xa0;Tell the world">
+            <input type="submit" class="contact-optional surface-primary bold soft-corner btn-3d btn-bar contact-other" value="&#x26a1;&#xa0;Send it">
             <hr class="contact-optional contact-feedback contact-bug contact-general contact-other contact-shout">
-            <input type="reset" class="contact-optional surface-primary bold soft-corner bar-btn contact-bug" value="&#x1f937;&#xa0;I&apos;m Just See&apos;n Things">
-            <input type="reset" class="contact-optional surface-primary bold soft-corner bar-btn contact-shout" value="&#x1f6ab;&#xa0;Changed my mind">
-            <input type="reset" class="contact-optional surface-primary bold soft-corner bar-btn contact-feedback contact-general" value="&#x1f645;&#xa0;Never mind">
-            <input type="reset" class="contact-optional surface-primary bold soft-corner bar-btn contact-other" value="&#x1f926;&#xa0;What was I thinkin&apos;?">
+            <input type="reset" class="contact-optional surface-primary bold soft-corner btn-bar contact-bug" value="&#x1f937;&#xa0;I&apos;m Just See&apos;n Things">
+            <input type="reset" class="contact-optional surface-primary bold soft-corner btn-bar contact-shout" value="&#x1f6ab;&#xa0;Changed my mind">
+            <input type="reset" class="contact-optional surface-primary bold soft-corner btn-bar contact-feedback contact-general" value="&#x1f645;&#xa0;Never mind">
+            <input type="reset" class="contact-optional surface-primary bold soft-corner btn-bar contact-other" value="&#x1f926;&#xa0;What was I thinkin&apos;?">
         </fieldset>
       </form>
     </main>

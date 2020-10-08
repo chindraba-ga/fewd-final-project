@@ -63,6 +63,25 @@ sup {
 h2 {
   padding-bottom: 1em;
 }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+h1 {
+  font-size: 2em;
+  line-height: 2.3;
+}
+h2 {
+  font-size: 1.75em;
+  line-height: 2;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.7;
+}
+h4 {
+  font-size: 1.25em;
+  line-height: 1.4;
+}
 h1, h2, h3, h4, h5, h6,
 .surface-page {
   background-color: var(--colors-page);
@@ -70,6 +89,10 @@ h1, h2, h3, h4, h5, h6,
 }
 h2, .surface-page {
   box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  z-index: 3;
+}
+.menu-font {
+  font-family: var(--menu-fontFace);
 }
 .surface-foot {
   background-color: var(--colors-foot);
@@ -107,6 +130,10 @@ h2, .surface-page {
   background-color: var(--colors-error);
   color: var(--colors-onError);
 }
+.surface-input {
+  background-color: whitesmoke;
+  color: black;
+}
 .onCtrl {
   color: var(--colors-onCtrl);
 }
@@ -121,8 +148,24 @@ h2, .surface-page {
 .block-up {
   display: inline-block;
 }
+.grooved {
+  border: 3px groove var(--colors-border);
+}
+.ridged {
+  border: 5px ridge var(--colors-border);
+}
+.inset {
+  border: 2px inset rgb(224,224,224);
+}
+.input-field {
+  flex-grow: 2;
+  height: auto;
+}
 .soft-corner {
   border-radius: var(--radius-effect);
+}
+.super-soft-corner {
+  border-radius: calc(2 * var(--radius-effect));
 }
 .shift-in-1 {
   margin-left: .5em;
@@ -282,7 +325,7 @@ h2, .surface-page {
   margin: 0 25px;
   padding: 0 0 calc(var(--logo-size) / 2 + 25px);
   font-family: var(--main-fontFamily);
-  line-height: 1.25;
+  line-height: 1.35;
   min-height: 100vh;
 }
 @media screen and (min-width: 48rem) {
